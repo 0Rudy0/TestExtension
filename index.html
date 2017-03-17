@@ -1,0 +1,203 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>The HTML5 Herald</title>
+	<meta name="description" content="The HTML5 Herald">
+	<meta name="author" content="SitePoint">
+	<link rel="stylesheet" href="css/adopto.css">
+	<link rel="stylesheet" href="css/adopto-tabs.css">
+	<link rel="stylesheet" href="https://assets-cdn.github.com/assets/frameworks-d514f0f4cce26123a0bd5717d033adc4138d2033750224d5716f9e939d3b3aa6.css">
+</head>
+
+<body>
+	<div class="adopto-sidebar" style="display: block;">
+		<div class="topHeader">
+
+			<a href="http://adopto.eu/" target="_blank">
+				<!--<div class="adopto-logo"></div>-->
+			</a>
+
+			<div class="adopto-close" title="Close">
+				<i class="material-icons">close</i>
+			</div>
+		</div>
+
+		<div class="nav-tabs">
+			<div class="tab-header" data-tab="tabForm">
+				<i class="material-icons">person_pin</i>
+			</div>
+			<div class="tab-header" data-tab="tabActivities">
+				<i class="material-icons">timeline</i>
+			</div>
+			<div class="tab-header" data-tab="tabCommunication">
+				<i class="material-icons">forum</i>
+			</div>
+		</div>
+
+		<div class="tab-content">
+			<div class="tabForm tab">
+				<div class="adopto-form">
+					<form id="adopto-form">
+						<input type="hidden" name="SourceName" id="adopto-source-name">
+						<input type="hidden" name="SourceType" id="adopto-source-type">
+						<input type="hidden" name="SourceProfileUrl" id="adopto-profile-url">
+						<input type="hidden" name="SourceProfilePictureUrl" id="adopto-profile-image">
+
+						<div class="main-info">
+							<div class="adopto-profile-picture"></div>
+							<div class="curr-info">
+								<p class="name">Danijel Rudman Rudmannn</p>
+								<p class="jobTitle">Software developer developer developer developer</p>
+								<p>at <span class="currCompany">HrPro d.o.o. oooo ogdafdfhdfs</span></p>
+								<p>
+									<i class="material-icons">location_on</i>
+									<span>Zagreb</span>
+								</p>
+							</div>
+						</div>
+
+						<div class="adopto-group">
+							<h3 class="adopto-group-title"><i class="material-icons">account_circle</i> Candidate details</h3>
+
+							<div class="adopto-input">
+								<input type="text" name="Name" id="adopto-name" autocomplete="off" spellcheck="false">
+								<label for="adopto-name">Name</label>
+							</div>
+
+							<div class="adopto-input">
+								<input type="email" name="Email" id="adopto-email" autocomplete="off" spellcheck="false">
+								<label for="adopto-email">E-mail</label>
+							</div>
+
+							<div class="adopto-input">
+								<input type="text" name="JobTitle" id="adopto-job-position" autocomplete="off" spellcheck="false">
+								<label for="adopto-job-position">Job position</label>
+							</div>
+
+							<!-- TODO: Dodati autocomplete od google-maps-api-ja za adresu -->
+							<div class="adopto-input">
+								<input type="text" name="Location" id="adopto-address" autocomplete="off" spellcheck="false">
+								<label for="adopto-address">Address</label>
+							</div>
+						</div>
+
+						<div class="adopto-group">
+							<h3 class="adopto-group-title"><i class="material-icons">done_all</i> Keep it</h3>
+
+							<div class="adopto-select" id="adopto-position-list">
+								<div class="adopto-selected">
+									<span>&nbsp;</span>
+									<i class="material-icons">arrow_drop_down</i>
+								</div>
+								<label>Positions</label>
+								<input type="hidden" name="JobId" value="-1">
+								<ul></ul>
+							</div>
+
+							<div class="adopto-select" id="adopto-talent-list">
+								<div class="adopto-selected">
+									<span>&nbsp;</span>
+									<i class="material-icons">arrow_drop_down</i>
+								</div>
+								<label>Talent list</label>
+								<input type="hidden" name="TalentListId" value="-1">
+								<ul></ul>
+							</div>
+
+							<div class="adopto-checkbox">
+								<label>
+									<input type="checkbox" name="IsRecomended">
+									<span><i class="material-icons">check</i></span>
+									I recommend this candidate
+								</label>
+							</div>
+
+							<div class="adopto-input">
+								<textarea name="Note" id="comment" autocomplete="off" spellcheck="false" rows="5"></textarea>
+								<label for="comment">Your comment about this candidate</label>
+							</div>
+						</div>
+
+						<div class="adopto-perspective">
+							<button type="submit" class="adopto-source">Source candidate</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="tabActivities tab">
+				Activities
+			</div>
+			<div class="tabCommunication tab">
+				communication
+			</div>
+		</div>
+
+
+
+		<!--<div class="adopto-bg-ribbon"></div>-->
+		<!--<div class="adopto-sidebar-content">
+
+		</div>-->
+
+		<div class="adopto-loader-wrapper adopto-overlay adopto-hidden">
+			<div class="adopto-loader-container">
+				<div class="adopto-loader">
+					<div class="el0"></div>
+					<div class="el1"></div>
+					<div class="el2"></div>
+					<div class="el3"></div>
+					<div class="el4"></div>
+				</div>
+				<div class="shadow"></div>
+			</div>
+		</div>
+
+		<div class="adopto-open-profile-msg adopto-overlay">
+			<div class="adopto-modal">
+				To source candidate, open his profile.
+
+				<button class="adopto-modal-button adopto-refresh">Refresh</button>
+			</div>
+		</div>
+
+		<div class="adopto-login-msg adopto-overlay adopto-hidden">
+			<div class="adopto-modal">
+				To source candidate you must be logged in.
+
+				<a class="adopto-modal-button" href="https://adopto.eu/Account/Login" target="_blank">Log in</a>
+			</div>
+		</div>
+
+		<div class="adopto-sourced-msg adopto-overlay adopto-hidden">
+			<div class="adopto-modal">
+				Candidate sourced!
+
+				<a class="adopto-modal-button adopto-sourced-close" href="#">Close</a>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/google-fonts.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<script type="text/javascript" src="js/adopto.js"></script>
+	<script type="text/javascript" src="js/adopto-sidebar.js"></script>
+
+	<!--<script type="text/javascript" src="modules/angellist.js"></script>
+	<script type="text/javascript" src="modules/codeproject.js"></script>
+	<script type="text/javascript" src="modules/dribbble.js"></script>
+	<script type="text/javascript" src="modules/facebook.js"></script>
+	<script type="text/javascript" src="modules/github.js"></script>
+	<script type="text/javascript" src="modules/linkedin.js"></script>
+	<script type="text/javascript" src="modules/stackoverflow.js"></script>
+	<script type="text/javascript" src="modules/twitter.js"></script>-->
+
+	<script type="text/javascript">
+		Adopto.sidebar.toggle();
+	</script>
+</body>
+</html>
+

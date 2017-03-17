@@ -1,0 +1,13 @@
+{
+	"close": "Close",
+	"cadetails": "Candidate details",
+	"name": "Name",
+	"email": "E-mail",
+	"jobpos": "Job position",
+	"address": "Address",
+	"keepit": "Keep it",
+	"positions": "Positions",
+	"talist": "Talent list",
+	"recommend": "I recommend this candidate",
+	"source": "Source candidate"
+}
