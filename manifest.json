@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Adopto Hire Extension",
+    "name": "Adopto Hire Extension testing",
     "version": "0.9.6",
 
     "description": "Source candidates to your Adopto account with a single click.",
@@ -13,7 +13,8 @@
     "author": "Bojan Došen, Adopto LTD",
     "permissions": [
         "activeTab",
-        "https://*.adopto.eu/*"
+        "https://*.adopto.eu/*",
+        "http://adopto-local.eu/*"
     ],
     "content_scripts": [
         {
@@ -27,7 +28,13 @@
                 "http://*.codeproject.com/*",
                 "https://*.twitter.com/*"
             ],
-            "css": ["css/adopto.css"],
+            "css": [
+                "css/adopto.css",
+                "css/adopto-tabs.css",
+                "css/adopto-form.css",
+                "css/adopto-activities.css",
+                "css/adopto-communications.css"
+            ],
             "js": [
                 "js/jquery.min.js",
                 "js/google-fonts.js",

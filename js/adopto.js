@@ -2,6 +2,8 @@ var Adopto = {
 	sidebar: {
 		element: $('<div class="adopto-sidebar"></div>')
 	},
+	//rootUrl: 'http://adopto-local-eu/',
+	rootUrl: 'https://adopto.eu/',
 
 	hostTest: function () {
 		for (var i = 0; i < arguments.length; i++) {
@@ -20,7 +22,7 @@ var Adopto = {
 
 	codeData: null,
 	getCodeData: function (onLoad) {
-		$.getJSON('https://adopto.eu/Browser/GetCodeData')
+		$.getJSON(Adopto.rootUrl + 'Browser/GetCodeData')
 			.done(function (data) {
 				Adopto.codeData = data;
 				if (onLoad) {
@@ -29,14 +31,14 @@ var Adopto = {
 			});
 	},
 
-	//port: chrome.runtime.connect({name: 'adopto'}),
-	//iconStatus: function () {
-	//	if (Adopto.contentScript) {
-	//		Adopto.port.postMessage({value: 'enabled'});
-	//	} else {
-	//		Adopto.port.postMessage({value: 'disabled'});
-	//	}
-	//}
+	port: chrome.runtime.connect({name: 'adopto'}),
+	iconStatus: function () {
+		if (Adopto.contentScript) {
+			Adopto.port.postMessage({value: 'enabled'});
+		} else {
+			Adopto.port.postMessage({value: 'disabled'});
+		}
+	}
 };
 
 (function ($) {
@@ -44,19 +46,12 @@ var Adopto = {
 	$(function () {
 		console.log('%c Adopto Extension started', 'font-size: 24px; font-weight: bold; color: #00acac;');
 
-		//Adopto.iconStatus();
-		//$(window).focus(Adopto.iconStatus);
+		Adopto.iconStatus();
+		$(window).focus(Adopto.iconStatus);
+		Adopto.sidebar.toggle();
 	});
 
-	$('.tab-header').click(function () {
-		$('.tab-content .tab').hide();
-		$('.nav-tabs .tab-header').removeClass('active');
-		$(this).addClass('active');
-		$('.tab-content .' + $(this).attr('data-tab')).show();
-		//console.log($(this).attr('data-tab'));
-	});
+	
 
-	$($('.nav-tabs .tab-header')[0]).addClass('active');
-	$($('.tab-content .tab')[0]).show();
 
 } (jQuery));

@@ -1,15 +1,15 @@
 /* Body */
 body {
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	/*transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);*/
 	width: 100%;
 }
 
 	body.adopto-sidebar-show {
-		width: calc(100% - 300px);
+		/*width: calc(100% - 300px);*/
 	}
 
 		body.adopto-sidebar-show .adopto-sidebar {
-			right: -50px;
+			/*right: -50px;*/
 		}
 
 .adopto-hidden {
@@ -21,10 +21,10 @@ body {
 	font-family: 'Material Icons';
 	font-style: normal;
 	font-weight: 400;
-	/*src: local('Material Icons'),
+	src: local('Material Icons'),
 			local('MaterialIcons-Regular'),
-			url('chrome-extension://__MSG_@@extension_id__/font/MaterialIcons-Regular.woff2') format('woff2');*/
-	src: local('Material Icons'), local('MaterialIcons-Regular'), url('../font/MaterialIcons-Regular.woff2') format('woff2');
+			url('chrome-extension://__MSG_@@extension_id__/font/MaterialIcons-Regular.woff2') format('woff2');
+	/*src: local('Material Icons'), local('MaterialIcons-Regular'), url('../font/MaterialIcons-Regular.woff2') format('woff2');*/
 }
 
 .material-icons {
@@ -45,21 +45,21 @@ body {
 /* Sidebar */
 .adopto-sidebar {
 	all: initial;
-	display: none; /* Solves uncompatibility with 'LastPass' chrome extension */
+	display: block; /* Solves uncompatibility with 'LastPass' chrome extension */
 	position: fixed;
 	box-sizing: border-box;
 	/*padding: 10px 60px 10px 10px;*/
 	overflow: hidden;
 	top: 0;
-	/*right: -350px;*/
-	right: 0px;
+	right: -350px;
+	/*right: 0px;*/
 	width: 350px;
 	height: 100vh;
-	/*background-color: #f9f7f6;*/
+	background-color: #f9f7f6;
 	border-left: 1px solid #dedcdb;
 	z-index: 99999;
 	-webkit-user-select: none;
-	transition: box-shadow 0.5s ease-in-out, right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	transition: box-shadow 0.4s ease-in-out, right 0.5s cubic-bezier(0.68, 0, 0.265, 1.15);
 }
 
 body.adopto-sidebar-show .adopto-sidebar {
@@ -107,8 +107,8 @@ body.adopto-sidebar-show .adopto-sidebar {
 /* Logo */
 .adopto-logo {
 	height: 40px;
-	/*background-image: url('chrome-extension://__MSG_@@extension_id__/images/adopto-logo.svg');*/
-	background-image: url('../images/adopto-logo.svg');
+	background-image: url('chrome-extension://__MSG_@@extension_id__/images/adopto-logo.svg');
+	/*background-image: url('../images/adopto-logo.svg');*/
 	background-size: auto 25px;
 	background-position: 10px 50%;
 	background-repeat: no-repeat;
@@ -273,7 +273,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 
 .adopto-source {
 	padding: 15px;
-	width: 280px;
+	width: 289px;
 	background-color: #00acac;
 	border: none;
 	color: #ffffff;
