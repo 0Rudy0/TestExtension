@@ -21,7 +21,7 @@
 
 	sidebar.hide = function () {
 		$('body').removeClass('adopto-sidebar-show');
-		$('.adopto-sidebar').css('right', '-350px');
+		$('.adopto-sidebar').css('right', '-390px');
 		setTimeout(() => function () {
 			//$('.adopto-sidebar').hide();
 		}, 50); // Solves uncompatibility with 'LastPass' chrome extension

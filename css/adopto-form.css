@@ -2,14 +2,14 @@
 
 .tab-form {
 	width: 100%;
-	height: 100%;
+	height: 80%;
 	display: block;
 }
 
 .main-info {
 	width: 100%;
-	height: 100px;
-	margin-bottom: 20px;
+	height: 80px;
+	margin-bottom: 10px;
 	/*background-color: blue;*/
 }
 
@@ -17,20 +17,23 @@
 .adopto-profile-picture {
 	float: left;
 	/*margin: 15px auto;*/
-	width: 100px;
-	height: 100%;
-	border: 5px solid #ffffff;
-	border-radius: 5px;
+	width: 80px;
+	/*position: relative;*/
+	/*top: 10px;*/
+	height: 80px;
+	border: 2px solid #ff5b57;
+	border-radius: 50px;
 	background-image: url('chrome-extension://__MSG_@@extension_id__/images/no-profile-pic.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	/*box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);*/
 }
 
 .curr-info {
 	float: left;
-	width: calc(100% - 100px);
+	width: calc(100% - 80px);
 	height: 100%;
 	padding-left: 15px;
 	padding-top: 5px;
@@ -40,10 +43,44 @@
 	.curr-info p,
 	.curr-info i {
 		margin-bottom: 0;
-		font-size: 14px;
+		font-size: 9pt;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+	}
+
+	.curr-info .jobTitle {
+		display: block;
+		/* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 174px;
+		height: 32px;
+		margin: 5px 0 0 0;
+		/* Fallback for non-webkit */
+		/*margin: 0 auto;*/
+		font-size: 9pt;
+		line-height: 1.4;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-weight: 100;
+		/*height: 32px;*/
+		/*display: block;*/
+		/*text-overflow: ellipsis;*/
+		/*overflow: hidden;*/
+		/*line-height: 16px;*/
+		/*-webkit-line-clamp: 2;*/
+		/*-webkitq-box-orient: vertical;*/
+		/*margin: 0 auto;*/
+		/*white-space: pre-line;*/
+		/*white-space: nowrap;*/
+	}
+
+	.curr-info p.location {
+		margin-top: 7px;
+		position: absolute;
+		bottom: 0;
 	}
 
 	.curr-info i {
@@ -52,7 +89,9 @@
 	}
 
 	.curr-info .name {
-		font-size: 17px;
+		padding-right: 17px;
+		font-size: 11pt;
+		font-weight: bold;
 		text-overflow: clip;
 		white-space: pre-line;
 		overflow: visible;
@@ -64,39 +103,42 @@
 /* Form group */
 .adopto-group {
 	margin-bottom: 20px;
-	padding: 6px;
+	padding: 8px;
+		font-size: 9pt;
 	position: relative;
-	-webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
-	-moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
-	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.15);
+	-webkit-box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
+	box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
 	/*margin-top: 10px;*/
 }
-.adopto-group h3 {
-	margin-bottom: 10px;
-}
 
-.adopto-group .edit-icon,
-.curr-info .edit-icon {
-	position: absolute;
-	top: 2px;
-	right: 2px;
-	font-size: 15px;
-	cursor: pointer;
-	color: #b9c1ca;
-}
+	.adopto-group h3 {
+	}
 
-.adopto-group .edit-icon:hover {
-	color: #67797b;
-	/*font-size: 17px;*/
-}
+	.adopto-group .edit-icon,
+	.curr-info .edit-icon {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		font-size: 15px;
+		cursor: pointer;
+		color: #b9c1ca;
+	}
+
+		.adopto-group .edit-icon:hover {
+			color: #67797b;
+			/*font-size: 17px;*/
+		}
 
 .adopto-group-title {
 	color: #7ca2a2;
 	font-family: 'Lato', sans-serif;
 	font-weight: normal;
-	font-size: 12px;
+	/*font-size: 12px;*/
 	font-weight: bold;
 	text-transform: uppercase;
+	font-size: 9pt;
+	margin-bottom: 10px;
 	/*text-align: right;*/
 }
 
@@ -126,7 +168,7 @@
 .adopto-checkbox {
 	display: block;
 	position: relative;
-	padding: 8px 0 !important;
+	padding: 5px 0 !important;
 	overflow: hidden;
 }
 
@@ -147,7 +189,6 @@
 		background: transparent !important;
 		font-family: 'Lato', sans-serif !important;
 		font-weight: normal !important;
-		font-size: 16px !important;
 		letter-spacing: normal !important;
 		word-spacing: normal !important;
 		-webkit-font-smoothing: antialiased;
@@ -310,16 +351,16 @@
 		}
 
 
-		.skillHolder span {
-			border: 1px solid #006b6b;
-			border-radius: 3px;
-			margin-left: 5px;
-			margin-top: 5px;
-			padding: 3px;
-			background-color: #009f9f;
-			color: white;
-			font-size: 13px;
-		}
+.skillHolder span {
+	border: 1px solid #006b6b;
+	border-radius: 3px;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding: 3px;
+	background-color: #009f9f;
+	color: white;
+	font-size: 13px;
+}
 
 
 
