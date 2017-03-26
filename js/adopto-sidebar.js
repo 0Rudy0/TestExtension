@@ -141,14 +141,45 @@
 						.done(function (data) {
 							$('.adopto-tab-content .tab.tabForm').append(data.format(lang));
 
-							//$('.adopto-sidebar-content').scroll(function(e) {
-							//	if ($(this).scrollTop() > 50) {
-							//		$('.adopto-bg-ribbon').addClass('adopto-ribbon-faded');
-							//	} else {
-							//		$('.adopto-bg-ribbon').removeClass('adopto-ribbon-faded');
-							//	}
-							//});
+							$('.main-info .edit-icon').click(function () {
+								$('.main-info .curr-info').hide();
+								$('.main-info .curr-info-edit').show();
+							});
+
+							$('.main-info .done-icon').click(function () {
+								console.log('click');
+								$('.main-info .curr-info').show();
+								$('.main-info .curr-info-edit').hide();
+							});
+
+							$('.adopto-group .item.withDetails').click(function () {
+								$.get(chrome.extension.getURL('markup/detailsPane.html'))
+								.done(function (data) {
+									$('.adopto-tab-content .adopto-details-pane').append(data);
+								});
+
+								$('.adopto-tab-content .tab').animate({ right: $('.adopto-tab-content').outerWidth() + 10 }, 200);
+								$('.adopto-tab-content .adopto-details-pane').animate({ right: '0' }, 200);
+								$('.topHeader>a').animate({ opacity: 0 }, 100, function () {
+									$('.topHeader>a').hide();
+									$('.topHeader .backPane').show();
+									$('.topHeader .backPane').animate({ opacity: 1 }, 100);
+								});
+							});
+
+							$('.topHeader .backPane').click(function () {
+								$('.adopto-tab-content .tab').animate({ right: '0' }, 200);
+								$('.adopto-tab-content .adopto-details-pane').animate({ right: '-100%' }, 200);
+								$('.topHeader .backPane').animate({ opacity: 0 }, 100, function () {
+									$('.topHeader .backPane').hide();
+									$('.topHeader>a').show();
+									$('.topHeader>a').animate({ opacity: 1 }, 100);
+									$('.adopto-tab-content .adopto-details-pane .pane').remove();
+								});
+							});
 						});
+
+
 
 					$.get(chrome.extension.getURL('markup/activities.html'))
 						.done(function (data) {

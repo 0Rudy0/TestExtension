@@ -16,6 +16,7 @@ body {
 	display: none;
 }
 
+
 /* Google Material font */
 @font-face {
 	font-family: 'Material Icons';
@@ -54,7 +55,7 @@ body {
 	right: -390px;
 	/*right: 0px;*/
 	width: 390px;
-	height: 100vh;
+	height: 100%;
 	background-color: #f9f7f6;
 	border-left: 1px solid #dedcdb;
 	z-index: 99999;
@@ -78,9 +79,13 @@ body.adopto-sidebar-show .adopto-sidebar {
 /* top header */
 
 .topHeader {
-	width: 100%;
+	width: calc(100% - 40px);
 	height: 40px;
 	border-bottom: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+	font-family: 'Lato', sans-serif !important;
+	position: relative;
+	color: black;
 }
 
 	.topHeader i {
@@ -114,6 +119,11 @@ body.adopto-sidebar-show .adopto-sidebar {
 	background-repeat: no-repeat;
 }
 
+.topHeader .backPane {
+	opacity: 0;
+	display: none;
+}
+
 /* Ribbon */
 .adopto-bg-ribbon {
 	position: absolute;
@@ -132,10 +142,10 @@ body.adopto-sidebar-show .adopto-sidebar {
 }
 
 /* Close button */
-.adopto-close {
+.topHeader .adopto-close {
 	position: absolute;
 	top: 7px;
-	right: 7px;
+	right: -33px;
 	width: 26px;
 	height: 26px;
 	color: #ffffff;
@@ -144,8 +154,8 @@ body.adopto-sidebar-show .adopto-sidebar {
 	transition: color 0.3s ease-in-out;
 }
 
-	.adopto-close:hover {
-		color: #ff5b57;
+	.topHeader .adopto-close:hover i {
+		color: #808080;
 	}
 
 /* Overlay */
@@ -273,8 +283,10 @@ body.adopto-sidebar-show .adopto-sidebar {
 
 .adopto-source {
 	padding: 15px;
-	width: 289px;
+	/*width: 289px;*/
+	width: 100%;
 	background-color: #00acac;
+	border: 1px solid #007878;
 	border: none;
 	color: #ffffff;
 	font-family: 'Lato', sans-serif !important;

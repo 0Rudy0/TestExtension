@@ -31,7 +31,68 @@
 	/*box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);*/
 }
 
-.curr-info {
+
+.curr-info p,
+.curr-info i {
+	margin-bottom: 0;
+	font-size: 9pt;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.curr-info .jobTitle {
+	display: block;
+	/* Fallback for non-webkit */
+	display: -webkit-box;
+	max-width: 174px;
+	height: 32px;
+	margin: 5px 0 0 0;
+	/* Fallback for non-webkit */
+	/*margin: 0 auto;*/
+	font-size: 9pt;
+	line-height: 1.4;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: 100;
+}
+
+.curr-info p.location {
+	margin-top: 7px;
+	position: absolute;
+	bottom: 0;
+}
+
+.curr-info i {
+	position: relative;
+	top: 2px;
+}
+
+.curr-info .name {
+	padding-right: 17px;
+	font-size: 11pt;
+	font-weight: bold;
+	text-overflow: clip;
+	white-space: pre-line;
+	overflow: visible;
+}
+
+.curr-info .currCompany {
+}
+
+/* Form group */
+.adopto-group {
+	margin-bottom: 20px;
+	padding: 8px;
+	font-size: 9pt;
+	position: relative;
+	border-left: 1px solid rgba(0,0,0,0.15);
+}
+
+.curr-info,
+.curr-info-edit {
 	float: left;
 	width: calc(100% - 80px);
 	height: 100%;
@@ -40,83 +101,23 @@
 	position: relative;
 }
 
-	.curr-info p,
-	.curr-info i {
-		margin-bottom: 0;
-		font-size: 9pt;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-
-	.curr-info .jobTitle {
-		display: block;
-		/* Fallback for non-webkit */
-		display: -webkit-box;
-		max-width: 174px;
-		height: 32px;
-		margin: 5px 0 0 0;
-		/* Fallback for non-webkit */
-		/*margin: 0 auto;*/
-		font-size: 9pt;
-		line-height: 1.4;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		font-weight: 100;
-		/*height: 32px;*/
-		/*display: block;*/
-		/*text-overflow: ellipsis;*/
-		/*overflow: hidden;*/
-		/*line-height: 16px;*/
-		/*-webkit-line-clamp: 2;*/
-		/*-webkitq-box-orient: vertical;*/
-		/*margin: 0 auto;*/
-		/*white-space: pre-line;*/
-		/*white-space: nowrap;*/
-	}
-
-	.curr-info p.location {
-		margin-top: 7px;
-		position: absolute;
-		bottom: 0;
-	}
-
-	.curr-info i {
-		position: relative;
-		top: 2px;
-	}
-
-	.curr-info .name {
-		padding-right: 17px;
-		font-size: 11pt;
-		font-weight: bold;
-		text-overflow: clip;
-		white-space: pre-line;
-		overflow: visible;
-	}
-
-	.curr-info .currCompany {
-	}
-
-/* Form group */
-.adopto-group {
-	margin-bottom: 20px;
-	padding: 8px;
-		font-size: 9pt;
-	position: relative;
-	-webkit-box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
-	-moz-box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
-	box-shadow: -1px 0px 0px 0px rgba(0,0,0,0.15);
-	/*margin-top: 10px;*/
+.curr-info-edit {
+	padding-top: 0;
+	padding-right: 40px;
+	font-size: 9pt;
+	display: none;
 }
 
-	.adopto-group h3 {
+	.curr-info-edit.adopto-input-group .adopto-input {
+		padding-top: 10px;
 	}
 
-	.adopto-group .edit-icon,
-	.curr-info .edit-icon {
+		.curr-info-edit.adopto-input-group .adopto-input:nth-child(2) {
+			padding-top: 5px !important;
+		}
+
+	.curr-info .edit-icon,
+	.curr-info-edit .done-icon {
 		position: absolute;
 		top: 2px;
 		right: 2px;
@@ -125,21 +126,20 @@
 		color: #b9c1ca;
 	}
 
-		.adopto-group .edit-icon:hover {
+		.curr-info .edit-icon:hover,
+		.curr-info-edit .done-icon:hover {
 			color: #67797b;
-			/*font-size: 17px;*/
 		}
+
 
 .adopto-group-title {
 	color: #7ca2a2;
 	font-family: 'Lato', sans-serif;
 	font-weight: normal;
-	/*font-size: 12px;*/
 	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 9pt;
 	margin-bottom: 10px;
-	/*text-align: right;*/
 }
 
 	.adopto-group-title i {
@@ -168,7 +168,8 @@
 .adopto-checkbox {
 	display: block;
 	position: relative;
-	padding: 5px 0 !important;
+	/*padding: 0 !important;*/
+	/*padding-top: 5px !important;*/
 	overflow: hidden;
 }
 
@@ -198,7 +199,7 @@
 	.adopto-input input,
 	.adopto-input textarea,
 	.adopto-selected {
-		padding: 10px 4px !important;
+		/*padding: 10px 4px !important;*/
 		margin: 0 !important;
 		border: none !important;
 		border-bottom: 1px solid #b9c1ca !important;
@@ -250,7 +251,7 @@
 		content: '';
 		position: absolute;
 		left: 0;
-		bottom: 8px;
+		bottom: 0px;
 		width: 0;
 		border-bottom: 3px solid #00acac;
 		transition: all 0.3s ease-in-out;
@@ -351,24 +352,119 @@
 		}
 
 
-.skillHolder span {
-	border: 1px solid #006b6b;
-	border-radius: 3px;
-	margin-left: 5px;
+
+
+/*#region General*/
+
+.adopto-group .item.withDetails {
+	width: 100%;
+	/*padding-right: 50px;*/
+	height: auto;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+	.adopto-group .item.withDetails:hover {
+		background-color: aliceblue;
+		padding-left: 2px;
+	}
+
+	.adopto-group .item.withDetails .desc .arrow {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 10px;
+		height: 100%;
+		background-image: url('chrome-extension://__MSG_@@extension_id__/icon/rightArrow.png');
+		background-repeat: no-repeat;
+		background-position: 50%;
+		background-size: 20px;
+		opacity: 0.2;
+	}
+
+	.adopto-group .item.withDetails:hover .desc .arrow {
+		background-size: 32px;
+		opacity: 1;
+	}
+
+	.adopto-group .item.withDetails:active .desc .arrow {
+		background-size: 25px;
+		opacity: 1;
+	}
+
+
+.adopto-group .item .desc {
+	width: 100%;
+	padding-right: 50px;
+	display: inline-block;
+	height: 100%;
+	color: dimgray;
+	position: relative;
+}
+
+	.adopto-group .item .desc .main-desc {
+		font-weight: bold;
+		color: black;
+	}
+
+	.adopto-group .item .desc .side-desc {
+		/*font-weight: bold;*/
+		color: black;
+	}
+
+.adopto-group .adopto-input {
 	margin-top: 5px;
-	padding: 3px;
-	background-color: #009f9f;
-	color: white;
-	font-size: 13px;
 }
 
 
 
+/*#endregion*/
 
-/*.tab-messages {
-	width: 100%;
-	height: 100%;
-	display: none;
-}*/
+/*#region Contact*/
+
+/*#endregion*/
+
+/*#region Social networks*/
+
+/*#endregion*/
+
+/*#region Summary*/
+
+/*#endregion*/
+
+/*#region Education*/
+
+/*#endregion*/
+
+/*#region Experience*/
+
+
+
+
+
+/*#endregion*/
+
+/*#region Projects*/
+
+/*#endregion*/
+
+/*#region Languages*/
+
+/*#endregion*/
+
+/*#region Skills*/
+
+.skillsList li {
+	border: 1px solid #9bd4f9;
+	border-radius: 3px;
+	margin: 5px 0 0 3px;
+	padding: 2px 8px;
+	display: inline-block;
+	background-color: #eaf6fe;
+	color: #06c;
+	font-size: 13px;
+}
+
+/*#endregion*/
 
 

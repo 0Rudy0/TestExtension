@@ -17,7 +17,7 @@
 	}
 
 		.nav-tabs .tab-header:hover {
-			color: gray;
+			color: #808080;
 		}
 
 		.nav-tabs .tab-header.active {
@@ -39,13 +39,65 @@
 .adopto-tab-content {
 	float: left;
 	width: calc(100% - 40px);
-	height: 100%;
+	/*width: 200%;*/
+	height: calc(100% - 40px);
 	padding: 10px;
+	overflow-x: hidden;
+	overflow-y: auto;
 	/*padding-top: 50px;*/
 	font-family: 'Lato', sans-serif !important;
+	position: relative;
 }
 
 	.adopto-tab-content .tab {
+		width: 100%;
+		height: 100%;
 		display: none;
+		position: relative;
 	}
 
+.adopto-tab-content .adopto-details-pane {
+	position: absolute;
+	top: 0;
+	right: -100%;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+}
+
+.topHeader .backPane {
+	width: 100%;
+	height: 100%;
+	/*border-bottom: 1px solid #dedede;*/
+	padding: 10px;
+	font-size: 11pt;
+	cursor: pointer;
+	color: #808080;
+	line-height: 19px;
+	vertical-align: middle;
+	/*height: 50px;*/
+	/*background-color: blue;*/
+}
+
+	.topHeader .backPane i {
+		line-height: 19px;
+	}
+
+	.topHeader .backPane:hover {
+		background-color: #eaeaea;
+		color: black;
+	}
+
+.topHeader .backPane:active i.fa,
+.topHeader .backPane:active span {
+	/*color: black;*/
+	color: #808080;
+}
+
+.topHeader .backPane span {
+	margin-left: 15px;
+}
+
+.topHeader .details-pane {
+	/*padding: 12px;*/
+}
