@@ -134,8 +134,8 @@
 						//console.log($(this).attr('data-tab'));
 					});
 
-					$($('.nav-tabs .tab-header')[0]).addClass('active');
-					$($('.adopto-tab-content .tab')[0]).show();
+					$($('.nav-tabs .tab-header')[2]).addClass('active');
+					$($('.adopto-tab-content .tab')[2]).show();
 
 					$.get(chrome.extension.getURL('markup/form.html'))
 						.done(function (data) {
@@ -193,14 +193,13 @@
 							//$('ul.nav.nav-tabs a').tab('show');
 
 							$('#notesSummernote').summernote({
-								toolbar: [
-								  ['style', ['bold', 'italic', 'underline', 'clear']],
-								],
-								//disableResizeEditor: true,
-								//disableResize: true,
-								resize: false
+								height: 165,
+								toolbar: false,
+								//placeholder: 'Type \'@\' for mention, or \'#\' for tags',
+								disableDragAndDrop: true								
 							});
 							$('#emailSummernote').summernote({
+								height: 126,
 								toolbar: [
 								  ['style', ['bold', 'italic', 'underline', 'clear']],
 								],
@@ -208,6 +207,7 @@
 								//disableResize: true,
 								resize: false
 							});
+							$('.note-statusbar').hide();
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))

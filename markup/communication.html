@@ -3,19 +3,28 @@
 	<div class="messagingContent">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Notes</a></li>
-			<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Email</a></li>
+			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Add note</a></li>
+			<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Send email</a></li>
 		</ul>
 
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="home">
 				<div id="notesSummernote"></div>
-				<div class="sendBtn">SEND</div>
+				<div class="sendBtnHolder">
+					<button class="btn btn-success">
+						<i class="fa fa-comment-o m-r-5"></i>Save note
+					</button>
+				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="profile">
+				<input type="text" class="form-control subject" id="emailSubject" placeholder="Subject" />
 				<div id="emailSummernote"></div>
-				<div class="sendBtn">SEND</div>
+				<div class="sendBtnHolder">
+					<button class="btn btn-success">
+						<i class="fa fa-envelope-o m-r-5"></i>Send email
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
