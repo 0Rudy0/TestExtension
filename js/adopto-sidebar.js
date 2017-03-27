@@ -189,6 +189,25 @@
 					$.get(chrome.extension.getURL('markup/communication.html'))
 						.done(function (data) {
 							$('.adopto-tab-content .tab.tabCommunication').append(data.format(lang));
+
+							//$('ul.nav.nav-tabs a').tab('show');
+
+							$('#notesSummernote').summernote({
+								toolbar: [
+								  ['style', ['bold', 'italic', 'underline', 'clear']],
+								],
+								//disableResizeEditor: true,
+								//disableResize: true,
+								resize: false
+							});
+							$('#emailSummernote').summernote({
+								toolbar: [
+								  ['style', ['bold', 'italic', 'underline', 'clear']],
+								],
+								//disableResizeEditor: true,
+								//disableResize: true,
+								resize: false
+							});
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))

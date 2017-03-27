@@ -7,7 +7,7 @@
 	.activities-group .activity {
 		width: calc(100% + 10px);
 		height: 40px;
-		margin-top: 5px;
+		margin-bottom: 5px;
 		border-left: 5px solid rgb(52, 143, 226);
 		position: relative;
 		left: -10px;

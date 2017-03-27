@@ -44,7 +44,7 @@ var Adopto = {
 (function ($) {
 
 	$(function () {
-		console.log('%c Adopto Extension started', 'font-size: 24px; font-weight: bold; color: #00acac;');
+		//console.log('%c Adopto Extension started', 'font-size: 24px; font-weight: bold; color: #00acac;');
 
 		Adopto.iconStatus();
 		$(window).focus(Adopto.iconStatus);
