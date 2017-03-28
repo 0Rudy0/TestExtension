@@ -151,6 +151,7 @@
 .adopto-input i,
 .adopto-input p,
 .adopto-input a {
+	clear: none;
 	float: left;
 	height: 15px;
 	line-height: 15px;
@@ -450,9 +451,29 @@
 
 /*#region Languages*/
 
+.langsList {
+	margin: 0;
+}
+
+.langsList li {
+	border: 1px solid #d1ef48;
+	border-radius: 3px;
+	margin: 5px 0 0 3px;
+	padding: 2px 8px;
+	display: inline-block;
+	background-color: #e9f7a8;
+	color: #819b0e;
+	font-size: 13px;
+}
+
 /*#endregion*/
 
 /*#region Skills*/
+
+
+.skillsList {
+	margin: 0;
+}
 
 .skillsList li {
 	border: 1px solid #9bd4f9;
@@ -466,5 +487,9 @@
 }
 
 /*#endregion*/
+
+.adopto-perspective {
+	margin-bottom: 20px;
+}
 
 

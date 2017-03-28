@@ -123,6 +123,11 @@
 			$.get(chrome.extension.getURL('markup/sidebar.html'))
 				.done(function (data) {
 
+					$('.adopto-sidebar .adopto-tab-content').scroll(function (e) {
+						console.log('scroll');
+						e.stopPropagation();
+					})
+
 					sidebar.element.append(data.format(lang));
 
 					$('.tab-header').click(function () {
@@ -134,8 +139,8 @@
 						//console.log($(this).attr('data-tab'));
 					});
 
-					$($('.nav-tabs .tab-header')[2]).addClass('active');
-					$($('.adopto-tab-content .tab')[2]).show();
+					$($('.nav-tabs .tab-header')[0]).addClass('active');
+					$($('.adopto-tab-content .tab')[0]).show();
 
 					$.get(chrome.extension.getURL('markup/form.html'))
 						.done(function (data) {
@@ -199,7 +204,7 @@
 								disableDragAndDrop: true								
 							});
 							$('#emailSummernote').summernote({
-								height: 126,
+								height: 92,
 								toolbar: [
 								  ['style', ['bold', 'italic', 'underline', 'clear']],
 								],
