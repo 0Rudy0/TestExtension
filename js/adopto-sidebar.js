@@ -1,5 +1,41 @@
 (function ($, sidebar, rootUrl) {
 
+	sidebar.candidateData = {
+		mainData: {
+			fullName: 'Danijel Rudman',
+			title: 'Software developer',
+			profileImgUrl: '',
+			location: 'Zagreb',
+			contactInfo: {
+				email: 'rudman0@gmail.com',
+				phone: '098/745-8597'
+			},
+			socialNetworks: {
+				linkedin: 'https://www.linkedin.com/in/danijel-rudman-7b771276/',
+				facebook: 'https://www.facebook.com/danijel.rudman',
+				github: 'https://github.com/0Rudy0',
+				skype: ''
+			},
+			summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id',
+			education: [
+				{ desc: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineering', atPlace: 'FER', placeLink: '#', startDate: new Date(2006, 9, 1, 0), endDate: new Date(2012, 3, 1, 0) },
+				{ desc: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineerin', atPlace: 'FER', placeLink: '#', startDate: new Date(2006, 9, 1, 0), endDate: new Date(2012, 3, 1, 0) }
+			],
+			experience: [
+				{ jobTitle: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: '#', placeLogo: '', startDate: '', endDate: '' },
+				{ jobTitle: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: '#', placeLogo: '', startDate: '', endDate: '' }
+			],
+			projects: [
+				{ title: 'Being mama\'s boy', startDate: '', endDate: '' },
+				{ title: 'Being a motherfucker', startDate: '', endDate: '' }
+			],
+			languages: ['English', 'German', 'Croatian', 'Bosnian', 'Serbian'],
+			skills: ['C#', 'Visual studio', 'Cooking meth', 'Science bitch', 'Java', 'ASP.NET', 'Microsoft excel']
+		},
+		activities: [],
+		communication: []
+	};
+
 	sidebar.visible = function () {
 		if ($('body').hasClass('adopto-sidebar-show')) {
 			return true;
@@ -15,7 +51,7 @@
 			$('body').addClass('adopto-sidebar-show');
 			$('.adopto-sidebar #name').focus();
 			$('.adopto-sidebar').css('right', 0);
-			sidebar.getCandidateData();
+
 		}, 1);
 	}
 
@@ -42,41 +78,133 @@
 	sidebar.getCandidateData = function () {
 		if (Adopto.contentScript.isProfilePageActive()) {
 			var cs = Adopto.contentScript;
+			var cdata = sidebar.candidateData;
 
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
 			var profileUrl = cs.getProfilePageUrl();
-			var name = cs.getName().substring(0, 100);
-			var email = cs.getEmail().substring(0, 100);
-			var jobpos = cs.getJobTitle().substring(0, 100);
-			var addr = cs.getLocation().substring(0, 100);
-			var img = cs.getProfileImageURL();
+			cdata.mainData.fullName = cs.getName().substring(0, 100);
+			//cdata.mainData.contactInfo.email = cs.getEmail().substring(0, 100);
+			//cdata.mainData.title = cs.getJobTitle().substring(0, 100);
+			//cdata.mainData.location = cs.getLocation().substring(0, 100);
+			cdata.mainData.profileImgUrl = cs.getProfileImageURL();
 
-			$('#adopto-source-name').val(cs.name);
-			$('#adopto-source-type').val(cs.sourceType);
-			$('#adopto-profile-url').val(cs.getProfilePageUrl());
+			$('#adopto-form .main-info p.name').html(cdata.mainData.fullName);
+			$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
+			$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
 
-			if (name) {
-				$('#adopto-name').val(name).parent().addClass('label-top');
+			$('#adopto-form .main-info .curr-info-edit input.name').html(cdata.mainData.fullName);
+			$('#adopto-form .main-info .curr-info-edit input.jobTitle').html(cdata.mainData.title);
+			$('#adopto-form .main-info .curr-info-edit input.location').html(cdata.mainData.location);
+
+			//contact
+			$('#adopto-form .adopto-group.contact .adopto-input.email p.value').html(cdata.mainData.contactInfo.email);
+			$('#adopto-form .adopto-group.contact .adopto-input.phone p.value').html(cdata.mainData.contactInfo.phone);
+
+			//social networks
+			//$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').html(cdata.mainData.socialNetworks.linkedin);
+			$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').attr('src', cdata.mainData.socialNetworks.linkedin);
+			//$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').html(cdata.mainData.socialNetworks.facebook);
+			$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').attr('src', cdata.mainData.socialNetworks.facebook);
+			//$('#adopto-form .adopto-group.social .adopto-input.skype a.value').html(cdata.mainData.socialNetworks.skype);
+			$('#adopto-form .adopto-group.social .adopto-input.skype a.value').attr('src', cdata.mainData.socialNetworks.skype);
+
+			//summary
+			$('#adopto-form .adopto-group.summary p.value').html(cdata.summary);
+
+			//education
+			for (var i = 0; i < cdata.mainData.education.length; i++) {
+				var e = cdata.mainData.education[i];
+
+				$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.desc + '</span><br/>at<a href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+				$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
 			}
-			if (email) {
-				$('#adopto-email').val(email).parent().addClass('label-top');
+
+			//experience
+			for (var i = 0; i < cdata.mainData.experience.length; i++) {
+				var e = cdata.mainData.experience[i];
+
+				$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.jobTitle + '</span><br/>at<a href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+				$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
 			}
-			if (jobpos) {
-				$('#adopto-job-position').val(jobpos).parent().addClass('label-top');
+
+			//projects
+			for (var i = 0; i < cdata.mainData.projects.length; i++) {
+				var p = cdata.mainData.projects[i];
+				p.duration = '2 years';
+
+				$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
+				$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
 			}
-			if (addr) {
-				$('#adopto-address').val(addr).parent().addClass('label-top');
+
+			//languages
+			for (var i = 0; i < cdata.mainData.languages.length; i++) {
+
 			}
-			if (img) {
-				$('.adopto-profile-picture').css('background-image', 'url(' + img + ')');
-				$('#adopto-profile-image').val(img);
-			} else {
-				$('.adopto-profile-picture').css('background-image', chrome.extension.getURL('images/no-profile-pic.png'));
-				$('#adopto-profile-image').val('');
+
+			//skills
+			for (var i = 0; i < cdata.mainData.skills.length; i++) {
+
 			}
+
+			sidebar.hideEmptyGroups();
+
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
+		}
+	}
+
+	sidebar.openDetailsPane = function () {
+		console.log(this);
+		$.get(chrome.extension.getURL('markup/detailsPane.html'))
+						.done(function (data) {
+							$('.adopto-tab-content .adopto-details-pane').append(data);
+						});
+
+		$('.adopto-tab-content .tab').animate({ right: $('.adopto-tab-content').outerWidth() + 10 }, 200);
+		$('.adopto-tab-content .adopto-details-pane').animate({ right: '0' }, 200);
+		$('.topHeader>a').animate({ opacity: 0 }, 100, function () {
+			$('.topHeader>a').hide();
+			$('.topHeader .backPane').show();
+			$('.topHeader .backPane').animate({ opacity: 1 }, 100);
+		});
+	}
+
+	sidebar.hideEmptyGroups = function () {
+		var groups = $('#adopto-form .adopto-group');
+		for (var i = 0; i < groups.length; i++) {
+			var allEmpty = true;
+			var items = $(groups[i]).find('.adopto-input');
+			if (items.length > 0) {
+				for (var j = 0; j < items.length; j++) {
+					var p = $(items[j]).find('p.value');
+					if (p.length > 0) {
+						if (p[0].innerText.trim().length == 0) {
+							$(items[j]).hide();
+						}
+						else {
+							allEmpty = false;
+						}
+					}
+					else {
+						var a = $(items[j]).find('a.value');
+						if (a[0].innerText.trim().length > 0) {
+							allEmpty = false;
+						}
+					}
+
+				}
+			}
+			else {
+				var items = $(groups[i]).find('.item');
+				if (items.length > 0) {
+					allEmpty = false;
+				}
+			}
+
+			if (allEmpty) {
+				$(groups[i]).hide();
+			}
 		}
 	}
 
@@ -144,6 +272,7 @@
 
 					$.get(chrome.extension.getURL('markup/form.html'))
 						.done(function (data) {
+
 							$('.adopto-tab-content .tab.tabForm').append(data.format(lang));
 
 							$('.main-info .edit-icon').click(function () {
@@ -157,20 +286,7 @@
 								$('.main-info .curr-info-edit').hide();
 							});
 
-							$('.adopto-group .item.withDetails').click(function () {
-								$.get(chrome.extension.getURL('markup/detailsPane.html'))
-								.done(function (data) {
-									$('.adopto-tab-content .adopto-details-pane').append(data);
-								});
 
-								$('.adopto-tab-content .tab').animate({ right: $('.adopto-tab-content').outerWidth() + 10 }, 200);
-								$('.adopto-tab-content .adopto-details-pane').animate({ right: '0' }, 200);
-								$('.topHeader>a').animate({ opacity: 0 }, 100, function () {
-									$('.topHeader>a').hide();
-									$('.topHeader .backPane').show();
-									$('.topHeader .backPane').animate({ opacity: 1 }, 100);
-								});
-							});
 
 							$('.topHeader .backPane').click(function () {
 								$('.adopto-tab-content .tab').animate({ right: '0' }, 200);
@@ -182,6 +298,8 @@
 									$('.adopto-tab-content .adopto-details-pane .pane').remove();
 								});
 							});
+
+							sidebar.getCandidateData();
 						});
 
 
@@ -201,7 +319,7 @@
 								height: 165,
 								toolbar: false,
 								//placeholder: 'Type \'@\' for mention, or \'#\' for tags',
-								disableDragAndDrop: true								
+								disableDragAndDrop: true
 							});
 							$('#emailSummernote').summernote({
 								height: 92,

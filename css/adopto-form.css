@@ -427,6 +427,13 @@
 
 /*#region Social networks*/
 
+.adopto-group.social a.value {
+	float: none;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 /*#endregion*/
 
 /*#region Summary*/
