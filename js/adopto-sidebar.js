@@ -40,8 +40,44 @@
 			languages: ['English', 'German', 'Croatian', 'Bosnian', 'Serbian'],
 			skills: ['C#', 'Visual studio', 'Cooking meth', 'Science bitch', 'Java', 'ASP.NET', 'Microsoft excel']
 		},
-		activities: [],
-		communication: []
+		activities: [
+			{
+				desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+				when: '2 weeks ago',
+				icon: 'fa-phone'
+			},
+			{
+				desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+				when: '2 weeks ago',
+				icon: 'fa-file-text'
+			}
+		],
+		communication: [
+			{
+				desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+				when: '2 weeks ago',
+				icon: 'fa-comment-o',
+				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+			},
+			{
+				desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+				when: '2 weeks ago',
+				icon: 'fa-comment-o',
+				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+			},
+			{
+				desc: 'Danijel Rudmansend an email to candidate Michael Williams',
+				when: '3 weeks ago',
+				icon: 'fa-envelope-o',
+				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+			},
+			{
+				desc: 'Danijel Rudman send an email to candidate Michael Williams',
+				when: '4 weeks ago',
+				icon: 'fa-envelope-o',
+				content: 'Lorem ipsum dolor sit amet.'
+			}
+		]
 	};
 
 	sidebar.visible = function () {
@@ -223,7 +259,7 @@
 
 				}
 			});
-		
+
 	}
 
 	sidebar.hideEmptyGroups = function () {
@@ -343,8 +379,21 @@
 								console.log('click');
 								$('.main-info .curr-info').show();
 								$('.main-info .curr-info-edit').hide();
+								sidebar.candidateData.mainData.fullName = $('#adopto-form .main-info .curr-info-edit input.name').val();
+								sidebar.candidateData.mainData.title = $('#adopto-form .main-info .curr-info-edit input.jobTitle').val();
+								sidebar.candidateData.mainData.location = $('#adopto-form .main-info .curr-info-edit input.location').val();
+
+								$('#adopto-form .main-info p.name').html(sidebar.candidateData.mainData.fullName);
+								$('#adopto-form .main-info h5.jobTitle').html(sidebar.candidateData.mainData.title);
+								$('#adopto-form .main-info p.location span').html(sidebar.candidateData.mainData.location);
 							});
 
+							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {
+								if (e.which == 13) {
+									$('.main-info .done-icon').click();
+									return false;
+								}
+							});
 
 
 							$('.topHeader .backPane').click(function () {
@@ -366,14 +415,15 @@
 					$.get(chrome.extension.getURL('markup/activities.html'))
 						.done(function (data) {
 							$('.adopto-tab-content .tab.tabActivities').append(data.format(lang));
+							for (var i = 0; i < sidebar.candidateData.activities.length; i++) {
+								var a = sidebar.candidateData.activities[i];
+								$('.adopto-tab-content .tab.tabActivities .activities-group').append('<div class="activity"><div class="icon"><i class="fa ' + a.icon + '"></i></div><div class="content"><div class="description">' + a.desc + '</div><div class="when">' + a.when + '</div></div></div>');
+							}							
 						});
 
 					$.get(chrome.extension.getURL('markup/communication.html'))
 						.done(function (data) {
 							$('.adopto-tab-content .tab.tabCommunication').append(data.format(lang));
-
-							//$('ul.nav.nav-tabs a').tab('show');
-
 							$('#notesSummernote').summernote({
 								height: 165,
 								toolbar: false,
@@ -385,11 +435,14 @@
 								toolbar: [
 								  ['style', ['bold', 'italic', 'underline', 'clear']],
 								],
-								//disableResizeEditor: true,
-								//disableResize: true,
 								resize: false
 							});
 							$('.note-statusbar').hide();
+
+							for (var i = 0; i < sidebar.candidateData.communication.length; i++) {
+								var c = sidebar.candidateData.communication[i];
+								$('.adopto-tab-content .tab.tabCommunication .communications').append('<div class="comm-item"><div class="icon"><i class="fa ' + c.icon + '" aria-hidden="true"></i></div><div class="desc-content"><div class="desc">' + c.desc + '</div><div class="when">' + c.when + '</div></div><br/><br/><blockquote class="content"><p>' + c.content + '</p></blockquote><div class="fix"></div></div>');
+							}
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))
@@ -427,11 +480,13 @@
 	});
 
 	$('.adopto-sidebar').on('blur', '.adopto-input input, .adopto-input textarea', function () {
+		console.log('blur');
 		if (!this.value) {
 			$(this).parent().removeClass('label-top');
 		}
 		if (this.validity.valid) {
 			$(this).parent().removeClass('invalid');
+			$(this).parent().removeClass('label-top');
 		} else {
 			$(this).parent().addClass('invalid');
 		}

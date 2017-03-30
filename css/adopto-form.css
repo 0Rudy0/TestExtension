@@ -254,8 +254,8 @@
 		left: 0;
 		bottom: 0px;
 		width: 0;
-		border-bottom: 3px solid #00acac;
-		transition: all 0.3s ease-in-out;
+		border-bottom: 2px solid #00acac;
+		transition: all 0.15s ease-in-out;
 	}
 
 	.adopto-input.label-top:after,
@@ -415,6 +415,22 @@
 
 .adopto-group .adopto-input {
 	margin-top: 5px;
+}
+
+.adopto-input-group .adopto-input.name {
+	/*font-size: 12pt;*/
+}
+
+.adopto-input-group .adopto-input.jobTitle {
+	padding-top: 4px;
+}
+
+.adopto-input-group .adopto-input.location {
+	padding-top: 22px;
+}
+.adopto-input-group .adopto-input.location input {
+	width: calc(100% - 18px);
+	margin-left: 5px !important;
 }
 
 
