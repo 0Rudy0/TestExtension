@@ -1,10 +1,8 @@
-﻿- podaci da nisu hardkodirani u html-u 
-	- tab forma
+﻿- podaci da nisu hardkodirani u html-u 	
 	- tab activities
 	- tab communication
-- prikaz dijelova forme ovisno o tome da li podaci za to postoje
 - edit forma malo ljepsa
-- details ekran generalizirati
+- sakriti sve ako trenutna stranica nije nekakav profil
 - slanje cijelog objekta u adopto app
 - neka ljepsa animacija otvaranja sidebara?
 - save note/send email kroz adopto app

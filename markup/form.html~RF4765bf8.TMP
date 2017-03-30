@@ -44,27 +44,15 @@
 			<h3 class="adopto-group-title">Social networks</h3>
 			<div class="adopto-input linkedin">
 				<i class="fa fa-linkedin-square" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">LinkedIn</a>
+				<a class="value" href="#">LinkedIn</a>
 			</div>
 			<div class="adopto-input facebook">
 				<i class="fa fa-facebook-square" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">Facebook</a>
+				<a class="value" href="#">Facebook</a>
 			</div>
 			<div class="adopto-input skype">
 				<i class="fa fa-skype" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">Skype</a>
-			</div>
-			<div class="adopto-input github">
-				<i class="fa fa-github" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">GitHub</a>
-			</div>
-			<div class="adopto-input stackOverflow">
-				<i class="fa fa-stack-overflow" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">Stackoverflow</a>
-			</div>
-			<div class="adopto-input angelList">
-				<i class="fa fa-angellist" aria-hidden="true"></i>
-				<a class="value" href="#" target="_blank">AngelList</a>
+				<a class="value" href="#">Skype</a>
 			</div>
 		</div>
 		<div class="adopto-group summary">
@@ -139,13 +127,85 @@
 		<div class="adopto-group languages">
 			<h3 class="adopto-group-title">Languages</h3>
 			<ul class="langsList">
+				<!--<li class="item">English</li>
+				<li class="item">German</li>
+				<li class="item">Croatian</li>
+				<li class="item">Bosnian</li>
+				<li class="item">Serbian</li>-->
 			</ul>
 		</div>
-		<div class="adopto-group skills">
+		<div class="adopto-group">
 			<h3 class="adopto-group-title">Skills</h3>
 			<ul class="skillsList">
+				<li class="item">C#</li>
+				<li class="item">Visual studio</li>
+				<li class="item">Cooking meth</li>
+				<li class="item">Science bitch</li>
+				<li class="item">Java</li>
+				<li class="item">ASP.NET</li>
+				<li class="item">Microsoft Excel</li>
 			</ul>
-		</div>		
+		</div>
+		<!--<div class="adopto-group">
+			<h3 class="adopto-group-title"><i class="material-icons">account_circle</i> Candidate details</h3>
+
+			<div class="adopto-input">
+				<input type="text" name="Name" id="adopto-name" autocomplete="off" spellcheck="false">
+				<label for="adopto-name">Name</label>
+			</div>
+
+			<div class="adopto-input">
+				<input type="email" name="Email" id="adopto-email" autocomplete="off" spellcheck="false">
+				<label for="adopto-email">E-mail</label>
+			</div>
+
+			<div class="adopto-input">
+				<input type="text" name="JobTitle" id="adopto-job-position" autocomplete="off" spellcheck="false">
+				<label for="adopto-job-position">Job position</label>
+			</div>
+
+			 TODO: Dodati autocomplete od google-maps-api-ja za adresu
+			<div class="adopto-input">
+				<input type="text" name="Location" id="adopto-address" autocomplete="off" spellcheck="false">
+				<label for="adopto-address">Address</label>
+			</div>
+		</div>-->
+		<!--<div class="adopto-group">
+			<h3 class="adopto-group-title"><i class="material-icons">done_all</i> Keep it</h3>
+
+			<div class="adopto-select" id="adopto-position-list">
+				<div class="adopto-selected">
+					<span>&nbsp;</span>
+					<i class="material-icons">arrow_drop_down</i>
+				</div>
+				<label>Positions</label>
+				<input type="hidden" name="JobId" value="-1">
+				<ul></ul>
+			</div>
+
+			<div class="adopto-select" id="adopto-talent-list">
+				<div class="adopto-selected">
+					<span>&nbsp;</span>
+					<i class="material-icons">arrow_drop_down</i>
+				</div>
+				<label>Talent list</label>
+				<input type="hidden" name="TalentListId" value="-1">
+				<ul></ul>
+			</div>
+
+			<div class="adopto-checkbox">
+				<label>
+					<input type="checkbox" name="IsRecomended">
+					<span><i class="material-icons">check</i></span>
+					I recommend this candidate
+				</label>
+			</div>
+
+			<div class="adopto-input">
+				<textarea name="Note" id="comment" autocomplete="off" spellcheck="false" rows="5"></textarea>
+				<label for="comment">Your comment about this candidate</label>
+			</div>
+		</div>-->
 		<div class="adopto-perspective">
 			<button type="submit" class="adopto-source">Source candidate</button>
 		</div>

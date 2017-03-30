@@ -12,22 +12,30 @@
 			},
 			socialNetworks: {
 				linkedin: 'https://www.linkedin.com/in/danijel-rudman-7b771276/',
+				//linkedin: '',
 				facebook: 'https://www.facebook.com/danijel.rudman',
+				//facebook: '',
 				github: 'https://github.com/0Rudy0',
-				skype: ''
+				//github: '',
+				skype: 'blabla',
+				//skype: '',
+				stackoverflow: 'bleble',
+				//stackoverflow: '',
+				angellist: 'blublu',
+				//angellist: ''
 			},
 			summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id',
 			education: [
-				{ desc: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineering', atPlace: 'FER', placeLink: '#', startDate: new Date(2006, 9, 1, 0), endDate: new Date(2012, 3, 1, 0) },
-				{ desc: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineerin', atPlace: 'FER', placeLink: '#', startDate: new Date(2006, 9, 1, 0), endDate: new Date(2012, 3, 1, 0) }
+				{ title: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineering', atPlace: 'FER', placeLink: 'https://www.fer.unizg.hr/', placeLogo: 'http://www.clker.com/cliparts/7/4/b/6/13373556381963102819fer.logo_.png', startDate: moment('2006-09-01'), endDate: moment('2011-09-01') },
+				{ title: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineerin', atPlace: 'FER', placeLink: 'https://www.fer.unizg.hr/', placeLogo: 'http://www.clker.com/cliparts/7/4/b/6/13373556381963102819fer.logo_.png', startDate: moment('2012-09-01'), endDate: moment('2013-09-01') }
 			],
 			experience: [
-				{ jobTitle: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: '#', placeLogo: '', startDate: '', endDate: '' },
-				{ jobTitle: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: '#', placeLogo: '', startDate: '', endDate: '' }
+				{ title: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: 'http://hrpro.hr/', placeLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAlsAAAAJDBkYTQ5NGU4LWNmNjEtNDY0ZS1hNzdmLTk4NDIyMWRiYzAwNw.png', startDate: moment('2006-09-01'), endDate: moment('2008-09-01'), desc: 'Vel sapien elit in malesuada semper mi, id sollicitudin.' },
+				{ title: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: 'http://hrpro.hr/', placeLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAlsAAAAJDBkYTQ5NGU4LWNmNjEtNDY0ZS1hNzdmLTk4NDIyMWRiYzAwNw.png', startDate: moment('2008-09-01'), endDate: moment('2010-09-01'), desc: 'Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.' }
 			],
 			projects: [
-				{ title: 'Being mama\'s boy', startDate: '', endDate: '' },
-				{ title: 'Being a motherfucker', startDate: '', endDate: '' }
+				{ title: 'Being mama\'s boy', startDate: moment('2006-09-01'), endDate: moment('2009-09-01') },
+				{ title: 'Being a motherfucker', startDate: moment('2009-09-01'), endDate: moment('2016-09-01') }
 			],
 			languages: ['English', 'German', 'Croatian', 'Bosnian', 'Serbian'],
 			skills: ['C#', 'Visual studio', 'Cooking meth', 'Science bitch', 'Java', 'ASP.NET', 'Microsoft excel']
@@ -93,21 +101,21 @@
 			$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
 			$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
 
-			$('#adopto-form .main-info .curr-info-edit input.name').html(cdata.mainData.fullName);
-			$('#adopto-form .main-info .curr-info-edit input.jobTitle').html(cdata.mainData.title);
-			$('#adopto-form .main-info .curr-info-edit input.location').html(cdata.mainData.location);
+			$('#adopto-form .main-info .curr-info-edit input.name').val(cdata.mainData.fullName);
+			$('#adopto-form .main-info .curr-info-edit input.jobTitle').val(cdata.mainData.title);
+			$('#adopto-form .main-info .curr-info-edit input.location').val(cdata.mainData.location);
 
 			//contact
 			$('#adopto-form .adopto-group.contact .adopto-input.email p.value').html(cdata.mainData.contactInfo.email);
 			$('#adopto-form .adopto-group.contact .adopto-input.phone p.value').html(cdata.mainData.contactInfo.phone);
 
 			//social networks
-			//$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').html(cdata.mainData.socialNetworks.linkedin);
-			$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').attr('src', cdata.mainData.socialNetworks.linkedin);
-			//$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').html(cdata.mainData.socialNetworks.facebook);
-			$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').attr('src', cdata.mainData.socialNetworks.facebook);
-			//$('#adopto-form .adopto-group.social .adopto-input.skype a.value').html(cdata.mainData.socialNetworks.skype);
-			$('#adopto-form .adopto-group.social .adopto-input.skype a.value').attr('src', cdata.mainData.socialNetworks.skype);
+			$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').attr('href', cdata.mainData.socialNetworks.linkedin);
+			$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').attr('href', cdata.mainData.socialNetworks.facebook);
+			$('#adopto-form .adopto-group.social .adopto-input.skype a.value').attr('href', cdata.mainData.socialNetworks.skype);
+			$('#adopto-form .adopto-group.social .adopto-input.github a.value').attr('href', cdata.mainData.socialNetworks.github);
+			$('#adopto-form .adopto-group.social .adopto-input.stackOverflow a.value').attr('href', cdata.mainData.socialNetworks.stackoverflow);
+			$('#adopto-form .adopto-group.social .adopto-input.angelList a.value').attr('href', cdata.mainData.socialNetworks.angellist);
 
 			//summary
 			$('#adopto-form .adopto-group.summary p.value').html(cdata.summary);
@@ -115,37 +123,51 @@
 			//education
 			for (var i = 0; i < cdata.mainData.education.length; i++) {
 				var e = cdata.mainData.education[i];
+				e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
 
-				$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.desc + '</span><br/>at<a href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+				$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 				$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
 			}
 
 			//experience
 			for (var i = 0; i < cdata.mainData.experience.length; i++) {
 				var e = cdata.mainData.experience[i];
-
-				$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.jobTitle + '</span><br/>at<a href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+				e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+				console.log($('#adopto-form .adopto-group.experience'));
+				$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 				$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
 			}
 
 			//projects
 			for (var i = 0; i < cdata.mainData.projects.length; i++) {
 				var p = cdata.mainData.projects[i];
-				p.duration = '2 years';
+				p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
 
 				$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 				$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
 			}
 
 			//languages
+			//$('#adopto-form .adopto-group.languages').append('<ul class="langList"></ul>');
 			for (var i = 0; i < cdata.mainData.languages.length; i++) {
-
+				var l = cdata.mainData.languages[i];
+				$('#adopto-form .adopto-group.languages .langsList').append('<li class="item">' + l + '</li>');
 			}
 
 			//skills
 			for (var i = 0; i < cdata.mainData.skills.length; i++) {
-
+				var s = cdata.mainData.skills[i];
+				$('#adopto-form .adopto-group.skills .skillsList').append('<li class="item">' + s + '</li>')
 			}
+
+			$('#adopto-form .adopto-group a').click(function (e) {
+				e.preventDefault();
+				console.log();
+				e.stopPropagation();
+				if ($(this).attr('href').length > 0 && $(this).attr('href') != '#') {
+					window.open($(this).attr('href'), '_blank');
+				}
+			});
 
 			sidebar.hideEmptyGroups();
 
@@ -155,12 +177,7 @@
 	}
 
 	sidebar.openDetailsPane = function () {
-		console.log(this);
-		$.get(chrome.extension.getURL('markup/detailsPane.html'))
-						.done(function (data) {
-							$('.adopto-tab-content .adopto-details-pane').append(data);
-						});
-
+		//console.log(this);
 		$('.adopto-tab-content .tab').animate({ right: $('.adopto-tab-content').outerWidth() + 10 }, 200);
 		$('.adopto-tab-content .adopto-details-pane').animate({ right: '0' }, 200);
 		$('.topHeader>a').animate({ opacity: 0 }, 100, function () {
@@ -168,6 +185,45 @@
 			$('.topHeader .backPane').show();
 			$('.topHeader .backPane').animate({ opacity: 1 }, 100);
 		});
+
+		var that = this;
+		$.get(chrome.extension.getURL('markup/detailsPane.html'))
+			.done(function (data) {
+				$('.adopto-tab-content .adopto-details-pane').append(data);
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .title').html(that.title);
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').html(that.atPlace);
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .logo').attr('src', that.placeLogo);
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .startDate').html(that.startDate.format('MMM YYYY'));
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .endDate').html(that.endDate.format('MMM YYYY'));
+				$('.adopto-tab-content .adopto-details-pane .pane .main-info .duration').html(that.duration);
+
+				$('.adopto-tab-content .adopto-details-pane .pane .desc-info .desc').html(that.desc);
+
+				if (that.placeLogo == null || that.placeLogo.trim().length == 0) {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .logo').hide();
+				}
+				else {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .logo').show();
+
+				}
+
+				if (that.desc == null || that.desc.trim().length == 0) {
+					$('.adopto-tab-content .adopto-details-pane .pane .desc-info').hide();
+				}
+				else {
+					$('.adopto-tab-content .adopto-details-pane .pane .desc-info').show();
+
+				}
+
+				if (that.atPlace == null || that.atPlace.trim().length == 0) {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlaceHolder').hide();
+				}
+				else {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlaceHolder').show();
+
+				}
+			});
+		
 	}
 
 	sidebar.hideEmptyGroups = function () {
@@ -188,8 +244,11 @@
 					}
 					else {
 						var a = $(items[j]).find('a.value');
-						if (a[0].innerText.trim().length > 0) {
+						if ($(a[0]).attr('href').trim().length > 0) {
 							allEmpty = false;
+						}
+						else {
+							$(items[j]).hide();
 						}
 					}
 
