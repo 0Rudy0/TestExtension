@@ -49,6 +49,10 @@
 	position: relative;
 }
 
+.adopto-tab-content.blur {
+	filter: blur(2px);
+}
+
 	.adopto-tab-content .tab {
 		width: 100%;
 		height: 100%;

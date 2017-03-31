@@ -17,12 +17,15 @@
 				//facebook: '',
 				github: 'https://github.com/0Rudy0',
 				//github: '',
-				skype: 'blabla',
-				//skype: '',
-				stackoverflow: 'bleble',
-				//stackoverflow: '',
-				angellist: 'blublu',
-				//angellist: ''
+				//skype: 'blabla',
+				skype: '',
+				//stackoverflow: 'bleble',
+				stackoverflow: '',
+				//angellist: 'blublu',
+				angellist: '',
+				xing: '',
+				twitter: '',
+				googlePlus: ''
 			},
 			summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id',
 			education: [
@@ -122,8 +125,8 @@
 	sidebar.getCandidateData = function () {
 		if (Adopto.contentScript.isProfilePageActive()) {
 			var cs = Adopto.contentScript;
-			var cdata = sidebar.candidateData;
 
+			var cdata = sidebar.candidateData;
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
 			var profileUrl = cs.getProfilePageUrl();
@@ -133,82 +136,130 @@
 			//cdata.mainData.location = cs.getLocation().substring(0, 100);
 			cdata.mainData.profileImgUrl = cs.getProfileImageURL();
 
-			$('#adopto-form .main-info p.name').html(cdata.mainData.fullName);
-			$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
-			$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
+			sidebar.setFormData();
 
-			$('#adopto-form .main-info .curr-info-edit input.name').val(cdata.mainData.fullName);
-			$('#adopto-form .main-info .curr-info-edit input.jobTitle').val(cdata.mainData.title);
-			$('#adopto-form .main-info .curr-info-edit input.location').val(cdata.mainData.location);
-
-			//contact
-			$('#adopto-form .adopto-group.contact .adopto-input.email p.value').html(cdata.mainData.contactInfo.email);
-			$('#adopto-form .adopto-group.contact .adopto-input.phone p.value').html(cdata.mainData.contactInfo.phone);
-
-			//social networks
-			$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').attr('href', cdata.mainData.socialNetworks.linkedin);
-			$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').attr('href', cdata.mainData.socialNetworks.facebook);
-			$('#adopto-form .adopto-group.social .adopto-input.skype a.value').attr('href', cdata.mainData.socialNetworks.skype);
-			$('#adopto-form .adopto-group.social .adopto-input.github a.value').attr('href', cdata.mainData.socialNetworks.github);
-			$('#adopto-form .adopto-group.social .adopto-input.stackOverflow a.value').attr('href', cdata.mainData.socialNetworks.stackoverflow);
-			$('#adopto-form .adopto-group.social .adopto-input.angelList a.value').attr('href', cdata.mainData.socialNetworks.angellist);
-
-			//summary
-			$('#adopto-form .adopto-group.summary p.value').html(cdata.summary);
-
-			//education
-			for (var i = 0; i < cdata.mainData.education.length; i++) {
-				var e = cdata.mainData.education[i];
-				e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
-
-				$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
-				$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
-			}
-
-			//experience
-			for (var i = 0; i < cdata.mainData.experience.length; i++) {
-				var e = cdata.mainData.experience[i];
-				e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
-				console.log($('#adopto-form .adopto-group.experience'));
-				$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
-				$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
-			}
-
-			//projects
-			for (var i = 0; i < cdata.mainData.projects.length; i++) {
-				var p = cdata.mainData.projects[i];
-				p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
-
-				$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
-				$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
-			}
-
-			//languages
-			//$('#adopto-form .adopto-group.languages').append('<ul class="langList"></ul>');
-			for (var i = 0; i < cdata.mainData.languages.length; i++) {
-				var l = cdata.mainData.languages[i];
-				$('#adopto-form .adopto-group.languages .langsList').append('<li class="item">' + l + '</li>');
-			}
-
-			//skills
-			for (var i = 0; i < cdata.mainData.skills.length; i++) {
-				var s = cdata.mainData.skills[i];
-				$('#adopto-form .adopto-group.skills .skillsList').append('<li class="item">' + s + '</li>')
-			}
-
-			$('#adopto-form .adopto-group a').click(function (e) {
-				e.preventDefault();
-				console.log();
-				e.stopPropagation();
-				if ($(this).attr('href').length > 0 && $(this).attr('href') != '#') {
-					window.open($(this).attr('href'), '_blank');
-				}
-			});
-
-			sidebar.hideEmptyGroups();
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
+			$('.adopto-tab-content').hide();
+			$('.adopto-empty').show();
+		}
+		sidebar.hideEmptyGroups();
+		//$('.adopto-loading').show();
+
+	}
+
+	sidebar.setFormData = function () {
+		var cdata = sidebar.candidateData;
+
+		$('#adopto-form .main-info').show();
+		$('#adopto-form .adopto-perspective').show();
+		$('#adopto-form .main-info p.name').html(cdata.mainData.fullName);
+		$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
+		$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
+
+		$('#adopto-form .main-info .curr-info-edit input.name').val(cdata.mainData.fullName);
+		$('#adopto-form .main-info .curr-info-edit input.jobTitle').val(cdata.mainData.title);
+		$('#adopto-form .main-info .curr-info-edit input.location').val(cdata.mainData.location);
+
+		//contact
+		$('#adopto-form .adopto-group.contact .adopto-input.email p.value').html(cdata.mainData.contactInfo.email);
+		$('#adopto-form .adopto-group.contact .adopto-input.phone p.value').html(cdata.mainData.contactInfo.phone);
+
+		//social networks
+		$('#adopto-form .adopto-group.social .adopto-input.linkedin a.value').attr('href', cdata.mainData.socialNetworks.linkedin);
+		$('#adopto-form .adopto-group.social .adopto-input.facebook a.value').attr('href', cdata.mainData.socialNetworks.facebook);
+		$('#adopto-form .adopto-group.social .adopto-input.skype a.value').attr('href', cdata.mainData.socialNetworks.skype);
+		$('#adopto-form .adopto-group.social .adopto-input.github a.value').attr('href', cdata.mainData.socialNetworks.github);
+		$('#adopto-form .adopto-group.social .adopto-input.stackOverflow a.value').attr('href', cdata.mainData.socialNetworks.stackoverflow);
+		$('#adopto-form .adopto-group.social .adopto-input.angelList a.value').attr('href', cdata.mainData.socialNetworks.angellist);
+		$('#adopto-form .adopto-group.social .adopto-input.xing a.value').attr('href', cdata.mainData.socialNetworks.xing);
+		$('#adopto-form .adopto-group.social .adopto-input.twitter a.value').attr('href', cdata.mainData.socialNetworks.twitter);
+		$('#adopto-form .adopto-group.social .adopto-input.googlePlus a.value').attr('href', cdata.mainData.socialNetworks.googlePlus);
+
+		//summary
+		$('#adopto-form .adopto-group.summary p.value').html(cdata.summary);
+
+		//education
+		for (var i = 0; i < cdata.mainData.education.length; i++) {
+			var e = cdata.mainData.education[i];
+			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+
+			$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+			$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
+		}
+
+		//experience
+		for (var i = 0; i < cdata.mainData.experience.length; i++) {
+			var e = cdata.mainData.experience[i];
+			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+			console.log($('#adopto-form .adopto-group.experience'));
+			$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
+			$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
+		}
+
+		//projects
+		for (var i = 0; i < cdata.mainData.projects.length; i++) {
+			var p = cdata.mainData.projects[i];
+			p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
+
+			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
+			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
+		}
+
+		//languages
+		//$('#adopto-form .adopto-group.languages').append('<ul class="langList"></ul>');
+		for (var i = 0; i < cdata.mainData.languages.length; i++) {
+			var l = cdata.mainData.languages[i];
+			$('#adopto-form .adopto-group.languages .langsList').append('<li class="item">' + l + '</li>');
+		}
+
+		//skills
+		for (var i = 0; i < cdata.mainData.skills.length; i++) {
+			var s = cdata.mainData.skills[i];
+			$('#adopto-form .adopto-group.skills .skillsList').append('<li class="item">' + s + '</li>')
+		}
+
+		$('#adopto-form .adopto-group a').click(function (e) {
+			e.preventDefault();
+			console.log();
+			e.stopPropagation();
+			if ($(this).attr('href').length > 0 && $(this).attr('href') != '#') {
+				window.open($(this).attr('href'), '_blank');
+			}
+		});
+	}
+
+	sidebar.getAdoptoData = function () {
+		$.ajax({
+			url: rootUrl + '/GetCandidateData',
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			async: true,
+			cache: false,
+			data: JSON.stringify({
+				email: sidebar.candidateData.mainData.contactInfo.email
+			}),
+			success: function (data) {
+				console.log(data)
+			},
+			error: function () {
+				console.log('error');
+			}
+		});
+	}
+
+	sidebar.setActivitiesData = function () {
+		for(var i = 0; i < sidebar.candidateData.activities.length; i++) {
+			var a = sidebar.candidateData.activities[i];
+			$('.adopto-tab-content .tab.tabActivities .activities-group').append('<div class="activity"><div class="icon"><i class="fa ' + a.icon + '"></i></div><div class="content"><div class="description">' + a.desc + '</div><div class="when">' + a.when + '</div></div></div>');
+		}
+	}
+
+	sidebar.setCommunicationsData = function () {
+		for(var i = 0; i < sidebar.candidateData.communication.length; i++) {
+			var c = sidebar.candidateData.communication[i];
+			$('.adopto-tab-content .tab.tabCommunication .communications').append('<div class="comm-item"><div class="icon"><i class="fa ' + c.icon + '" aria-hidden="true"></i></div><div class="desc-content"><div class="desc">' + c.desc + '</div><div class="when">' + c.when + '</div></div><br/><br/><blockquote class="content"><p>' + c.content + '</p></blockquote><div class="fix"></div></div>');
 		}
 	}
 
@@ -224,7 +275,7 @@
 
 		var that = this;
 		$.get(chrome.extension.getURL('markup/detailsPane.html'))
-			.done(function (data) {
+			.done(function(data) {
 				$('.adopto-tab-content .adopto-details-pane').append(data);
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .title').html(that.title);
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').html(that.atPlace);
@@ -304,7 +355,7 @@
 	}
 
 	sidebar.getCodeData = function (onLoad) {
-		Adopto.getCodeData(function () {
+		Adopto.getCodeData(function() {
 			var template = '<li value="{{Id}}">{{Text}}</li>';
 			var $ulJobList = $('#adopto-position-list ul');
 			var $ulTalentList = $('#adopto-talent-list ul');
@@ -341,19 +392,19 @@
 	sidebar.element.appendTo('body');
 
 	$.getJSON(chrome.extension.getURL('lang/' + Adopto.lang + ".json"))
-		.done(function (lang) {
+		.done(function(lang) {
 
 			$.get(chrome.extension.getURL('markup/sidebar.html'))
-				.done(function (data) {
+				.done(function(data) {
 
-					$('.adopto-sidebar .adopto-tab-content').scroll(function (e) {
+					$('.adopto-sidebar .adopto-tab-content').scroll(function(e) {
 						console.log('scroll');
 						e.stopPropagation();
 					})
 
 					sidebar.element.append(data.format(lang));
 
-					$('.tab-header').click(function () {
+					$('.tab-header').click(function() {
 						//console.log($('.adopto-tab-content>.tab'));
 						$('.adopto-tab-content>.tab').hide();
 						$('.nav-tabs .tab-header').removeClass('active');
@@ -366,16 +417,16 @@
 					$($('.adopto-tab-content .tab')[0]).show();
 
 					$.get(chrome.extension.getURL('markup/form.html'))
-						.done(function (data) {
+						.done(function(data) {
 
 							$('.adopto-tab-content .tab.tabForm').append(data.format(lang));
 
-							$('.main-info .edit-icon').click(function () {
+							$('.main-info .edit-icon').click(function() {
 								$('.main-info .curr-info').hide();
 								$('.main-info .curr-info-edit').show();
 							});
 
-							$('.main-info .done-icon').click(function () {
+							$('.main-info .done-icon').click(function() {
 								console.log('click');
 								$('.main-info .curr-info').show();
 								$('.main-info .curr-info-edit').hide();
@@ -389,14 +440,14 @@
 							});
 
 							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {
-								if (e.which == 13) {
+								if(e.which == 13) {
 									$('.main-info .done-icon').click();
 									return false;
 								}
 							});
 
 
-							$('.topHeader .backPane').click(function () {
+							$('.topHeader .backPane').click(function() {
 								$('.adopto-tab-content .tab').animate({ right: '0' }, 200);
 								$('.adopto-tab-content .adopto-details-pane').animate({ right: '-100%' }, 200);
 								$('.topHeader .backPane').animate({ opacity: 0 }, 100, function () {
@@ -413,16 +464,13 @@
 
 
 					$.get(chrome.extension.getURL('markup/activities.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-tab-content .tab.tabActivities').append(data.format(lang));
-							for (var i = 0; i < sidebar.candidateData.activities.length; i++) {
-								var a = sidebar.candidateData.activities[i];
-								$('.adopto-tab-content .tab.tabActivities .activities-group').append('<div class="activity"><div class="icon"><i class="fa ' + a.icon + '"></i></div><div class="content"><div class="description">' + a.desc + '</div><div class="when">' + a.when + '</div></div></div>');
-							}							
+							sidebar.setActivitiesData();
 						});
 
 					$.get(chrome.extension.getURL('markup/communication.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-tab-content .tab.tabCommunication').append(data.format(lang));
 							$('#notesSummernote').summernote({
 								height: 165,
@@ -434,34 +482,38 @@
 								height: 92,
 								toolbar: [
 								  ['style', ['bold', 'italic', 'underline', 'clear']],
-								],
+								  ],
 								resize: false
 							});
 							$('.note-statusbar').hide();
 
-							for (var i = 0; i < sidebar.candidateData.communication.length; i++) {
-								var c = sidebar.candidateData.communication[i];
-								$('.adopto-tab-content .tab.tabCommunication .communications').append('<div class="comm-item"><div class="icon"><i class="fa ' + c.icon + '" aria-hidden="true"></i></div><div class="desc-content"><div class="desc">' + c.desc + '</div><div class="when">' + c.when + '</div></div><br/><br/><blockquote class="content"><p>' + c.content + '</p></blockquote><div class="fix"></div></div>');
-							}
+							$('.adopto-tab-content .tab.tabCommunication #noteTab .sendBtnHolder button').click(function() {
+								//save note
+							});
+							$('.adopto-tab-content .tab.tabCommunication #emailTab .sendBtnHolder button').click(function() {
+								//send email
+							});
+
+							sidebar.setCommunicationsData();
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-loader-wrapper').append(data.format(lang));
 						});
 
 					$.get(chrome.extension.getURL('markup/open-profile-msg.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-open-profile-msg').append(data.format(lang));
 						})
 
 					$.get(chrome.extension.getURL('markup/login-msg.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-login-msg').append(data.format(lang));
 						});
 
 					$.get(chrome.extension.getURL('markup/sourced-msg.html'))
-						.done(function (data) {
+						.done(function(data) {
 							$('.adopto-sourced-msg').append(data.format(lang));
 						});
 
@@ -492,8 +544,8 @@
 		}
 	});
 
-	$(document).click(function (e) {
-		if (!$(e.target).is('.adopto-select *')) {
+	$(document).click(function(e) {
+		if(!$(e.target).is('.adopto-select *')) {
 			$('.adopto-select').removeClass('adopto-active');
 		}
 	});
@@ -521,14 +573,14 @@
 	});
 
 	$('.adopto-sidebar').on('submit', '#adopto-form', function (e) {
-		if (Adopto.codeData.IsAuthenticated) {
+		if(Adopto.codeData.IsAuthenticated) {
 			var formData = $('#adopto-form').serialize();
 
 			$('.adopto-loader-wrapper').removeClass('adopto-hidden');
 
 			$.post(rootUrl + 'Browser/Save', formData)
-				.done(function (data) {
-					if (data == true) {
+				.done(function(data) {
+					if(data == true) {
 						$('.adopto-sourced-msg').removeClass('adopto-hidden');
 						$('#adopto-form')[0].reset();
 					} else {
@@ -545,12 +597,12 @@
 		return false;
 	});
 
-	$(window).focus(function () {
-		if (!$('.adopto-login-msg').hasClass('adopto-hidden')) {
+	$(window).focus(function() {
+		if(!$('.adopto-login-msg').hasClass('adopto-hidden')) {
 			$('.adopto-login-msg').addClass('adopto-hidden');
 			$('.adopto-loader-wrapper').removeClass('adopto-hidden');
 
-			sidebar.getCodeData(function () {
+			sidebar.getCodeData(function() {
 				$('.adopto-loader-wrapper').addClass('adopto-hidden');
 			});
 		}
