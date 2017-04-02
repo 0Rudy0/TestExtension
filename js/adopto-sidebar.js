@@ -44,42 +44,10 @@
 			skills: ['C#', 'Visual studio', 'Cooking meth', 'Science bitch', 'Java', 'ASP.NET', 'Microsoft excel']
 		},
 		activities: [
-			{
-				desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
-				when: '2 weeks ago',
-				icon: 'fa-phone'
-			},
-			{
-				desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
-				when: '2 weeks ago',
-				icon: 'fa-file-text'
-			}
+
 		],
 		communication: [
-			{
-				desc: 'Danijel Rudman added a comment to candidate Michael Williams',
-				when: '2 weeks ago',
-				icon: 'fa-comment-o',
-				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
-			},
-			{
-				desc: 'Danijel Rudman added a comment to candidate Michael Williams',
-				when: '2 weeks ago',
-				icon: 'fa-comment-o',
-				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
-			},
-			{
-				desc: 'Danijel Rudmansend an email to candidate Michael Williams',
-				when: '3 weeks ago',
-				icon: 'fa-envelope-o',
-				content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
-			},
-			{
-				desc: 'Danijel Rudman send an email to candidate Michael Williams',
-				when: '4 weeks ago',
-				icon: 'fa-envelope-o',
-				content: 'Lorem ipsum dolor sit amet.'
-			}
+
 		]
 	};
 
@@ -113,10 +81,10 @@
 	sidebar.toggle = function () {
 		if (Adopto.contentScript) {
 			if (sidebar.visible()) {
-				console.log('hiding');
+				//console.log('hiding');
 				sidebar.hide();
 			} else {
-				console.log('showing');
+				//console.log('showing');
 				sidebar.show();
 			}
 		}
@@ -137,7 +105,11 @@
 			cdata.mainData.profileImgUrl = cs.getProfileImageURL();
 
 			sidebar.setFormData();
-
+			$('.adopto-loading').show();
+			$('.adopto-tab-content').addClass('blur');
+			setTimeout(function () {
+				sidebar.getAdoptoData();
+			}, 20);
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
@@ -145,8 +117,6 @@
 			$('.adopto-empty').show();
 		}
 		sidebar.hideEmptyGroups();
-		//$('.adopto-loading').show();
-
 	}
 
 	sidebar.setFormData = function () {
@@ -193,7 +163,7 @@
 		for (var i = 0; i < cdata.mainData.experience.length; i++) {
 			var e = cdata.mainData.experience[i];
 			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
-			console.log($('#adopto-form .adopto-group.experience'));
+			//console.log($('#adopto-form .adopto-group.experience'));
 			$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
 		}
@@ -222,7 +192,7 @@
 
 		$('#adopto-form .adopto-group a').click(function (e) {
 			e.preventDefault();
-			console.log();
+			//console.log();
 			e.stopPropagation();
 			if ($(this).attr('href').length > 0 && $(this).attr('href') != '#') {
 				window.open($(this).attr('href'), '_blank');
@@ -231,6 +201,7 @@
 	}
 
 	sidebar.getAdoptoData = function () {
+
 		$.ajax({
 			url: rootUrl + '/GetCandidateData',
 			contentType: "application/json; charset=utf-8",
@@ -241,23 +212,239 @@
 				email: sidebar.candidateData.mainData.contactInfo.email
 			}),
 			success: function (data) {
-				console.log(data)
+				//console.log(data);
+				sidebar.candidateData.activities = data.activities;
+				sidebar.candidateData.communicatio = data.communication;
 			},
 			error: function () {
-				console.log('error');
+				//console.log('error');
+				$('.adopto-loading').hide();
+				$('.adopto-tab-content').removeClass('blur');
+				sidebar.candidateData.activities = [
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-phone'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					},
+					{
+						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
+						when: '2 weeks ago',
+						icon: 'fa-file-text'
+					}
+				];
+				sidebar.candidateData.communication = [
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudmansend an email to candidate Michael Williams',
+						when: '3 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman send an email to candidate Michael Williams',
+						when: '4 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'Lorem ipsum dolor sit amet.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudmansend an email to candidate Michael Williams',
+						when: '3 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman send an email to candidate Michael Williams',
+						when: '4 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'Lorem ipsum dolor sit amet.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudmansend an email to candidate Michael Williams',
+						when: '3 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman send an email to candidate Michael Williams',
+						when: '4 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'Lorem ipsum dolor sit amet.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
+						when: '2 weeks ago',
+						icon: 'fa-comment-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudmansend an email to candidate Michael Williams',
+						when: '3 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.'
+					},
+					{
+						desc: 'Danijel Rudman send an email to candidate Michael Williams',
+						when: '4 weeks ago',
+						icon: 'fa-envelope-o',
+						content: 'Lorem ipsum dolor sit amet.'
+					}
+				];
+				sidebar.setActivitiesData();
+				sidebar.setCommunicationsData();
 			}
 		});
 	}
 
 	sidebar.setActivitiesData = function () {
-		for(var i = 0; i < sidebar.candidateData.activities.length; i++) {
+		for (var i = 0; i < sidebar.candidateData.activities.length; i++) {
 			var a = sidebar.candidateData.activities[i];
 			$('.adopto-tab-content .tab.tabActivities .activities-group').append('<div class="activity"><div class="icon"><i class="fa ' + a.icon + '"></i></div><div class="content"><div class="description">' + a.desc + '</div><div class="when">' + a.when + '</div></div></div>');
 		}
 	}
 
 	sidebar.setCommunicationsData = function () {
-		for(var i = 0; i < sidebar.candidateData.communication.length; i++) {
+		for (var i = 0; i < sidebar.candidateData.communication.length; i++) {
 			var c = sidebar.candidateData.communication[i];
 			$('.adopto-tab-content .tab.tabCommunication .communications').append('<div class="comm-item"><div class="icon"><i class="fa ' + c.icon + '" aria-hidden="true"></i></div><div class="desc-content"><div class="desc">' + c.desc + '</div><div class="when">' + c.when + '</div></div><br/><br/><blockquote class="content"><p>' + c.content + '</p></blockquote><div class="fix"></div></div>');
 		}
@@ -275,7 +462,7 @@
 
 		var that = this;
 		$.get(chrome.extension.getURL('markup/detailsPane.html'))
-			.done(function(data) {
+			.done(function (data) {
 				$('.adopto-tab-content .adopto-details-pane').append(data);
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .title').html(that.title);
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').html(that.atPlace);
@@ -355,7 +542,7 @@
 	}
 
 	sidebar.getCodeData = function (onLoad) {
-		Adopto.getCodeData(function() {
+		Adopto.getCodeData(function () {
 			var template = '<li value="{{Id}}">{{Text}}</li>';
 			var $ulJobList = $('#adopto-position-list ul');
 			var $ulTalentList = $('#adopto-talent-list ul');
@@ -392,19 +579,28 @@
 	sidebar.element.appendTo('body');
 
 	$.getJSON(chrome.extension.getURL('lang/' + Adopto.lang + ".json"))
-		.done(function(lang) {
+		.done(function (lang) {
 
 			$.get(chrome.extension.getURL('markup/sidebar.html'))
-				.done(function(data) {
+				.done(function (data) {
 
-					$('.adopto-sidebar .adopto-tab-content').scroll(function(e) {
-						console.log('scroll');
-						e.stopPropagation();
-					})
+					//console.log($('.adopto-sidebar'));
+					//$('.adopto-sidebar').scroll(function (e) {
+					//	console.log('scroll');
+					//	e.stopPropagation();
+					//});
+					//$('.adopto-sidebar').click(function (e) {
+					//	console.log('click');
+					//	//e.stopPropagation();
+					//});
+					//document.getElementsByClassName('adopto-sidebar')[0].addEventListener('scroll', function () {
+					//	console.log('scroll');
+					//})
+					//window.scroll(function () { console.log('scroll'); });
 
 					sidebar.element.append(data.format(lang));
 
-					$('.tab-header').click(function() {
+					$('.tab-header').click(function () {
 						//console.log($('.adopto-tab-content>.tab'));
 						$('.adopto-tab-content>.tab').hide();
 						$('.nav-tabs .tab-header').removeClass('active');
@@ -417,17 +613,49 @@
 					$($('.adopto-tab-content .tab')[0]).show();
 
 					$.get(chrome.extension.getURL('markup/form.html'))
-						.done(function(data) {
+						.done(function (data) {							
+
+							//preventing scroll propagation
+							$('#tabContent').bind('mousewheel', function (e) {
+								if ($('.tab-header[data-tab="tabForm"').hasClass('active')) {
+									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('#adopto-form').outerHeight() - $(this).outerHeight() + 30) ||
+										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)){
+										e.preventDefault();
+									}
+								}
+								else if ($('.tab-header[data-tab="tabActivities"').hasClass('active')) {
+									//console.log('scrolling activities');
+									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('.tabActivities.tab .activities-group').outerHeight() - $(this).outerHeight() + 20) ||
+										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)) {
+										e.preventDefault();
+									}
+								}
+								else if ($('.tab-header[data-tab="tabCommunication"').hasClass('active')) {
+									//console.log('scrolling communication');
+									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('.tabCommunication.tab .communications').outerHeight() - $(this).outerHeight() + 10) ||
+										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)) {
+										e.preventDefault();
+									}
+								}
+							});
+
+							$('.nav-tabs.main').bind('mousewheel', function (e) {
+								e.preventDefault();
+							});
+
+							$('.topHeader').bind('mousewheel', function (e) {
+								e.preventDefault();
+							});
 
 							$('.adopto-tab-content .tab.tabForm').append(data.format(lang));
 
-							$('.main-info .edit-icon').click(function() {
+							$('.main-info .edit-icon').click(function () {
 								$('.main-info .curr-info').hide();
 								$('.main-info .curr-info-edit').show();
 							});
 
-							$('.main-info .done-icon').click(function() {
-								console.log('click');
+							$('.main-info .done-icon').click(function () {
+								//console.log('click');
 								$('.main-info .curr-info').show();
 								$('.main-info .curr-info-edit').hide();
 								sidebar.candidateData.mainData.fullName = $('#adopto-form .main-info .curr-info-edit input.name').val();
@@ -440,14 +668,14 @@
 							});
 
 							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {
-								if(e.which == 13) {
+								if (e.which == 13) {
 									$('.main-info .done-icon').click();
 									return false;
 								}
 							});
 
 
-							$('.topHeader .backPane').click(function() {
+							$('.topHeader .backPane').click(function () {
 								$('.adopto-tab-content .tab').animate({ right: '0' }, 200);
 								$('.adopto-tab-content .adopto-details-pane').animate({ right: '-100%' }, 200);
 								$('.topHeader .backPane').animate({ opacity: 0 }, 100, function () {
@@ -464,33 +692,33 @@
 
 
 					$.get(chrome.extension.getURL('markup/activities.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-tab-content .tab.tabActivities').append(data.format(lang));
 							sidebar.setActivitiesData();
 						});
 
 					$.get(chrome.extension.getURL('markup/communication.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-tab-content .tab.tabCommunication').append(data.format(lang));
 							$('#notesSummernote').summernote({
-								height: 165,
+								height: 195,
 								toolbar: false,
 								//placeholder: 'Type \'@\' for mention, or \'#\' for tags',
 								disableDragAndDrop: true
 							});
 							$('#emailSummernote').summernote({
-								height: 92,
+								height: 122,
 								toolbar: [
 								  ['style', ['bold', 'italic', 'underline', 'clear']],
-								  ],
+								],
 								resize: false
 							});
 							$('.note-statusbar').hide();
 
-							$('.adopto-tab-content .tab.tabCommunication #noteTab .sendBtnHolder button').click(function() {
+							$('.adopto-tab-content .tab.tabCommunication #noteTab .sendBtnHolder button').click(function () {
 								//save note
 							});
-							$('.adopto-tab-content .tab.tabCommunication #emailTab .sendBtnHolder button').click(function() {
+							$('.adopto-tab-content .tab.tabCommunication #emailTab .sendBtnHolder button').click(function () {
 								//send email
 							});
 
@@ -498,22 +726,22 @@
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-loader-wrapper').append(data.format(lang));
 						});
 
 					$.get(chrome.extension.getURL('markup/open-profile-msg.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-open-profile-msg').append(data.format(lang));
 						})
 
 					$.get(chrome.extension.getURL('markup/login-msg.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-login-msg').append(data.format(lang));
 						});
 
 					$.get(chrome.extension.getURL('markup/sourced-msg.html'))
-						.done(function(data) {
+						.done(function (data) {
 							$('.adopto-sourced-msg').append(data.format(lang));
 						});
 
@@ -532,7 +760,7 @@
 	});
 
 	$('.adopto-sidebar').on('blur', '.adopto-input input, .adopto-input textarea', function () {
-		console.log('blur');
+		//console.log('blur');
 		if (!this.value) {
 			$(this).parent().removeClass('label-top');
 		}
@@ -544,8 +772,8 @@
 		}
 	});
 
-	$(document).click(function(e) {
-		if(!$(e.target).is('.adopto-select *')) {
+	$(document).click(function (e) {
+		if (!$(e.target).is('.adopto-select *')) {
 			$('.adopto-select').removeClass('adopto-active');
 		}
 	});
@@ -573,14 +801,14 @@
 	});
 
 	$('.adopto-sidebar').on('submit', '#adopto-form', function (e) {
-		if(Adopto.codeData.IsAuthenticated) {
+		if (Adopto.codeData.IsAuthenticated) {
 			var formData = $('#adopto-form').serialize();
 
 			$('.adopto-loader-wrapper').removeClass('adopto-hidden');
 
 			$.post(rootUrl + 'Browser/Save', formData)
-				.done(function(data) {
-					if(data == true) {
+				.done(function (data) {
+					if (data == true) {
 						$('.adopto-sourced-msg').removeClass('adopto-hidden');
 						$('#adopto-form')[0].reset();
 					} else {
@@ -597,12 +825,12 @@
 		return false;
 	});
 
-	$(window).focus(function() {
-		if(!$('.adopto-login-msg').hasClass('adopto-hidden')) {
+	$(window).focus(function () {
+		if (!$('.adopto-login-msg').hasClass('adopto-hidden')) {
 			$('.adopto-login-msg').addClass('adopto-hidden');
 			$('.adopto-loader-wrapper').removeClass('adopto-hidden');
 
-			sidebar.getCodeData(function() {
+			sidebar.getCodeData(function () {
 				$('.adopto-loader-wrapper').addClass('adopto-hidden');
 			});
 		}

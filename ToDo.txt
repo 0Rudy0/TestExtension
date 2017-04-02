@@ -1,5 +1,5 @@
-﻿- sakriti sve ako trenutna stranica nije nekakav profil
-- slanje cijelog objekta u adopto app
+﻿- slanje cijelog objekta u adopto app
 - neka ljepsa animacija otvaranja sidebara?
 - save note/send email kroz adopto app
 - boje
+

@@ -8,7 +8,11 @@
 }
 
 .adopto-details-pane .pane .main-info {
-	padding-right: 40px;
+	padding-right: 45px;
+}
+
+.adopto-details-pane .pane .main-info .title {
+	margin-bottom: 5px;
 }
 
 .adopto-details-pane .pane .desc-info {
@@ -24,12 +28,18 @@
 	color: #808080;
 }
 
+.adopto-details-pane .pane .main-info p.timeSpanHolder {
+	margin-bottom: 0;
+}
+
 .adopto-details-pane .pane .main-info img {
 	position: absolute;
-	right: 0px;
-	top: 0px;
-	height: 40px;
-	width: 40px;
+	right: 5px;
+	top: 5px;
+	height: auto;
+	width: auto;
+	max-width: 40px;
+	max-height: 40px;
 }
 
 .adopto-details-pane .pane .desc-info h4 {

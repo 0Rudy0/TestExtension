@@ -85,10 +85,11 @@ body.adopto-sidebar-show .adopto-sidebar {
 	font-family: 'Lato', sans-serif !important;
 	position: relative;
 	color: black;
-}
+	background-color: rgba(0, 172, 172, 0.8);
+}	
 
 	.topHeader i {
-		color: black;
+		color: white;
 	}
 
 
@@ -112,10 +113,12 @@ body.adopto-sidebar-show .adopto-sidebar {
 .adopto-logo {
 	height: 40px;
 	background-image: url('chrome-extension://__MSG_@@extension_id__/images/adopto-logo.svg');
+	background-image: url('chrome-extension://__MSG_@@extension_id__/images/adopto-logoWhite.svg');
 	/*background-image: url('../images/adopto-logo.svg');*/
 	background-size: auto 25px;
 	background-position: 10px 50%;
 	background-repeat: no-repeat;
+	/*background-color: rgba(0, 172, 172, 0.8);*/
 }
 
 .topHeader .backPane {
@@ -143,18 +146,26 @@ body.adopto-sidebar-show .adopto-sidebar {
 /* Close button */
 .topHeader .adopto-close {
 	position: absolute;
-	top: 7px;
-	right: -33px;
-	width: 26px;
-	height: 26px;
+	top: 0px;
+	right: -41px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
 	color: #ffffff;
 	cursor: pointer;
 	z-index: 1;
+	border-bottom: 1px solid rgb(234, 234, 234);
 	transition: color 0.3s ease-in-out;
+	background-color: rgba(0, 172, 172, 1);
 }
 
+	.topHeader .adopto-close i {
+		line-height: 40px;
+	}
+
 	.topHeader .adopto-close:hover i {
-		color: #808080;
+		color: black;
 	}
 
 /* Overlay */
@@ -369,10 +380,9 @@ body.adopto-sidebar-show .adopto-sidebar {
 		transform: translateY(-50%) translateX(50%);
 	}
 
-	.adopto-loading {
-		background-color: rgba(255, 255, 255, 0.5);
-		
-	}
+.adopto-loading {
+	background-color: rgba(255, 255, 255, 0.5);
+}
 
 	.adopto-loading .loading {
 		position: relative;
@@ -424,7 +434,7 @@ html, body {
 .loading {
 	border-radius: 50%;
 	width: 70px;
-	height:70px;
+	height: 70px;
 	border: 0.55rem solid rgba(0, 172, 172, 0.2);
 	border-top-color: #009292;
 	-webkit-animation: spin 1s infinite linear;
