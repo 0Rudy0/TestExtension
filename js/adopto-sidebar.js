@@ -97,36 +97,47 @@
 			var cdata = sidebar.candidateData;
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
-			var profileUrl = cs.getProfilePageUrl();
-			cdata.mainData.fullName = cs.getName().substring(0, 100);
+			//var profileUrl = cs.getProfilePageUrl();
+			//cdata.mainData.fullName = cs.getName().substring(0, 100);
 			//cdata.mainData.contactInfo.email = cs.getEmail().substring(0, 100);
 			//cdata.mainData.title = cs.getJobTitle().substring(0, 100);
 			//cdata.mainData.location = cs.getLocation().substring(0, 100);
-			cdata.mainData.profileImgUrl = cs.getProfileImageURL();
+			//cdata.mainData.profileImgUrl = cs.getProfileImageURL();
 
-			sidebar.setFormData();
 			$('.adopto-loading').show();
+			cs.getData(sidebar.setFormData);
+
+			//sidebar.setFormData();
 			$('.adopto-tab-content').addClass('blur');
 			setTimeout(function () {
 				sidebar.getAdoptoData();
-			}, 20);
+			}, 200);
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
 			$('.adopto-tab-content').hide();
 			$('.adopto-empty').show();
 		}
-		sidebar.hideEmptyGroups();
 	}
 
-	sidebar.setFormData = function () {
-		var cdata = sidebar.candidateData;
+	sidebar.callback = function (data) {
+		console.log(data);
+	}
+
+	sidebar.setFormData = function (cdata) {
+		//var cdata = sidebar.candidateData;
 
 		$('#adopto-form .main-info').show();
 		$('#adopto-form .adopto-perspective').show();
 		$('#adopto-form .main-info p.name').html(cdata.mainData.fullName);
 		$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
 		$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
+		if (cdata.mainData.profileImgUrl == null || cdata.mainData.profileImgUrl.trim().length == 0) {
+			$('#adopto-form .main-info img.profile-picture').attr('src', chrome.extension.getURL("images/no-profile-pic.png"));
+		}
+		else {
+			$('#adopto-form .main-info img.profile-picture').attr('src', cdata.mainData.profileImgUrl);
+		}
 
 		$('#adopto-form .main-info .curr-info-edit input.name').val(cdata.mainData.fullName);
 		$('#adopto-form .main-info .curr-info-edit input.jobTitle').val(cdata.mainData.title);
@@ -148,7 +159,7 @@
 		$('#adopto-form .adopto-group.social .adopto-input.googlePlus a.value').attr('href', cdata.mainData.socialNetworks.googlePlus);
 
 		//summary
-		$('#adopto-form .adopto-group.summary p.value').html(cdata.summary);
+		$('#adopto-form .adopto-group.summary p.value').html(cdata.mainData.summary);
 
 		//education
 		for (var i = 0; i < cdata.mainData.education.length; i++) {
@@ -198,6 +209,8 @@
 				window.open($(this).attr('href'), '_blank');
 			}
 		});
+
+		sidebar.hideEmptyGroups();
 	}
 
 	sidebar.getAdoptoData = function () {

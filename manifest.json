@@ -10,11 +10,14 @@
         "128": "icon/icon_128.png"
     },
 
-    "author": "Bojan Došen, Adopto LTD",
+    "author": "Danijel Rudman; Jurica Marić; Adopto LTD",
     "permissions": [
         "activeTab",
         "https://*.adopto.eu/*",
-        "http://adopto-local.eu/*"
+        "http://adopto-local.eu/*",
+        "https://www.linkedin.com/in/*",
+        "tabs",
+        "webNavigation"
     ],
     "content_scripts": [
         {
@@ -48,6 +51,7 @@
                 //"js/google-fonts.js",
                 "js/helpers.js",
                 "js/adopto.js",
+                "js/model.js",
                 "js/adopto-sidebar.js",
 
                 "modules/facebook.js",
@@ -67,11 +71,15 @@
         "*.png",
         "*.html",
         "*.woff2",
+        "*.ttf",
         "*.woff"
     ],
 
     "background": {
-        "scripts": ["js/adopto-button.js"]
+        "scripts": [            
+            "js/adopto-button.js",
+            "js/background.js"
+        ]
     },
     "browser_action": {
         "default_title": "",

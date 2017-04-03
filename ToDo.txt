@@ -2,4 +2,5 @@
 - neka ljepsa animacija otvaranja sidebara?
 - save note/send email kroz adopto app
 - boje
+- description in project & experience
 

@@ -5,7 +5,9 @@
 		<input type="hidden" name="SourceProfileUrl" id="adopto-profile-url">
 		<input type="hidden" name="SourceProfilePictureUrl" id="adopto-profile-image">
 		<div class="main-info">
-			<div class="adopto-profile-picture"></div>
+			<div class="adopto-profile-picture">
+				<img class="profile-picture" src="chrome-extension://__MSG_@@extension_id__/images/no-profile-pic.png" />
+			</div>
 			<div class="curr-info">
 				<i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
 				<p class="name"></p>
@@ -81,7 +83,10 @@
 		</div>
 		<div class="adopto-group summary">
 			<h3 class="adopto-group-title">Summary</h3>
-			<p class="value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id.</p>
+			<div class="adopto-input">
+				<p class="value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id.</p>
+
+			</div>
 		</div>
 		<div class="adopto-group education">
 			<h3 class="adopto-group-title">Education</h3>
@@ -150,14 +155,12 @@
 		</div>
 		<div class="adopto-group languages">
 			<h3 class="adopto-group-title">Languages</h3>
-			<ul class="langsList">
-			</ul>
+			<ul class="langsList"></ul>
 		</div>
 		<div class="adopto-group skills">
 			<h3 class="adopto-group-title">Skills</h3>
-			<ul class="skillsList">
-			</ul>
-		</div>		
+			<ul class="skillsList"></ul>
+		</div>
 		<div class="adopto-perspective">
 			<button type="submit" class="adopto-source">Source candidate</button>
 		</div>

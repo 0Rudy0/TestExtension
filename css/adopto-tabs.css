@@ -52,7 +52,8 @@
 }
 
 	.adopto-tab-content.blur {
-		filter: blur(2px);
+		/*filter: blur(3px);*/
+		opacity: 0;
 	}
 
 	.adopto-tab-content .tab {
