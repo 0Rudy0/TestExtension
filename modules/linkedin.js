@@ -66,10 +66,10 @@
 			var cd = candidateDataModel;
 
 			cd.mainData.fullName = $(".pv-top-card-section__name", aseFrameContents).text();
-			Adopto.contentScript.returnData();
-			return;
-			//profileInfo.headline = $(".pv-top-card-section__headline", aseFrameContents).text();
-			//profileInfo.description = $(".truncate-multiline--truncation-target", aseFrameContents).text().trim();
+			cd.mainData.title = $(".pv-top-card-section__headline", aseFrameContents).text();
+			cd.mainData.summary = $(".truncate-multiline--truncation-target", aseFrameContents).text().trim();
+
+			cd.mainData.profileImgUrl = $(".pv-top-card-section__header img").attr("src");
 
 			var $experienceExpend = $(".experience-section .pv-profile-section__actions-inline button", aseFrameContents);
 			if ($experienceExpend.attr("aria-expanded") === "false")
@@ -106,11 +106,9 @@
 
 				//Collect contacts
 				$(".pv-contact-info__contact-type", aseFrameContents).each(function () {
-					//alert(this.classList[1]);
 					switch (this.classList[1]) {
 						case "ci-vanity-url":
 							var link = $(".pv-contact-info__contact-item", this).text().trim();
-							//profileInfo.contacts.push(new Contact("linkedin", link, link));
 							cd.mainData.socialNetworks.linkedin = link;
 							break;
 						case "ci-websites":
@@ -120,13 +118,11 @@
 							break;
 						case "ci-email":
 							var email = $(".pv-contact-info__contact-item", this).text().trim();
-							//profileInfo.contacts.push(new Contact("email", email, email));
 							cd.mainData.contactInfo.email = email;
 							break;
 						case "ci-phone":
 							var text = $(".pv-contact-info__contact-item", this).text().trim();
 							var value = text.substring(0, text.lastIndexOf("(")).trim();
-							//profileInfo.contacts.push(new Contact("phone", text, value));
 							cd.mainData.contactInfo.phone = value;
 							break;
 						case "ci-address":
@@ -143,7 +139,7 @@
 								var text = $(this).text().trim();
 								var value = text.substring(0, text.lastIndexOf("(")).trim();
 								//var type = text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")")).toLower();
-								profileInfo.contacts.push(new Contact("im", text, value));
+								//profileInfo.contacts.push(new Contact("im", text, value));
 							});
 							break;
 					}
@@ -186,7 +182,7 @@
 				//Collect skills
 				$(".pv-skill-entity__skill-name", aseFrameContents).each(function () {
 					//profileInfo.skills.push($(this).text());
-					cd.skills.push($(this).text());
+					cd.mainData.skills.push($(this).text());
 				});
 
 				//Collect projects

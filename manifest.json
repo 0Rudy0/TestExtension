@@ -22,7 +22,7 @@
     "content_scripts": [
         {
             "matches": [
-                //"https://*.facebook.com/*",
+                "https://*.facebook.com/*",
                 "https://*.github.com/*",
                 "https://*.angel.co/*",
                 "https://*.dribbble.com/*",
@@ -77,8 +77,7 @@
 
     "background": {
         "scripts": [            
-            "js/adopto-button.js",
-            "js/background.js"
+            "js/adopto-button.js"
         ]
     },
     "browser_action": {

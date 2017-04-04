@@ -1,56 +1,5 @@
 (function ($, sidebar, rootUrl) {
 
-	sidebar.candidateData = {
-		mainData: {
-			fullName: 'Danijel Rudman',
-			title: 'Software developer',
-			profileImgUrl: '',
-			location: 'Zagreb',
-			contactInfo: {
-				email: 'rudman0@gmail.com',
-				phone: '098/745-8597'
-			},
-			socialNetworks: {
-				linkedin: 'https://www.linkedin.com/in/danijel-rudman-7b771276/',
-				//linkedin: '',
-				facebook: 'https://www.facebook.com/danijel.rudman',
-				//facebook: '',
-				github: 'https://github.com/0Rudy0',
-				//github: '',
-				//skype: 'blabla',
-				skype: '',
-				//stackoverflow: 'bleble',
-				stackoverflow: '',
-				//angellist: 'blublu',
-				angellist: '',
-				xing: '',
-				twitter: '',
-				googlePlus: ''
-			},
-			summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id',
-			education: [
-				{ title: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineering', atPlace: 'FER', placeLink: 'https://www.fer.unizg.hr/', placeLogo: 'http://www.clker.com/cliparts/7/4/b/6/13373556381963102819fer.logo_.png', startDate: moment('2006-09-01'), endDate: moment('2011-09-01') },
-				{ title: 'Bachelor\'s Degree, Applied Computer Engineering, Software Engineerin', atPlace: 'FER', placeLink: 'https://www.fer.unizg.hr/', placeLogo: 'http://www.clker.com/cliparts/7/4/b/6/13373556381963102819fer.logo_.png', startDate: moment('2012-09-01'), endDate: moment('2013-09-01') }
-			],
-			experience: [
-				{ title: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: 'http://hrpro.hr/', placeLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAlsAAAAJDBkYTQ5NGU4LWNmNjEtNDY0ZS1hNzdmLTk4NDIyMWRiYzAwNw.png', startDate: moment('2006-09-01'), endDate: moment('2008-09-01'), desc: 'Vel sapien elit in malesuada semper mi, id sollicitudin.' },
-				{ title: 'Software developer', atPlace: 'HrPro d.o.o.', placeLink: 'http://hrpro.hr/', placeLogo: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAlsAAAAJDBkYTQ5NGU4LWNmNjEtNDY0ZS1hNzdmLTk4NDIyMWRiYzAwNw.png', startDate: moment('2008-09-01'), endDate: moment('2010-09-01'), desc: 'Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.' }
-			],
-			projects: [
-				{ title: 'Being mama\'s boy', startDate: moment('2006-09-01'), endDate: moment('2009-09-01') },
-				{ title: 'Being a motherfucker', startDate: moment('2009-09-01'), endDate: moment('2016-09-01') }
-			],
-			languages: ['English', 'German', 'Croatian', 'Bosnian', 'Serbian'],
-			skills: ['C#', 'Visual studio', 'Cooking meth', 'Science bitch', 'Java', 'ASP.NET', 'Microsoft excel']
-		},
-		activities: [
-
-		],
-		communication: [
-
-		]
-	};
-
 	sidebar.visible = function () {
 		if ($('body').hasClass('adopto-sidebar-show')) {
 			return true;
@@ -61,7 +10,7 @@
 	sidebar.show = function () {
 		$('.adopto-sidebar').show(); // Solves uncompatibility with 'LastPass' chrome extension
 		// setTimeout -> Solves uncompatibility with 'LastPass' chrome extension
-		setTimeout(() => {
+		setTimeout(function() {
 			//$('.adopto-sidebar').show();
 			$('body').addClass('adopto-sidebar-show');
 			$('.adopto-sidebar #name').focus();
@@ -73,7 +22,7 @@
 	sidebar.hide = function () {
 		$('body').removeClass('adopto-sidebar-show');
 		$('.adopto-sidebar').css('right', '-390px');
-		setTimeout(() => function () {
+		setTimeout(function () {
 			//$('.adopto-sidebar').hide();
 		}, 50); // Solves uncompatibility with 'LastPass' chrome extension
 	}
@@ -92,9 +41,11 @@
 
 	sidebar.getCandidateData = function () {
 		if (Adopto.contentScript.isProfilePageActive()) {
+
+			setEmptyModel();
+
 			var cs = Adopto.contentScript;
 
-			var cdata = sidebar.candidateData;
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
 			//var profileUrl = cs.getProfilePageUrl();
@@ -125,7 +76,7 @@
 	}
 
 	sidebar.setFormData = function (cdata) {
-		//var cdata = sidebar.candidateData;
+		//var cdata = candidateDataModel.mainData;
 
 		$('#adopto-form .main-info').show();
 		$('#adopto-form .adopto-perspective').show();
@@ -222,18 +173,18 @@
 			async: true,
 			cache: false,
 			data: JSON.stringify({
-				email: sidebar.candidateData.mainData.contactInfo.email
+				email: candidateDataModel.mainData.contactInfo.email
 			}),
 			success: function (data) {
 				//console.log(data);
-				sidebar.candidateData.activities = data.activities;
-				sidebar.candidateData.communicatio = data.communication;
+				candidateDataModel.mainData.activities = data.activities;
+				candidateDataModel.mainData.communicatio = data.communication;
 			},
 			error: function () {
 				//console.log('error');
 				$('.adopto-loading').hide();
 				$('.adopto-tab-content').removeClass('blur');
-				sidebar.candidateData.activities = [
+				candidateDataModel.mainData.activities = [
 					{
 						desc: 'Danijel Rudman scheduled Phone call with candidate Michelle William',
 						when: '2 weeks ago',
@@ -345,7 +296,7 @@
 						icon: 'fa-file-text'
 					}
 				];
-				sidebar.candidateData.communication = [
+				candidateDataModel.mainData.communication = [
 					{
 						desc: 'Danijel Rudman added a comment to candidate Michael Williams',
 						when: '2 weeks ago',
@@ -450,15 +401,15 @@
 	}
 
 	sidebar.setActivitiesData = function () {
-		for (var i = 0; i < sidebar.candidateData.activities.length; i++) {
-			var a = sidebar.candidateData.activities[i];
+		for (var i = 0; i < candidateDataModel.mainData.activities.length; i++) {
+			var a = candidateDataModel.mainData.activities[i];
 			$('.adopto-tab-content .tab.tabActivities .activities-group').append('<div class="activity"><div class="icon"><i class="fa ' + a.icon + '"></i></div><div class="content"><div class="description">' + a.desc + '</div><div class="when">' + a.when + '</div></div></div>');
 		}
 	}
 
 	sidebar.setCommunicationsData = function () {
-		for (var i = 0; i < sidebar.candidateData.communication.length; i++) {
-			var c = sidebar.candidateData.communication[i];
+		for (var i = 0; i < candidateDataModel.mainData.communication.length; i++) {
+			var c = candidateDataModel.mainData.communication[i];
 			$('.adopto-tab-content .tab.tabCommunication .communications').append('<div class="comm-item"><div class="icon"><i class="fa ' + c.icon + '" aria-hidden="true"></i></div><div class="desc-content"><div class="desc">' + c.desc + '</div><div class="when">' + c.when + '</div></div><br/><br/><blockquote class="content"><p>' + c.content + '</p></blockquote><div class="fix"></div></div>');
 		}
 	}
@@ -671,13 +622,13 @@
 								//console.log('click');
 								$('.main-info .curr-info').show();
 								$('.main-info .curr-info-edit').hide();
-								sidebar.candidateData.mainData.fullName = $('#adopto-form .main-info .curr-info-edit input.name').val();
-								sidebar.candidateData.mainData.title = $('#adopto-form .main-info .curr-info-edit input.jobTitle').val();
-								sidebar.candidateData.mainData.location = $('#adopto-form .main-info .curr-info-edit input.location').val();
+								candidateDataModel.mainData.fullName = $('#adopto-form .main-info .curr-info-edit input.name').val();
+								candidateDataModel.mainData.title = $('#adopto-form .main-info .curr-info-edit input.jobTitle').val();
+								candidateDataModel.mainData.location = $('#adopto-form .main-info .curr-info-edit input.location').val();
 
-								$('#adopto-form .main-info p.name').html(sidebar.candidateData.mainData.fullName);
-								$('#adopto-form .main-info h5.jobTitle').html(sidebar.candidateData.mainData.title);
-								$('#adopto-form .main-info p.location span').html(sidebar.candidateData.mainData.location);
+								$('#adopto-form .main-info p.name').html(candidateDataModel.mainData.fullName);
+								$('#adopto-form .main-info h5.jobTitle').html(candidateDataModel.mainData.title);
+								$('#adopto-form .main-info p.location span').html(candidateDataModel.mainData.location);
 							});
 
 							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {
