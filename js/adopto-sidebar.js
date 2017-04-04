@@ -35,6 +35,7 @@
 			} else {
 				//console.log('showing');
 				sidebar.show();
+				//sidebar.getCandidateData();
 			}
 		}
 	}
@@ -48,21 +49,13 @@
 
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
-			//var profileUrl = cs.getProfilePageUrl();
-			//cdata.mainData.fullName = cs.getName().substring(0, 100);
-			//cdata.mainData.contactInfo.email = cs.getEmail().substring(0, 100);
-			//cdata.mainData.title = cs.getJobTitle().substring(0, 100);
-			//cdata.mainData.location = cs.getLocation().substring(0, 100);
-			//cdata.mainData.profileImgUrl = cs.getProfileImageURL();
-
+			console.log($('.adopto-loading'));
 			$('.adopto-loading').show();
-			cs.getData(sidebar.setFormData);
-
-			//sidebar.setFormData();
 			$('.adopto-tab-content').addClass('blur');
+
 			setTimeout(function () {
-				sidebar.getAdoptoData();
-			}, 200);
+				cs.getData(sidebar.setFormData);
+			}, 20);
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
@@ -167,6 +160,7 @@
 		});
 
 		sidebar.hideEmptyGroups();
+		sidebar.getAdoptoData();
 	}
 
 	sidebar.getAdoptoData = function () {
@@ -551,21 +545,7 @@
 		.done(function (lang) {
 
 			$.get(chrome.extension.getURL('markup/sidebar.html'))
-				.done(function (data) {
-
-					//console.log($('.adopto-sidebar'));
-					//$('.adopto-sidebar').scroll(function (e) {
-					//	console.log('scroll');
-					//	e.stopPropagation();
-					//});
-					//$('.adopto-sidebar').click(function (e) {
-					//	console.log('click');
-					//	//e.stopPropagation();
-					//});
-					//document.getElementsByClassName('adopto-sidebar')[0].addEventListener('scroll', function () {
-					//	console.log('scroll');
-					//})
-					//window.scroll(function () { console.log('scroll'); });
+				.done(function (data) {				
 
 					sidebar.element.append(data.format(lang));
 
