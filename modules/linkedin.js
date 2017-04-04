@@ -169,7 +169,7 @@
 					//var secondaryTitle = $(".pv-education-entity__secondary-title", this).text().trim();
 					var dateRange = $($(".pv-education-entity__date", this).children()[1]).text().trim();
 					//profileInfo.education.push(new Education(title, dateRange));
-					cd.mainData.experience.push({
+					cd.mainData.education.push({
 						title: title,
 						atPlace: '',
 						placeLink: '#',

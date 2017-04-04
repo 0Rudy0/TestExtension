@@ -113,6 +113,7 @@
 		$('#adopto-form .adopto-group.summary p.value').html(cdata.mainData.summary);
 
 		//education
+		$('#adopto-form .adopto-group.education .education-item').remove();
 		for (var i = 0; i < cdata.mainData.education.length; i++) {
 			var e = cdata.mainData.education[i];
 			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
@@ -122,6 +123,7 @@
 		}
 
 		//experience
+		$('#adopto-form .adopto-group.experience .experience-item').remove();
 		for (var i = 0; i < cdata.mainData.experience.length; i++) {
 			var e = cdata.mainData.experience[i];
 			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
@@ -131,6 +133,7 @@
 		}
 
 		//projects
+		$('#adopto-form .adopto-group.projects .project-item').remove();
 		for (var i = 0; i < cdata.mainData.projects.length; i++) {
 			var p = cdata.mainData.projects[i];
 			p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
@@ -140,6 +143,7 @@
 		}
 
 		//languages
+		$('#adopto-form .adopto-group.languages .item').remove();
 		//$('#adopto-form .adopto-group.languages').append('<ul class="langList"></ul>');
 		for (var i = 0; i < cdata.mainData.languages.length; i++) {
 			var l = cdata.mainData.languages[i];
@@ -147,6 +151,7 @@
 		}
 
 		//skills
+		$('#adopto-form .adopto-group.skills .item').remove();
 		for (var i = 0; i < cdata.mainData.skills.length; i++) {
 			var s = cdata.mainData.skills[i];
 			$('#adopto-form .adopto-group.skills .skillsList').append('<li class="item">' + s + '</li>')
