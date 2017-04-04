@@ -30,12 +30,14 @@
 	sidebar.toggle = function () {
 		if (Adopto.contentScript) {
 			if (sidebar.visible()) {
-				//console.log('hiding');
 				sidebar.hide();
 			} else {
-				//console.log('showing');
 				sidebar.show();
-				//sidebar.getCandidateData();
+
+				//privremeno dok se otvara sidebar onload, inace nisu sve stvari izrenderirane
+				setTimeout(function () {
+					sidebar.getCandidateData();
+				}, 500);
 			}
 		}
 	}
@@ -635,7 +637,7 @@
 								});
 							});
 
-							sidebar.getCandidateData();
+							//sidebar.getCandidateData();
 						});
 
 
