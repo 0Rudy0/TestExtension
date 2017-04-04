@@ -3,7 +3,9 @@
 	height: 100%;
 	width: 40px;
 	border-left: 1px solid #eaeaea;
-	background-color: rgba(0, 172, 172, 0.8);
+	/*background-color: rgba(0, 172, 172, 0.8);*/
+	
+	background-color: #242a30;
 }
 
 	.nav-tabs.main .tab-header {
@@ -14,17 +16,19 @@
 		line-height: 40px;
 		vertical-align: middle;
 		cursor: pointer;
+		color: white;
 		/*transition-duration: 0.05s;*/
 	}
 
 		.nav-tabs.main .tab-header:hover {
-			color: white;
+			color: #00d3d3;
 		}
 
 		.nav-tabs.main .tab-header.active {
 			/*color: red;*/
-			color: white;
-			border-left: 3px solid white;
+			/*color: white;*/
+			color: #00acac;
+			border-left: 3px solid #00acac;
 		}
 
 			.nav-tabs.main .tab-header.active i {

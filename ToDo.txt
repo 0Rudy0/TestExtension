@@ -3,4 +3,4 @@
 - save note/send email kroz adopto app
 - boje
 - description in project & experience
-
+- adopto ikona pored profila
