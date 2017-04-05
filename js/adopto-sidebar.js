@@ -51,7 +51,6 @@
 
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 
-			console.log($('.adopto-loading'));
 			$('.adopto-loading').show();
 			$('.adopto-tab-content').addClass('blur');
 

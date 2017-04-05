@@ -85,7 +85,9 @@ body.adopto-sidebar-show .adopto-sidebar {
 	font-family: 'Lato', sans-serif !important;
 	position: relative;
 	color: black;
-	background-color: rgba(0, 172, 172, 0.8);
+	/*background-color: rgba(0, 172, 172, 0.8);*/
+	background-color: #242a30;
+	/*#2d353*/
 }	
 
 	.topHeader i {
@@ -133,7 +135,8 @@ body.adopto-sidebar-show .adopto-sidebar {
 	top: 42px;
 	width: 400px;
 	height: 60px;
-	background-color: #00acac;
+	/*background-color: #00acac;*/
+	background-color: #242a30;
 	transform: rotateZ(-25deg);
 	z-index: -1;
 	transition: opacity 0.6s ease-in-out;
@@ -157,7 +160,8 @@ body.adopto-sidebar-show .adopto-sidebar {
 	z-index: 1;
 	border-bottom: 1px solid rgb(234, 234, 234);
 	transition: color 0.3s ease-in-out;
-	background-color: rgba(0, 172, 172, 1);
+	/*background-color: rgba(0, 172, 172, 1);*/
+	background-color: #242a30;
 }
 
 	.topHeader .adopto-close i {

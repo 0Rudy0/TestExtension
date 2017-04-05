@@ -9,13 +9,13 @@
 .main-info {
 	width: 100%;
 	height: 100px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	padding: 10px;
 	/*box-shadow: 1px 1px 5px black;*/
 	border-radius: 5px;
-	-webkit-box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
+	/*-webkit-box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
 	-moz-box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
-	box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
+	box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);*/
 	/*display: none;*/
 	/*background-color: blue;*/
 }
@@ -109,8 +109,8 @@
 
 /* Form group */
 .adopto-group {
-	margin-bottom: 20px;
-	padding: 8px;
+	margin-bottom: 30px;
+	padding: 4px 8px 8px 8px;
 	font-size: 9pt;
 	position: relative;
 	border-left: 1px solid rgba(0,0,0,0.15);
@@ -167,7 +167,11 @@
 	line-height: normal !important;
 	margin-bottom: 10px !important;
 	margin-bottom: 10px;
-	text-align: center;
+	text-align: left;
+	padding-left: 0px;
+	position: absolute;
+	top: -15px;
+	left: -1px;
 }
 
 	.adopto-group-title i {
@@ -391,8 +395,12 @@
 	/*padding-right: 50px;*/
 	height: auto;
 	cursor: pointer;
-	margin-top: 10px;
+	margin-top: 5px;
 }
+
+.adopto-group .item.withDetails:not(:last-child) {
+	margin-bottom: 10px;
+} 
 
 	.adopto-group .item.withDetails:hover {
 		background-color: aliceblue;
