@@ -189,7 +189,7 @@
 
 .adopto-input p,
 .adopto-input a {
-	/*margin-left: 10px;*/
+	margin-left: 10px;
 }
 
 .adopto-input,
@@ -490,6 +490,7 @@
 
 .adopto-group.summary p {
 	margin-bottom: 0;
+	margin-left: 0;
 }
 
 /*#endregion*/
