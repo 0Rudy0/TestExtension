@@ -26,31 +26,34 @@
 			m.mainData.title = $('[itemprop=worksFor]').attr('title');
 			m.mainData.contactInfo.email = $('li[itemprop="email"] a').html();
 			m.mainData.location = $('[itemprop=homeLocation]').attr('title');
-			//console.log($('.vcard-avatar img.avatar').attr('src'));
 			m.mainData.profileImgUrl = $('.vcard-avatar img.avatar').attr('src');
-			m.mainData.skills = Adopto.contentScript.getSkills();
+			m.mainData.socialNetworks.website = $('.vcard-details li.vcard-detail[aria-label="Blog or website"] a').html();
+			m.mainData.summary = $('.user-profile-bio').length > 0 ? $('.user-profile-bio')[0].innerText : '';
 
-			callback(m);
+
+			var username = $('span.vcard-username').html();
+			Adopto.contentScript.getSkills(username, m);
+			//m.mainData.skills = Adopto.contentScript.getSkills(m);
+
+			//callback(m);
 		},
 
-		getSkills: function () {
+		getSkills: function (username, m) {
 			$.ajax({
-				url: window.location.href + '?tab=repositories',
+				url: 'https://github.com/' + username + '?tab=repositories',
 				async: true,
 				cache: true,
 				success: function (response) {
-					var repos = $(response).find('#user-repositories-list li');
-					var skills = [];
-					for (var i = 0; i < repos.length; i++) {
-						var skill = 'test';
-						if (skills.indexOf(skill) < 0) {
-							skills.push(skill);
+					var langs = $(response).find('span[itemprop="programmingLanguage"]');
+					for (var i = 0; i < langs.length; i++) {
+						if (m.mainData.skills.indexOf(langs[i].innerText.trim()) < 0) {
+							m.mainData.skills.push(langs[i].innerText.trim());
 						}
 					}
-					return skills;
+					Adopto.contentScript.callback(m);
 				},
 				error: function (error) {
-
+					console.log(error);
 				}
 			})
 			

@@ -108,6 +108,7 @@
 		$('#adopto-form .adopto-group.social .adopto-input.xing a.value').attr('href', cdata.mainData.socialNetworks.xing);
 		$('#adopto-form .adopto-group.social .adopto-input.twitter a.value').attr('href', cdata.mainData.socialNetworks.twitter);
 		$('#adopto-form .adopto-group.social .adopto-input.googlePlus a.value').attr('href', cdata.mainData.socialNetworks.googlePlus);
+		$('#adopto-form .adopto-group.social .adopto-input.website a.value').attr('href', cdata.mainData.socialNetworks.website);
 
 		//summary
 		$('#adopto-form .adopto-group.summary p.value').html(cdata.mainData.summary);

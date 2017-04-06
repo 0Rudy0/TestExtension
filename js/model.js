@@ -20,7 +20,8 @@ function setEmptyModel() {
 				angellist: '',
 				xing: '',
 				twitter: '',
-				googlePlus: ''
+				googlePlus: '',
+				website: ''
 			},
 			summary: '',
 			education: [
