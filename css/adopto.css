@@ -169,7 +169,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 	}
 
 	.topHeader .adopto-close:hover i {
-		color: black;
+		color: #00d3d3;
 	}
 
 /* Overlay */
@@ -371,11 +371,15 @@ body.adopto-sidebar-show .adopto-sidebar {
 	/*padding-top: 50px;*/
 	/*font-family: 'Lato', sans-serif !important;*/
 	position: absolute;
-	display: none;
+	/*display: none;*/
 	text-align: center;
 	/*top: 40px;*/
 	/*background-color: darkgray;*/
 	/*top: 50%;*/
+}
+
+.adopto-empty {
+	display: none;
 }
 
 	.adopto-empty span {
@@ -435,7 +439,7 @@ html, body {
 	height: 100%;
 }
 
-.loading {
+.adopto-loading.loader .loading {
 	border-radius: 50%;
 	width: 70px;
 	height: 70px;
@@ -445,7 +449,7 @@ html, body {
 	animation: spin 1s infinite linear;
 }
 
-.loading--double {
+/*.loading--double {
 	border-style: double;
 	border-width: .5rem;
 }
@@ -483,4 +487,4 @@ html, body {
 		left: 35px;
 		-webkit-animation-delay: 500ms;
 		animation-delay: 500ms;
-	}
+	}*/

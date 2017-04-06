@@ -61,6 +61,7 @@
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
 			$('.adopto-tab-content').hide();
+			$('.adopto-loading').hide();
 			$('.adopto-empty').show();
 		}
 	}
@@ -468,10 +469,12 @@
 		var groups = $('#adopto-form .adopto-group');
 		for (var i = 0; i < groups.length; i++) {
 			var allEmpty = true;
+			$(groups[i]).show();
 			var items = $(groups[i]).find('.adopto-input');
 			if (items.length > 0) {
 				for (var j = 0; j < items.length; j++) {
 					var p = $(items[j]).find('p.value');
+					$(items[j]).show();
 					if (p.length > 0) {
 						if (p[0].innerText.trim().length == 0) {
 							$(items[j]).hide();
@@ -644,7 +647,7 @@
 					$.get(chrome.extension.getURL('markup/activities.html'))
 						.done(function (data) {
 							$('.adopto-tab-content .tab.tabActivities').append(data.format(lang));
-							sidebar.setActivitiesData();
+							//sidebar.setActivitiesData();
 						});
 
 					$.get(chrome.extension.getURL('markup/communication.html'))
@@ -672,7 +675,7 @@
 								//send email
 							});
 
-							sidebar.setCommunicationsData();
+							//sidebar.setCommunicationsData();
 						});
 
 					$.get(chrome.extension.getURL('markup/loader.html'))
