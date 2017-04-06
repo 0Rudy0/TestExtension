@@ -17,6 +17,8 @@ chrome.runtime.onConnect.addListener(function (port) {
 	});
 });
 
+
+
 chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
 	if (details.frameId == 0) {
 		chrome.tabs.executeScript(

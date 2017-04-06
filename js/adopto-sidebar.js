@@ -43,6 +43,7 @@
 	}
 
 	sidebar.getCandidateData = function () {
+
 		if (Adopto.contentScript.isProfilePageActive()) {
 
 			setEmptyModel();
@@ -57,6 +58,10 @@
 			setTimeout(function () {
 				cs.getData(sidebar.setFormData);
 			}, 20);
+
+			$('.adopto-open-profile-msg').addClass('adopto-hidden');
+			$('.adopto-tab-content').show();
+			$('.adopto-empty').hide();
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
@@ -549,7 +554,9 @@
 		.done(function (lang) {
 
 			$.get(chrome.extension.getURL('markup/sidebar.html'))
-				.done(function (data) {				
+				.done(function (data) {			
+					
+					setEmptyModel();
 
 					sidebar.element.append(data.format(lang));
 
