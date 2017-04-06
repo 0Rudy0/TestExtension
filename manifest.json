@@ -15,7 +15,7 @@
         "activeTab",
         "https://*.adopto.eu/*",
         "http://adopto-local.eu/*",
-        "https://www.linkedin.com/in/*",
+        "https://www.linkedin.com/*",
         "tabs",
         "webNavigation"
     ],

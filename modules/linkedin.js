@@ -9,26 +9,15 @@
 		aseFrameContents: null,
 
 		isProfilePageActive: function () {
-			if ($('.full-name').length) {
+			if ($(".pv-top-card-section__body .pv-top-card-section__name").length) {
 				return true;
 			}
 
-			//return false;
-			return true;
+			return false;
 		},
 
 		getData: function (callback) {
 			Adopto.contentScript.callback = callback;
-
-			//cd.mainData.fullName = $('.user-card-name').contents()[0].nodeValue.trim();
-			//cd.mainData.socialNetworks.stackoverflow = window.location.href;
-			//cd.mainData.location = $('.icon-location').parent().text().trim();
-			//cd.mainData.profileImgUrl = $('#avatar-card img').attr('src');
-			//cd.mainData.title = $('.current-position').html().trim();
-			//cd.mainData.summary = $('.bio p').html();
-
-			//cd.mainData.socialNetworks.github = $('.icon-github').parent().find('a').attr('href');
-			//cd.mainData.socialNetworks.twitter = $('.icon-twitter').parent().find('a').attr('href');
 
 			var oldIframe = $("#aseFrame").remove();
 			var iframe = document.createElement("iframe");
