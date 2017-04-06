@@ -16,6 +16,13 @@
         "https://*.adopto.eu/*",
         "http://adopto-local.eu/*",
         "https://www.linkedin.com/*",
+        "https://www.github.com/*",
+        "https://www.facebook.com/*",
+        "https://www.angel.com/*",
+        "https://www.dribbble.com/*",
+        "https://www.stackoverflow.com/*",
+        "https://www.codeproject.com/*",
+        "https://www.twitter.com/*",
         "tabs",
         "webNavigation"
     ],
