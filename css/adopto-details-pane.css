@@ -45,3 +45,7 @@
 .adopto-details-pane .pane .desc-info h4 {
 	font-size: 10pt;
 }
+
+.adopto-details-pane .timeSpanHolder span {
+	color: rgb(128, 128, 128);
+}

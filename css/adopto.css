@@ -58,8 +58,30 @@ body {
 	border-left: 1px solid #dedcdb;
 	z-index: 99999;
 	-webkit-user-select: none;
-	font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 	transition: box-shadow 0.4s ease-in-out, right 0.5s cubic-bezier(0.68, 0, 0.265, 1.15);
+}
+
+.adopto-sidebar p,
+.adopto-sidebar span,
+.adopto-sidebar h1,
+.adopto-sidebar h2,
+.adopto-sidebar h3,
+.adopto-sidebar h4,
+.adopto-sidebar h5 {
+	font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+	line-height: normal;
+	font-size: inherit;
+	color: black;
+	font-weight: normal;
+}
+
+.adopto-sidebar a {
+	font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+	line-height: normal;
+	font-size: inherit;
+	/*color: black;*/
+	font-weight: normal;
 }
 
 body.adopto-sidebar-show .adopto-sidebar {
@@ -126,6 +148,10 @@ body.adopto-sidebar-show .adopto-sidebar {
 .topHeader .backPane {
 	opacity: 0;
 	display: none;
+}
+
+.topHeader .backPane span {
+	color: white;
 }
 
 /* Ribbon */
@@ -376,6 +402,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 	/*top: 40px;*/
 	/*background-color: darkgray;*/
 	/*top: 50%;*/
+	box-sizing: border-box;
 }
 
 .adopto-empty {

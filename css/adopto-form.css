@@ -158,21 +158,23 @@
 		}
 
 
-.adopto-group-title {
+#adopto-form .adopto-group-title {
 	color: #7ca2a2;
 	/*font-family: 'Lato', sans-serif;*/
 	font-weight: normal;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	text-transform: uppercase;
 	font-size: 9pt !important;
 	line-height: normal !important;
 	margin-bottom: 10px !important;
 	margin-bottom: 10px;
+	margin-top: 0;
 	text-align: left;
 	padding-left: 0px;
 	position: absolute;
 	top: -15px;
 	left: -1px;
+	/*color:#707f90;*/
 }
 
 	.adopto-group-title i {
@@ -191,10 +193,10 @@
 	font-size: 13px;
 	margin-bottom: 0;
 }
-
-.adopto-input p,
-.adopto-input a {
-	margin-left: 10px;
+.adopto-sidebar .adopto-input p,
+.adopto-sidebar .adopto-input a {
+	/*margin-left: 10px;*/
+	margin: 0 0 0 10px;
 }
 
 .adopto-input,
@@ -229,6 +231,8 @@
 		word-spacing: normal !important;
 		-webkit-font-smoothing: antialiased;
 		box-shadow: none !important;
+		font-size: inherit;
+		line-height: normal;
 	}
 
 	.adopto-input input,
@@ -488,6 +492,12 @@
 	overflow: hidden;
 	white-space: nowrap;
 }
+.adopto-group i {
+	/*color: #005151;*/
+	color: #000;
+	font-size: 12pt;
+}
+
 
 /*#endregion*/
 
@@ -542,11 +552,11 @@
 /*#region Skills*/
 
 
-.skillsList {
+.adopto-sidebar .skillsList {
 	margin: 0;
 }
 
-	.skillsList li {
+	.adopto-sidebar .skillsList li {
 		border: 1px solid #9bd4f9;
 		border-radius: 3px;
 		margin: 5px 0 0 3px;
@@ -559,7 +569,7 @@
 
 /*#endregion*/
 
-.adopto-perspective {
+.adopto-sidebar .adopto-perspective {
 	margin-bottom: 20px;
 	display: none;
 	/*position: absolute;

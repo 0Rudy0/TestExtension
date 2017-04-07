@@ -20,6 +20,23 @@
 			border: 1px solid transparent;
 		}
 
+		.adopto-sidebar .communications .nav-tabs > li.active > a,
+		.adopto-sidebar .communications .nav-tabs > li.hover > a,
+		.adopto-sidebar .communications .nav-tabs > li.focus > a {
+			background-color: transparent !important;
+			border-color: transparent;
+		}
+
+		.adopto-sidebar .communications .nav-tabs > li:not(.active) > a:hover {
+			color: #83868c !important;
+		}
+
+		.adopto-sidebar .communications .nav > li > a:focus, 
+		.adopto-sidebar .communications .nav > li > a:hover {
+			background-color: transparent !important;
+			border-color: transparent !important;
+		}
+
 	.communications .nav.nav-tabs li {
 	}
 
@@ -70,12 +87,14 @@
 		background-color: transparent;
 		border-left: 1px solid rgb(221, 221, 221);
 		border-right: 1px solid rgb(221, 221, 221);
+		padding: 5px 10px;
 	}
 
 		.communications .note-toolbar.panel-heading .btn-group {
 			min-height: 0;
 			padding: 0;
 			border: 0;
+			margin-top: 0;
 		}
 
 
@@ -93,9 +112,18 @@
 				min-height: 0;
 			}
 
-			.communications .note-toolbar.panel-heading .btn-group .btn i {
-				opacity: 1;
-			}
+				.communications .note-toolbar.panel-heading .btn-group .btn.active {
+					color: rgb(51, 51, 51);
+					background-color: rgb(230, 230, 230);
+					background-image: linear-gradient(-180deg, #e2e9ed 0%, #d7e1e7 90%);
+					border-color: rgb(173, 173, 173);
+					/*border-color: yellow;*/
+				}
+
+
+				.communications .note-toolbar.panel-heading .btn-group .btn i {
+					opacity: 1;
+				}
 
 	.communications .note-editable {
 		border-left: 1px solid rgb(221, 221, 221);
@@ -237,6 +265,7 @@ blockquote.content::after {
 		font-size: 9pt;
 		padding: 3px 10px;
 		transition-duration: 0.1s;
+		line-height: 18px;
 	}
 
 		.messagingContent .sendBtnHolder button.btn-success:hover {
@@ -258,3 +287,8 @@ blockquote.content::after {
 	width: 100%;
 	height: 40px;
 }*/
+
+#emailSubject {
+	background-color: white;
+	height: 34px;
+}
