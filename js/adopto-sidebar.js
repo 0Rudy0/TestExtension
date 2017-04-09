@@ -172,7 +172,9 @@
 	}
 
 	sidebar.getAdoptoData = function () {
-
+		$('.adopto-loading').hide();
+		$('.adopto-tab-content').removeClass('blur');
+		return;
 		$.ajax({
 			url: rootUrl + '/GetCandidateData',
 			contentType: "application/json; charset=utf-8",
@@ -435,9 +437,17 @@
 		$.get(chrome.extension.getURL('markup/detailsPane.html'))
 			.done(function (data) {
 				$('.adopto-tab-content .adopto-details-pane').append(data);
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .title').html(that.title);
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').html(that.atPlace);
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .logo').attr('src', that.placeLogo);
+				if (that.title) {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .title').html(that.title);
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').html(that.atPlace);
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .atPlace').attr('href', that.placeLink);
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .logo').attr('src', that.placeLogo);
+				}
+				else if (that.projectTitle) {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .projectTitle').html(that.projectTitle);
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .projectTitle').attr('href', that.url);
+				}
+				
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .startDate').html(that.startDate.format('MMM YYYY'));
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .endDate').html(that.endDate.format('MMM YYYY'));
 				$('.adopto-tab-content .adopto-details-pane .pane .main-info .duration').html(that.duration);

@@ -133,6 +133,10 @@ body.adopto-sidebar-show .adopto-sidebar {
 */
 }
 
+.note-popover {
+	display: none !important;
+}
+
 /* Logo */
 .adopto-logo {
 	height: 40px;
