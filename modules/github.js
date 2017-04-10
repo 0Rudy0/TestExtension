@@ -56,7 +56,7 @@
 						//console.log($(r).find('p[itemprop="description"]').html());
 						var newProj = {
 							projectTitle: $(r).find('h3>a').html().trim(),
-							desc: $(r).find('p[itemprop="description"]').html().trim(),
+							desc: $(r).find('p[itemprop="description"]').length > 0 ? $(r).find('p[itemprop="description"]').html().trim() : '',
 							url: 'https://github.com' + $(r).find('h3>a').attr('href').trim(),
 							//startDate: moment(),
 							//endDate: moment()
@@ -92,25 +92,27 @@
 
 		onGetProjectUrl: function (response) {
 			//return;
-			var multiply = Math.pow(10, 13 - response[0].weeks[0].w.toString().length);
-			var startDate = new Date(response[0].weeks[0].w * multiply);
-			var proj = this;
-			var endDate = startDate;
-			//var maxTime = startDate;
-			//var dateRange = $(response).find('h3.js-date-range').html().trim();
-			for (var i = 0; i < response.length; i++) {
-				var user = response[i].weeks;
-				for (var j = 0; j < user.length; j++) {
-					if (user[j].a > 0 || user[j].c > 0 || user[j].d > 0) {
-						if (new Date(user[j].w * multiply) > endDate) {
-							endDate = new Date(user[j].w * multiply);
+			if (response[0].weeks != null && response[0].weeks.length > 0) {
+				var multiply = Math.pow(10, 13 - response[0].weeks[0].w.toString().length);
+				var startDate = new Date(response[0].weeks[0].w * multiply);
+				var proj = this;
+				var endDate = startDate;
+				//var maxTime = startDate;
+				//var dateRange = $(response).find('h3.js-date-range').html().trim();
+				for (var i = 0; i < response.length; i++) {
+					var user = response[i].weeks;
+					for (var j = 0; j < user.length; j++) {
+						if (user[j].a > 0 || user[j].c > 0 || user[j].d > 0) {
+							if (new Date(user[j].w * multiply) > endDate) {
+								endDate = new Date(user[j].w * multiply);
+							}
 						}
 					}
 				}
+				proj.startDate = moment(startDate.getTime());
+				//ako je bilo aktivnosti na projektu u zadnjih mjesec dana, endDate je null sto znaci do danas
+				proj.endDate = ((new Date()).getTime() - endDate.getTime()) > (30 * 24 * 60 * 60 * 1000) ? moment(endDate.getTime()) : null;
 			}
-			proj.startDate = moment(startDate.getTime());
-			//ako je bilo aktivnosti na projektu u zadnjih mjesec dana, endDate je null sto znaci do danas
-			proj.endDate = ((new Date()).getTime() - endDate.getTime()) > (30 * 24 * 60 * 60 * 1000) ? moment(endDate.getTime()) : null;
 
 			if (proj.isLast) {
 				Adopto.contentScript.callback(candidateDataModel);

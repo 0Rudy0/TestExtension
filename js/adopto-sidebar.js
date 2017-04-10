@@ -138,7 +138,14 @@
 		for (var i = 0; i < cdata.mainData.projects.length; i++) {
 			var p = cdata.mainData.projects[i];
 			p.endDate = p.endDate == null ? moment() : p.endDate;
-			p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
+			var years = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears());
+			if (years == 0) {
+				var months = Math.round(moment.duration(p.endDate.diff(p.startDate)).asMonths());
+				p.duration = months > 1 ? months + ' months' : months + ' month';
+			}
+			else {
+				p.duration = years > 1 ? years + ' years' : years + ' year';
+			}
 
 			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.projectTitle + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));

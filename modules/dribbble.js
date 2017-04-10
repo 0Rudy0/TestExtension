@@ -18,32 +18,21 @@
 			return false;
 		},
 
-		getProfilePageUrl: function () {
-			return window.location.href;
-		},
+		getData: function (callback) {
+			Adopto.contentScript.callback = callback;
 
-		getName: function () {
-			return $('.profile-name [rel=contact]').attr('title');
-		},
+			var cd = candidateDataModel;
+			cd.mainData.fullName = $('.profile-name [rel=contact]').attr('title');
+			//cd.mainData.socialNetworks.stackoverflow = window.location.href;
+			cd.mainData.location = $('.profile-location .location').text();
+			cd.mainData.profileImgUrl = $('.profile-photo img').attr('src');
+			cd.mainData.title = $('h2.bio').text();
+			//cd.mainData.summary = $('.bio p').html();
 
-		getEmail: function () {
-			return '';
-		},
+			cd.mainData.socialNetworks.dribble = window.location.href;
+			//cd.mainData.socialNetworks.twitter = $('.icon-twitter').parent().find('a').attr('href');
 
-		getJobTitle: function () {
-			return $('h2.bio').text();
-		},
-
-		getLocation: function () {
-			return $('.profile-location .location').text();
-		},
-
-		getProfileImageURL: function () {
-			return $('.profile-photo img').attr('src');
-		},
-
-		buttonPlaceholder: function (button) {
-			
+			Adopto.contentScript.callback(cd);
 		}
 	};
 

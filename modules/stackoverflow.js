@@ -28,10 +28,7 @@
 			cd.mainData.socialNetworks.github = $('.icon-github').parent().find('a').attr('href');
 			cd.mainData.socialNetworks.twitter = $('.icon-twitter').parent().find('a').attr('href');
 
-			Adopto.contentScript.returnData();
-		},
-
-		returnData: function () {
+			//Adopto.contentScript.returnData();
 			Adopto.contentScript.callback(candidateDataModel);
 		}
 	};
