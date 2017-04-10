@@ -73,7 +73,7 @@
 	display: -webkit-box;
 	max-width: 174px;
 	height: 32px;
-	margin: 5px 0 0 0;
+	margin: 0px 0 0 0;
 	/* Fallback for non-webkit */
 	/*margin: 0 auto;*/
 	font-size: 9pt;
@@ -86,9 +86,9 @@
 }
 
 .curr-info p.location {
-	margin-top: 7px;
+	margin-top: 0px;
 	position: absolute;
-	bottom: 0;
+	bottom: 10px;
 }
 
 .curr-info i {

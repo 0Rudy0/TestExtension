@@ -137,9 +137,10 @@
 		$('#adopto-form .adopto-group.projects .project-item').remove();
 		for (var i = 0; i < cdata.mainData.projects.length; i++) {
 			var p = cdata.mainData.projects[i];
+			p.endDate = p.endDate == null ? moment() : p.endDate;
 			p.duration = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears()) + ' years';
 
-			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
+			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.projectTitle + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
 		}
 

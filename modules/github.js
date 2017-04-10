@@ -47,37 +47,26 @@
 							m.mainData.skills.push(langs[i].innerText.trim());
 						}
 					}
-					Adopto.contentScript.callback(m);
 					//return;
 					var reps = $(response).find('div.js-repo-list>li');
-					for (var i = 0; i < reps.length; i++) {
+					for (var i = 0; i < Math.min(reps.length, 2); i++) {
 						var r = reps[i];
 						//console.log($(r).find('h3>a').attr('href'));
 						//console.log($(r).find('h3>a').html());
 						//console.log($(r).find('p[itemprop="description"]').html());
 						var newProj = {
-							title: $(r).find('h3>a').html().trim(),
+							projectTitle: $(r).find('h3>a').html().trim(),
 							desc: $(r).find('p[itemprop="description"]').html().trim(),
-							url: $(r).find('h3>a').attr('href').trim(),
-							startDate: moment(),
-							endDate: moment()
+							url: 'https://github.com' + $(r).find('h3>a').attr('href').trim(),
+							//startDate: moment(),
+							//endDate: moment()
 						};
+						if (i == Math.min(reps.length, 1)) {
+							newProj.isLast = true;
+						}
 						m.mainData.projects.push(newProj);
 
-						if (i == 0) {
-							setTimeout(function () {
-								$.ajax({
-									url: $(r).find('h3>a').attr('href').trim() + '/graphs/contributors-data',
-									async: true,
-									cache: true,
-									success: Adopto.contentScript.onGetProjectUrl.bind(newProj),
-									error: function (err) {
-
-									}
-								});
-							}, (i + 1) * 2000);
-							
-						}
+						setTimeout(Adopto.contentScript.getProjectData.bind(newProj), (i + 1) * 200);
 					}
 
 				},
@@ -88,14 +77,46 @@
 			
 		},
 
+		getProjectData: function () {
+			var newProj = this;
+			$.ajax({
+				url: newProj.url + '/graphs/contributors-data',
+				async: true,
+				cache: true,
+				success: Adopto.contentScript.onGetProjectUrl.bind(newProj),
+				error: function (err) {
+
+				}
+			});
+		},
+
 		onGetProjectUrl: function (response) {
 			//return;
-			var proj = this;
-			//var dateRange = $(response).find('h3.js-date-range').html().trim();
 			var multiply = Math.pow(10, 13 - response[0].weeks[0].w.toString().length);
 			var startDate = new Date(response[0].weeks[0].w * multiply);
-			var endDate = new Date(response[0].weeks[response[0].weeks.length - 1].w * multiply);
-			console.log(startDate.toLocaleDateString('hr') + ' - ' + endDate.toLocaleDateString('hr'));
+			var proj = this;
+			var endDate = startDate;
+			//var maxTime = startDate;
+			//var dateRange = $(response).find('h3.js-date-range').html().trim();
+			for (var i = 0; i < response.length; i++) {
+				var user = response[i].weeks;
+				for (var j = 0; j < user.length; j++) {
+					if (user[j].a > 0 || user[j].c > 0 || user[j].d > 0) {
+						if (new Date(user[j].w * multiply) > endDate) {
+							endDate = new Date(user[j].w * multiply);
+						}
+					}
+				}
+			}
+			proj.startDate = moment(startDate.getTime());
+			//ako je bilo aktivnosti na projektu u zadnjih mjesec dana, endDate je null sto znaci do danas
+			proj.endDate = ((new Date()).getTime() - endDate.getTime()) > (30 * 24 * 60 * 60 * 1000) ? moment(endDate.getTime()) : null;
+
+			if (proj.isLast) {
+				Adopto.contentScript.callback(candidateDataModel);
+			}
+			//console.log(proj.title);
+			//console.log(startDate.toLocaleDateString('hr') + ' - ' + endDate.toLocaleDateString('hr'));
 		}
 	};
 

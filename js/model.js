@@ -31,7 +31,7 @@ function setEmptyModel() {
 				//{ title: '', atPlace: '', placeLink: '', placeLogo: '', startDate: moment('2006-09-01'), endDate: moment('2008-09-01'), desc: '' }					
 			],
 			projects: [
-				{ projectTitle: 'uber project', desc: 'ovo je jedan description', url: 'https://net.hr', startDate: moment('2006-09-01'), endDate: moment('2009-09-01') },
+				//{ projectTitle: 'uber project', desc: 'ovo je jedan description', url: 'https://net.hr', startDate: moment('2006-09-01'), endDate: moment('2009-09-01') },
 			],
 			languages: [],
 			skills: [],
