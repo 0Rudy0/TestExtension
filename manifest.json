@@ -61,7 +61,7 @@
                 "js/model.js",
                 "js/adopto-sidebar.js",
 
-                "modules/facebook.js",
+                //"modules/facebook.js",
                 "modules/github.js",
                 "modules/angellist.js",
                 "modules/dribbble.js",

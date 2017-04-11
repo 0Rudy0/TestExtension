@@ -117,7 +117,8 @@
 		$('#adopto-form .adopto-group.education .education-item').remove();
 		for (var i = 0; i < cdata.mainData.education.length; i++) {
 			var e = cdata.mainData.education[i];
-			e.duration = e.endDate != null && e.startDate != null ?  Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years' : '';
+			e.duration = Adopto.sidebar.calculateDuration(e.startDate, e.endDate);
+			//e.duration = e.endDate != null && e.startDate != null ?  Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years' : '';
 
 			$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
@@ -128,9 +129,7 @@
 		for (var i = 0; i < cdata.mainData.experience.length; i++) {
 			var e = cdata.mainData.experience[i];
 			
-			e.duration = e.startDate == null ? '' : e.endDate == null ?
-				Math.round(moment.duration(moment().diff(e.startDate)).asYears()) + ' years' :
-				Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+			e.duration = Adopto.sidebar.calculateDuration(e.startDate, e.endDate);
 			//console.log($('#adopto-form .adopto-group.experience'));
 			$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
@@ -141,14 +140,7 @@
 		for (var i = 0; i < cdata.mainData.projects.length; i++) {
 			var p = cdata.mainData.projects[i];
 			p.endDate = p.endDate == null ? moment() : p.endDate;
-			var years = Math.round(moment.duration(p.endDate.diff(p.startDate)).asYears());
-			if (years == 0) {
-				var months = Math.round(moment.duration(p.endDate.diff(p.startDate)).asMonths());
-				p.duration = months > 1 ? months + ' months' : months + ' month';
-			}
-			else {
-				p.duration = years > 1 ? years + ' years' : years + ' year';
-			}
+			p.duration = Adopto.sidebar.calculateDuration(p.startDate, p.endDate);
 
 			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.projectTitle + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
@@ -180,6 +172,33 @@
 
 		sidebar.hideEmptyGroups();
 		sidebar.getAdoptoData();
+	}
+
+	sidebar.calculateDuration = function (startDate, endDate) {
+		var durationText;
+		var durationYears = startDate == null ? 0 : endDate == null ?
+				Math.round(moment.duration(moment().diff(startDate)).asYears()):
+				Math.round(moment.duration(endDate.diff(startDate)).asYears());
+
+		if (durationYears == 0) {
+			var durationMonths = startDate == null ? 0 : endDate == null ?
+				Math.round(moment.duration(moment().diff(startDate)).asMonths()) :
+				Math.round(moment.duration(endDate.diff(startDate)).asMonths());
+
+			if (durationMonths == 1) {
+				durationText = durationMonths + ' month';
+			}
+			else {
+				durationText = durationMonths + ' months';
+			}
+		}
+		else if (durationYears == 1) {
+			durationText = durationYears + ' year';
+		}
+		else {
+			durationText = durationYears + ' years';
+		}
+		return durationText;
 	}
 
 	sidebar.getAdoptoData = function () {
