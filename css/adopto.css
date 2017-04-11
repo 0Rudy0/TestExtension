@@ -331,8 +331,9 @@ body.adopto-sidebar-show .adopto-sidebar {
 	width: 100%;
 	background-color: #00acac;
 	border: 1px solid #007878;
-	border: none;
-	color: #ffffff;
+	border-radius: 2px;
+	/*border: none;*/
+	color: #ffffff !important;
 	/*font-family: 'Lato', sans-serif !important;*/
 	font-size: 16px !important;
 	font-weight: bold;
@@ -345,6 +346,10 @@ body.adopto-sidebar-show .adopto-sidebar {
 		transform: rotateX(30deg);
 	}
 */
+
+.adopto-source:hover {
+	background-color: #009292;
+}
 
 /* Modal dialog */
 .adopto-modal {

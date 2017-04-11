@@ -92,10 +92,10 @@
 
 		onGetProjectUrl: function (response) {
 			//return;
+			var proj = this;
 			if (response[0].weeks != null && response[0].weeks.length > 0) {
 				var multiply = Math.pow(10, 13 - response[0].weeks[0].w.toString().length);
 				var startDate = new Date(response[0].weeks[0].w * multiply);
-				var proj = this;
 				var endDate = startDate;
 				//var maxTime = startDate;
 				//var dateRange = $(response).find('h3.js-date-range').html().trim();

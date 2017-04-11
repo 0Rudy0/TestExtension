@@ -117,7 +117,7 @@
 		$('#adopto-form .adopto-group.education .education-item').remove();
 		for (var i = 0; i < cdata.mainData.education.length; i++) {
 			var e = cdata.mainData.education[i];
-			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+			e.duration = e.endDate != null && e.startDate != null ?  Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years' : '';
 
 			$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
@@ -127,7 +127,10 @@
 		$('#adopto-form .adopto-group.experience .experience-item').remove();
 		for (var i = 0; i < cdata.mainData.experience.length; i++) {
 			var e = cdata.mainData.experience[i];
-			e.duration = Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
+			
+			e.duration = e.startDate == null ? '' : e.endDate == null ?
+				Math.round(moment.duration(moment().diff(e.startDate)).asYears()) + ' years' :
+				Math.round(moment.duration(e.endDate.diff(e.startDate)).asYears()) + ' years';
 			//console.log($('#adopto-form .adopto-group.experience'));
 			$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
@@ -456,9 +459,15 @@
 					$('.adopto-tab-content .adopto-details-pane .pane .main-info .projectTitle').attr('href', that.url);
 				}
 				
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .startDate').html(that.startDate.format('MMM YYYY'));
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .endDate').html(that.endDate.format('MMM YYYY'));
-				$('.adopto-tab-content .adopto-details-pane .pane .main-info .duration').html(that.duration);
+				if (that.startDate == null) {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .timeSpanHolder').hide();
+				}
+				else {
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .timeSpanHolder').show();
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .startDate').html(that.startDate.format('MMM YYYY'));
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .endDate').html(that.endDate == null ? 'Now' : that.endDate.format('MMM YYYY'));
+					$('.adopto-tab-content .adopto-details-pane .pane .main-info .duration').html(that.duration);
+				}
 
 				$('.adopto-tab-content .adopto-details-pane .pane .desc-info .desc').html(that.desc);
 
