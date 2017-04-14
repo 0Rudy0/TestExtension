@@ -115,6 +115,8 @@
 	font-size: 9pt;
 	position: relative;
 	border-left: 1px solid rgba(0,0,0,0.15);
+	float: left;
+	width: 100%;
 }
 
 .curr-info,
@@ -187,7 +189,7 @@
 .adopto-input p,
 .adopto-input a {
 	clear: none;
-	float: left;
+	/*float: left;*/
 	/*height: 15px;*/
 	line-height: 15px;
 	font-size: 13px;
@@ -554,6 +556,7 @@
 
 .adopto-sidebar .skillsList {
 	margin: 0;
+	padding-left: 0;
 }
 
 	.adopto-sidebar .skillsList li {
