@@ -38,7 +38,7 @@
 	/*position: relative;*/
 	/*top: 10px;*/
 	height: 80px;
-	border: 2px solid #ff5b57;
+	border: 2px solid lightgray;
 	border-radius: 50px;
 	/*background-image: url('chrome-extension://__MSG_@@extension_id__/images/no-profile-pic.png');*/
 	/*background-repeat: no-repeat;*/
