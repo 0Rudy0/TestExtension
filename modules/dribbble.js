@@ -5,9 +5,10 @@
 	Adopto.contentScript = {
 		name: 'Dribbble',
 		sourceType: 5,
+		projsUrl: '',
 
 		isProfilePageActive: function () {
-			if ($('.profile-actions>.profile-hire>a.hire').length) {
+			if ($('.profile-info .profile-essentials').length) {
 				return true;
 			}
 
@@ -36,6 +37,9 @@
 
 			var extra = $('.profile-info div.profile-extra ul.profile-details li a');
 			for (var i = 0; i < extra.length; i++) {
+				if ($(extra[i]).attr('class') == null) {
+					continue;
+				}
 				if ($(extra[i]).attr('class').indexOf('website') > -1) {
 					cd.mainData.socialNetworks.website = $(extra[i]).attr('href');
 				}
@@ -47,30 +51,137 @@
 				}
 			}
 
+			Adopto.contentScript.projsUrl = $('.full-tabs-links li.projects>a').attr('href');
+			if (Adopto.contentScript.projsUrl != null) {
+				Adopto.contentScript.getProjectsNextPage(1);
+			}
+			else {
+				Adopto.contentScript.callback(candidateDataModel);
+			}
+		},
+
+		getProjectsNextPage: function(pageNum) {
 			$.ajax({
-				url: $('.full-tabs-links li.projects>a').attr('href'),
+				url: Adopto.contentScript.projsUrl + '?page=' + pageNum + '&per_page=6',
 				async: true,
 				cache: true,
 				success: function (response) {
-					var projs = $(response).find('#content ol.list-of-scrolling-rows li.group.bucket div.bucket-name a');
+					if (response.trim().length == 0) {
+						Adopto.contentScript.callback(candidateDataModel);
+					}
+					var projs = $.parseHTML(response);
+					var projsPropper = [];
 					for (var i = 0; i < projs.length; i++) {
-						$.ajax({							
-							url: $(projs[i]).attr('href'),
+						if (projs[i].nodeName == 'LI') {
+							projsPropper.push(projs[i]);
+						}
+					}
+					for (var i = 0; i < projsPropper.length; i++) {
+						var link = $(projsPropper[i]).find('div.bucket-name a').attr('href');
+						var name = $(projsPropper[i]).find('div.bucket-name a').html();
+						var proj = {
+							projectTitle: name,
+							url: link
+						};
+						proj.atPage = pageNum;
+
+						if (i == projsPropper.length - 1) {
+							proj.isLast = true;
+						}
+
+						$.ajax({
+							url: $(projsPropper[i]).find('ol').attr('data-url'),
 							async: true,
 							cache: true,
-							success: function (resp) {
-								var name = $(response).find('.profile-info h2.vcard>a.url[rel!="contact"]').html();
-								console.log(name);
+							success: Adopto.contentScript.onGetDetailsData.bind(proj),
+							error: function () {
+								Adopto.contentScript.callback(candidateDataModel);
 							}
 						})
 					}
 				},
 				error: function () {
-
+					Adopto.contentScript.callback(candidateDataModel);
 				}
-			})
+			});
+		},
 
-			Adopto.contentScript.callback(cd);
+		onGetDetailsData: function (data) {
+			var proj = this;
+			if (data[0].shots.length > 0) {
+				var minDate = Adopto.contentScript.stringToDate(data[0].shots[0].published_at);
+				var maxDate = Adopto.contentScript.stringToDate(data[0].shots[0].published_at);
+
+				for (var i = 0; i < data[0].shots.length; i++) {
+					var date = Adopto.contentScript.stringToDate(data[0].shots[i].published_at);
+					if (date < minDate) {
+						minDate = date;
+					}
+					if (date > maxDate) {
+						maxDate = date;
+					}
+				}
+
+				proj.startDate = minDate;
+				proj.endDate = maxDate;
+
+				candidateDataModel.mainData.projects.push(proj);
+			}
+
+			if (proj.isLast) {
+				Adopto.contentScript.getProjectsNextPage(proj.atPage + 1);
+			}
+		},
+
+		stringToDate: function (string) {
+			var els = string.split(' ');
+			var month;
+			var day;
+			var year;
+
+			switch (els[0]) {
+				case 'January':
+					month = 0;
+					break;
+				case 'February':
+					month = 1;
+					break;
+				case 'March':
+					month = 2;
+					break;
+				case 'April':
+					month = 3;
+					break;
+				case 'May':
+					month = 4;
+					break;
+				case 'June':
+					month = 5;
+					break;
+				case 'July':
+					month = 6;
+					break;
+				case 'August':
+					month = 7;
+					break;
+				case 'September':
+					month = 8;
+					break;
+				case 'October':
+					month = 9;
+					break;
+				case 'November':
+					month = 10;
+					break;
+				case 'December':
+					month = 11;
+					break;
+			}
+
+			day = els[1].trim().replace(',', '');
+			year = els[2].trim();
+
+			return moment().year(year).month(month).date(day);
 		}
 	};
 

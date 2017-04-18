@@ -18,7 +18,7 @@
 	float: left;
 	width: 80px;
 	height: 80px;
-	border: 2px solid #ff5b57;
+	border: 2px solid lightgray;
 	border-radius: 50px;
 	box-sizing: border-box;
 	overflow: hidden;
@@ -87,6 +87,8 @@
 	font-size: 9pt;
 	position: relative;
 	border-left: 1px solid rgba(0,0,0,0.15);
+	float: left;
+	width: 100%;
 }
 
 .curr-info,
@@ -159,7 +161,7 @@
 .adopto-input p,
 .adopto-input a {
 	clear: none;
-	float: left;
+	/*float: left;*/
 	/*height: 15px;*/
 	line-height: 15px;
 	font-size: 13px;
@@ -526,6 +528,7 @@
 
 .adopto-sidebar .skillsList {
 	margin: 0;
+	padding-left: 0;
 }
 
 	.adopto-sidebar .skillsList li {

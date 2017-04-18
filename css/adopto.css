@@ -408,6 +408,8 @@ body.adopto-sidebar-show .adopto-sidebar {
 /* Source button */
 .adopto-perspective {
 	perspective: 500px;
+	float: left;
+	width: 100%;
 }
 
 .adopto-source {

@@ -1,4 +1,4 @@
-(function ($, host) {
+﻿(function ($, host) {
 
 	if (!host('linkedin.com', 'www.linkedin.com')) return;
 
@@ -16,12 +16,67 @@
 			return false;
 		},
 
+		siteLanguage: "en",
+
+		monthAsNumber:
+			[
+				["en", "Present", ["Jan", 0], ["Feb", 1], ["Mar", 2], ["Apr", 3], ["May", 4], ["Jun", 5], ["Jul", 6], ["Aug", 7], ["Sep", 8], ["Oct", 9], ["Nov", 10], ["Dec", 11]],
+				["de", "Heute", ["Jan.", 0], ["Feb.", 1], ["März", 2], ["Apr.", 3], ["Mai", 4], ["Juni", 5], ["Juli", 6], ["Aug.", 7], ["Sep.", 8], ["Okt.", 9], ["Nov.", 10], ["Dez.", 11]]
+			],
+
+		parseDateRange: function (dateRange) {
+			dateRange = dateRange.split("–");
+			if (dateRange.length == 2) {
+				for (var i = 0; i < dateRange.length; i++) {
+					for (var j = 0; j < Adopto.contentScript.monthAsNumber.length; j++) {
+						if (Adopto.contentScript.siteLanguage === Adopto.contentScript.monthAsNumber[j][0]) {
+							var dateString = dateRange[i].trim();
+
+							if (dateString === Adopto.contentScript.monthAsNumber[j][1]) {
+								dateRange[i] = new Date();
+							} else if (/^\d+$/.test(dateString)) {
+								dateRange[i] = new Date(parseInt(dateString), 5);
+							} else {
+
+								var dateArray = dateString.split(" ");
+
+								if (dateArray.length == 2) {
+									var year = /^\d+$/.test(dateArray[0]) ? parseInt(dateArray[0]) : parseInt(dateArray[1]);
+									var month = /^\d+$/.test(dateArray[0]) ? dateArray[1].trim() : dateArray[0].trim();
+
+									for (var k = 2; k < Adopto.contentScript.monthAsNumber[j].length; k++) {
+										if (month == Adopto.contentScript.monthAsNumber[j][k][0]) {
+											month = Adopto.contentScript.monthAsNumber[j][k][1];
+											break;
+										}
+									}
+
+									dateRange[i] = new Date(year, month);
+								}
+							}
+						}
+					}
+				}
+				return dateRange;
+			}
+		},
+
 		getData: function (callback) {
 			Adopto.contentScript.callback = callback;
 
 			var oldIframe = $("#aseFrame").remove();
 			var iframe = document.createElement("iframe");
 			iframe.onload = function () {
+
+				switch ($("#nav-settings__dropdown-trigger").text().trim()) {
+					case "Me":
+						Adopto.contentScript.siteLanguage = "en";
+						break;
+					case "Sie":
+						Adopto.contentScript.siteLanguage = "de";
+						break;
+				}
+
 				aseFrameContents = $("#aseFrame").contents();
 
 				$(".pv-contact-info button", aseFrameContents).click();
@@ -47,8 +102,6 @@
 			iframe.style.width = "100%";
 			iframe.style.height = "100%";
 			document.body.appendChild(iframe);
-
-
 		},
 
 		expandDataOnPage: function () {
@@ -82,6 +135,11 @@
 				$projectsExpand.click();
 			}
 
+			var $languagesExpand = $(".pv-profile-section.pv-accomplishments-block.languages button", aseFrameContents);
+			if ($languagesExpand.attr("aria-expanded") === "false") {
+				$languagesExpand.click();
+			}
+
 			setTimeout(function () {
 				$(".experience-section .pv-profile-section__section-info button", aseFrameContents).each(function () {
 					if ($(this).attr("aria-expanded") === "false")
@@ -93,7 +151,7 @@
 						$(this).click();
 				});
 
-				//Collect contacts
+				// Contacts
 				$(".pv-contact-info__contact-type", aseFrameContents).each(function () {
 					switch (this.classList[1]) {
 						case "ci-vanity-url":
@@ -101,9 +159,11 @@
 							cd.mainData.socialNetworks.linkedin = link;
 							break;
 						case "ci-websites":
+							var webSites = "";
 							$(".pv-contact-info__ci-container", this).each(function () {
-								//profileInfo.contacts.push(new Contact("website", $(this).text().replace("\n", "").trim(), $(".pv-contact-info__action", this)[0].href));
+								webSites = webSites + " " + $(".pv-contact-info__action", this)[0].href;
 							});
+							cd.mainData.contactInfo.website = webSites.trim();
 							break;
 						case "ci-email":
 							var email = $(".pv-contact-info__contact-item", this).text().trim();
@@ -116,90 +176,111 @@
 							break;
 						case "ci-address":
 							var address = $(".pv-contact-info__action", this)[0];
-							//profileInfo.contacts.push(new Contact("address", address.innerText.trim(), address.href));
+							cd.mainData.location = address.innerText.trim();
 							break;
 						case "ci-twitter":
 							var twitter = $(".pv-contact-info__action", this)[0];
-							//profileInfo.contacts.push(new Contact("twitter", twitter.innerText.trim(), twitter.href));
-							cd.mainData.socialNetworks.twitter = twitter;
+							cd.mainData.socialNetworks.twitter = twitter.text.trim();
 							break;
 						case "ci-ims":
 							$(".pv-contact-info__ci-container", this).each(function () {
 								var text = $(this).text().trim();
 								var value = text.substring(0, text.lastIndexOf("(")).trim();
-								//var type = text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")")).toLower();
-								//profileInfo.contacts.push(new Contact("im", text, value));
+								var type = text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")"));
+
+								switch (type) {
+									case "Skype":
+										cd.mainData.socialNetworks.skype = value;
+										break;
+									default:
+
+										break;
+								}
 							});
 							break;
 					}
 				});
 
-				//Collect experience
+				// Experience
 				$(".pv-profile-section.experience-section .pv-profile-section__card-item", aseFrameContents).each(function () {
 					var positionName = $(".pv-entity__summary-info h3", this).text().trim();
 					var companyName = $(".pv-position-entity__secondary-title", this).text().trim();
-					var dateRange = $($(".pv-entity__date-range", this).children()[1]).text();
+					var companyLogo = $(".pv-entity__logo img", this).attr("src");
+					var companyLink = $("[data-control-name='background_details_company']", this).attr("href");
 					var description = $(".pv-entity__description", this).text().trim();
-					//profileInfo.experience.push(new Experience(positionName, companyName, dateRange, description));
+					var dateRange = Adopto.contentScript.parseDateRange($($(".pv-entity__date-range", this).children()[1]).text());
+					dateRange = dateRange ? dateRange : ["", ""];
 					cd.mainData.experience.push({
 						title: positionName,
 						atPlace: companyName,
-						placeLink: '#',
-						placeLogo: '',
-						startDate: moment('2006-09-01'),
-						endDate: moment('2006-09-01'),
+						placeLink: companyLink ? location.origin + companyLink : "#",
+						placeLogo: companyLogo,
+						startDate: moment(dateRange[0]),
+						endDate: moment(dateRange[1]),
 						description: description
 					});
 				});
 
-				//Collect education
+				// Education
 				$(".pv-profile-section.education-section .pv-profile-section__card-item", aseFrameContents).each(function () {
-					var title = $(".pv-entity__school-name", this).text().trim();
-					//var secondaryTitle = $(".pv-education-entity__secondary-title", this).text().trim();
-					var dateRange = $($(".pv-education-entity__date", this).children()[1]).text().trim();
-					//profileInfo.education.push(new Education(title, dateRange));
+					var title = "";
+					$(".pv-entity__comma-item", this).each(function () {
+						title = title == "" ? $(this).text() : title + ", " + $(this).text();
+					});
+					var place = $(".pv-entity__school-name", this).text().trim();
+					var dateRange = Adopto.contentScript.parseDateRange($($(".pv-education-entity__date", this).children()[1]).text().trim());
+					dateRange = dateRange ? dateRange : ["", ""];
 					cd.mainData.education.push({
 						title: title,
-						atPlace: '',
+						atPlace: place,
 						placeLink: '#',
 						placeLogo: '',
-						startDate: moment('2006-09-01'),
-						endDate: moment('2006-09-01')
+						startDate: moment(dateRange[0]),
+						endDate: moment(dateRange[1])
 					});
 				});
 
-				//Collect skills
+				// Skills
 				$(".pv-skill-entity__skill-name", aseFrameContents).each(function () {
-					//profileInfo.skills.push($(this).text());
 					cd.mainData.skills.push($(this).text());
 				});
 
-				//Collect projects
-				$(".pv-profile-section.pv-accomplishments-block.projects", aseFrameContents).each(function () {
+				// Projects
+				$(".pv-profile-section.pv-accomplishments-block.projects .pv-accomplishment-entity", aseFrameContents).each(function () {
 					$(".pv-accomplishment-entity__title span", this).remove();
 					var title = $(".pv-accomplishment-entity__title", this).text().trim();
-					var dateRange = $(".pv-accomplishment-entity__date", this).text().trim();
+					var dateRangeString = $(".pv-accomplishment-entity__date", this).text().trim();
+					var dateRange = dateRangeString ? Adopto.contentScript.parseDateRange(dateRangeString) : ["", ""];
 					$(".pv-accomplishment-entity__description div", this).remove();
 					var description = $(".pv-accomplishment-entity__description", this).text().trim();
 
-					if(title) {
-						//profileInfo.projects.push(new Project(title, dateRange, description));
+					if (title) {
 						cd.mainData.projects.push({
 							title: title,
-							startDate: moment('2006-09-01'),
-							endDate: moment('2006-09-01'),
+							startDate: moment(dateRange[0]),
+							endDate: moment(dateRange[1]),
 							description: description
 						})
 					}
 				});
 
+				//Languages
+				$(".pv-profile-section.pv-accomplishments-block.languages .pv-accomplishment-entity", aseFrameContents).each(function () {
+					$(".pv-accomplishment-entity__title span", this).remove();
+					var language = $(".pv-accomplishment-entity__title", this).text().trim();
+
+					if (language) {
+						cd.mainData.languages.push(language);
+					}
+				});
+
 				Adopto.contentScript.returnData();
-			}, 200);
+			}, 1000);
 		},
 
 		returnData: function () {
 			Adopto.contentScript.callback(candidateDataModel);
-		}		
-};
+		}
+	};
 
 })(jQuery, Adopto.hostTest);

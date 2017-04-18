@@ -30,12 +30,12 @@
         {
             "matches": [
                 //"https://*.facebook.com/*",
-                "https://*.github.com/*",
-                "https://*.angel.co/*",
-                "https://*.dribbble.com/*",
-                "https://*.linkedin.com/*",
-                "http://*.stackoverflow.com/*",
-                "http://*.codeproject.com/*",
+                "https://*.github.com/*", //-done
+                "https://*.angel.co/*", //-done
+                "https://*.dribbble.com/*", //-done
+                "https://*.linkedin.com/*", //-in progress
+                "http://*.stackoverflow.com/*", //-done
+                "https://*.codeproject.com/*",
                 "https://*.twitter.com/*"
             ],
             "css": [
