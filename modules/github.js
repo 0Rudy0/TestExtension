@@ -65,6 +65,12 @@
 							newProj.isLast = true;
 						}
 						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
+						m.mainData.projects.push(newProj);
 
 						setTimeout(Adopto.contentScript.getProjectData.bind(newProj), (i + 1) * 200);
 					}
