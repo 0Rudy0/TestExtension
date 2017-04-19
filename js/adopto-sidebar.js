@@ -78,21 +78,21 @@
 	sidebar.setFormData = function (cdata) {
 		//var cdata = candidateDataModel.mainData;
 
-		$('#adopto-form .main-info').show();
-		$('#adopto-form .adopto-perspective').show();
-		$('#adopto-form .main-info p.name').html(cdata.mainData.fullName);
-		$('#adopto-form .main-info h5.jobTitle').html(cdata.mainData.title);
-		$('#adopto-form .main-info p.location span').html(cdata.mainData.location);
+		$('.adopto-sidebar .mainContent').show();
+		$('.adopto-sidebar .adopto-perspective').show();
+		$('.adopto-sidebar .mainContent p.name').html(cdata.mainData.fullName);
+		$('.adopto-sidebar .mainContent h5.jobTitle').html(cdata.mainData.title);
+		$('.adopto-sidebar .mainContent p.location span').html(cdata.mainData.location);
 		if (cdata.mainData.profileImgUrl == null || cdata.mainData.profileImgUrl.trim().length == 0) {
-			$('#adopto-form .main-info img.profile-picture').attr('src', chrome.extension.getURL("images/no-profile-pic.png"));
+			$('.adopto-sidebar .mainContent img.profile-picture').attr('src', chrome.extension.getURL("images/no-profile-pic.png"));
 		}
 		else {
-			$('#adopto-form .main-info img.profile-picture').attr('src', cdata.mainData.profileImgUrl);
+			$('.adopto-sidebar .mainContent img.profile-picture').attr('src', cdata.mainData.profileImgUrl);
 		}
 
-		$('#adopto-form .main-info .curr-info-edit input.name').val(cdata.mainData.fullName);
-		$('#adopto-form .main-info .curr-info-edit input.jobTitle').val(cdata.mainData.title);
-		$('#adopto-form .main-info .curr-info-edit input.location').val(cdata.mainData.location);
+		$('.adopto-sidebar .mainContent .curr-info-edit input.name').val(cdata.mainData.fullName);
+		$('.adopto-sidebar .mainContent .curr-info-edit input.jobTitle').val(cdata.mainData.title);
+		$('.adopto-sidebar .mainContent .curr-info-edit input.location').val(cdata.mainData.location);
 
 		//contact
 		$('#adopto-form .adopto-group.contact .adopto-input.email p.value').html(cdata.mainData.contactInfo.email);

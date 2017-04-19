@@ -6,76 +6,48 @@
 	display: block;
 }
 
-.main-info {
+/*.main-info {
 	width: 100%;
 	height: 100px;
 	margin-bottom: 30px;
-	/*padding: 10px;*/
-	/*box-shadow: 1px 1px 5px black;*/
 	border-radius: 5px;
-	/*-webkit-box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
-	-moz-box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);
-	box-shadow: 1px 1px 5px 0px rgba(4,41,38,0.5);*/
-	/*display: none;*/
-	/*background-color: blue;*/
-}
-
-/*div.adopto-form {
-	min-height: 100%;
-}*/
-
-/*#adopto-form {
-	height: 100%;
-	padding-bottom: 100px;
-	position: relative;
 }*/
 
 /* Profile picture */
-.adopto-profile-picture {
+/*.adopto-profile-picture {
 	float: left;
-	/*margin: 15px auto;*/
 	width: 80px;
-	/*position: relative;*/
-	/*top: 10px;*/
 	height: 80px;
 	border: 2px solid lightgray;
 	border-radius: 50px;
-	/*background-image: url('chrome-extension://__MSG_@@extension_id__/images/no-profile-pic.png');*/
-	/*background-repeat: no-repeat;*/
-	/*background-position: center;*/
-	/*background-size: cover;*/
 	box-sizing: border-box;
 	overflow: hidden;
-	/*box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);*/
-}
+}*/
 
-.adopto-profile-picture img {
+/*.adopto-profile-picture img {
 	width: 80px;
 	height: 80px;
 	max-width: 100%;
 	max-height: 100%;
 	margin: 0;
-}
+}*/
 
 
-.curr-info p,
+/*.curr-info p,
 .curr-info i {
 	margin-bottom: 0;
 	font-size: 9pt;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-}
+}*/
 
-.curr-info .jobTitle {
+/*.curr-info .jobTitle {
 	display: block;
-	/* Fallback for non-webkit */
 	display: -webkit-box;
 	max-width: 174px;
 	height: 32px;
 	margin: 0px 0 0 0;
-	/* Fallback for non-webkit */
-	/*margin: 0 auto;*/
 	font-size: 9pt;
 	line-height: 1.4;
 	-webkit-line-clamp: 2;
@@ -83,15 +55,15 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: 100;
-}
+}*/
 
-.curr-info p.location {
+/*.curr-info p.location {
 	margin-top: 0px;
 	position: absolute;
 	bottom: 10px;
-}
+}*/
 
-.curr-info i {
+/*.curr-info i {
 	position: relative;
 	top: 2px;
 }
@@ -106,7 +78,7 @@
 }
 
 .curr-info .currCompany {
-}
+}*/
 
 /* Form group */
 .adopto-group {

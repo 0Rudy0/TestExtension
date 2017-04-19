@@ -46,10 +46,12 @@
 	float: left;
 	width: calc(100% - 40px);
 	/*width: 200%;*/
-	height: calc(100% - 40px);
+	margin-top: 10px;
+	overflow: visible;
+	height: calc(100% - 150px);
 	padding: 10px;
-	overflow-x: hidden;
-	overflow-y: auto;
+	/*overflow-x: hidden;*/
+	/*overflow-y: auto;*/
 	/*padding-top: 50px;*/
 	/*font-family: 'Lato', sans-serif !important;*/
 	position: relative;
