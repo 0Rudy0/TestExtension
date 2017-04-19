@@ -14,7 +14,7 @@
 			//$('.adopto-sidebar').show();
 			$('body').addClass('adopto-sidebar-show');
 			$('.adopto-sidebar #name').focus();
-			$('.adopto-sidebar').css('right', 0);
+			$('.adopto-sidebar').css('right', 400);
 
 		}, 1);
 	}
@@ -142,7 +142,7 @@
 			p.endDate = p.endDate == null ? moment() : p.endDate;
 			p.duration = Adopto.sidebar.calculateDuration(p.startDate, p.endDate);
 
-			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.title + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
+			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.projectTitle + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
 		}
 

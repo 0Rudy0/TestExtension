@@ -24,21 +24,35 @@
 			var m = candidateDataModel;
 
 			m.mainData.fullName = $('.ProfileHeaderCard-nameLink').text();
-			//m.mainData.title = $('[itemprop=worksFor]').attr('title') ? $('[itemprop=worksFor]').attr('title').trim() : '';
-			//m.mainData.contactInfo.email = $('li[itemprop="email"] a').html() ? $('li[itemprop="email"] a').html().trim() : '';
+			m.mainData.socialNetworks.twitter = window.location.href;
 			m.mainData.location = $('.ProfileHeaderCard-locationText').text().trim();
-			m.mainData.profileImgUrl = $('.ProfileHeaderCard-screennameLink').attr('href');
-			m.mainData.socialNetworks.linkedin = $('.ProfileHeaderCard-screennameLink').attr('href');
-			//m.mainData.summary = $('.user-profile-bio').length > 0 ? $('.user-profile-bio')[0].innerText : '';
+			m.mainData.profileImgUrl = $('img.ProfileAvatar-image').attr('src');
+			m.mainData.summary = $('p.ProfileHeaderCard-bio.u-dir').length > 0 ? $('p.ProfileHeaderCard-bio.u-dir').html().trim() : '';
 
+			var links = $('.ProfileHeaderCard-url a');
+			for (var i = 0; i < links.length; i++) {
+				var a = links[i];
+				if (a.getAttribute('href').indexOf('stackoverflow.com') > -1) {
+					m.mainData.socialNetworks.stackoverflow = a.getAttribute('href');
+				}
+				else if (a.getAttribute('href').indexOf('facebook.com') > -1) {
+					m.mainData.socialNetworks.facebook = a.getAttribute('href');
+				}
+				else if (a.getAttribute('href').indexOf('linkedin.com') > -1) {
+					m.mainData.socialNetworks.linkedin = a.getAttribute('href');
+				}
+				else if (a.getAttribute('href').indexOf('github.com') > -1) {
+					m.mainData.socialNetworks.github = a.getAttribute('href');
+				}
+				else if (a.getAttribute('href').indexOf('vine.co') > -1) {
 
-			//var username = $('span.vcard-username').html();
-			//m.mainData.socialNetworks.github = 'https://github.com/' + username;
-			//Adopto.contentScript.getSkills(username, m);
-			//m.mainData.skills = Adopto.contentScript.getSkills(m);
+				}
+				else {
+					m.mainData.socialNetworks.website = a.getAttribute('href');
+				}
+			}
 
 			Adopto.contentScript.callback(m);
-			//callback(m);
 		}
 	};
 

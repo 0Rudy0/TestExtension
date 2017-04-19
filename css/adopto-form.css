@@ -110,13 +110,16 @@
 
 /* Form group */
 .adopto-group {
-	margin-bottom: 30px;
+	margin-bottom: 35px;
 	padding: 4px 8px 8px 8px;
 	font-size: 9pt;
 	position: relative;
-	border-left: 1px solid rgba(0,0,0,0.15);
+	/*border-left: 1px solid rgba(0,0,0,0.15);*/
 	float: left;
 	width: 100%;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+	/*border-bottom: 1px solid rgba(0,0,0,0.15);*/
 }
 
 .curr-info,
@@ -164,9 +167,9 @@
 	color: #7ca2a2;
 	/*font-family: 'Lato', sans-serif;*/
 	font-weight: normal;
-	/*font-weight: bold;*/
+	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 9pt !important;
+	font-size: 8pt !important;
 	line-height: normal !important;
 	margin-bottom: 10px !important;
 	margin-bottom: 10px;
@@ -484,6 +487,10 @@
 
 /*#region Contact*/
 
+.adopto-group.contact p {
+	display: inline-block;
+}
+
 /*#endregion*/
 
 /*#region Social networks*/
@@ -494,10 +501,11 @@
 	overflow: hidden;
 	white-space: nowrap;
 }
+
 .adopto-group i {
 	/*color: #005151;*/
 	color: #000;
-	font-size: 12pt;
+	font-size: 13pt;
 }
 
 
