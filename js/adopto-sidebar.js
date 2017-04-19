@@ -54,6 +54,7 @@
 
 			$('.adopto-loading').show();
 			$('.adopto-tab-content').addClass('blur');
+			$('.mainContent').addClass('blur');
 
 			setTimeout(function () {
 				cs.getData(sidebar.setFormData);
@@ -61,11 +62,13 @@
 
 			$('.adopto-open-profile-msg').addClass('adopto-hidden');
 			$('.adopto-tab-content').show();
+			$('.mainContent').show();
 			$('.adopto-empty').hide();
 
 		} else {
 			$('.adopto-open-profile-msg').removeClass('adopto-hidden');
 			$('.adopto-tab-content').hide();
+			$('.mainContent').hide();
 			$('.adopto-loading').hide();
 			$('.adopto-empty').show();
 		}
@@ -77,6 +80,17 @@
 
 	sidebar.setFormData = function (cdata) {
 		//var cdata = candidateDataModel.mainData;
+
+		//$('.adopto-sidebar .adopto-group.projects .adopto-group-title').click(function () {
+		//	console.log('tuuu');
+		//	$('.adopto-sidebar .adopto-group.projects').toggleClass('collapsed');
+		//});
+
+		$('.adopto-sidebar .adopto-group .adopto-group-title').click(function (e) {
+			console.log(e);
+			$(e.currentTarget).parent().toggleClass('collapsed');
+			//$('.adopto-sidebar .adopto-group').toggleClass('collapsed');
+		});
 
 		$('.adopto-sidebar .mainContent').show();
 		$('.adopto-sidebar .adopto-perspective').show();
@@ -123,6 +137,10 @@
 			$('#adopto-form .adopto-group.education').append('<div class="education-item item withDetails" id="eduItem' + i + '"><div class="education-desc desc"><span><span class="main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#eduItem' + i).click(sidebar.openDetailsPane.bind(e));
 		}
+		$('#adopto-form .adopto-group.education .eduNum').html('(' + cdata.mainData.education.length + ')');
+		if (cdata.mainData.education.length > 5) {
+			$('#adopto-form .adopto-group.education').addClass('collapsed');
+		}
 
 		//experience
 		$('#adopto-form .adopto-group.experience .experience-item').remove();
@@ -133,6 +151,10 @@
 			//console.log($('#adopto-form .adopto-group.experience'));
 			$('#adopto-form .adopto-group.experience').append('<div class="experience-item item withDetails" id="expItem' + i + '"><div class="experience-desc desc"><span><span class="jobTitle main-desc">' + e.title + '</span><br/>at<a target="_blank" href="' + e.placeLink + '" class="company side-desc"> ' + e.atPlace + '</a></span><div class="arrow"></div></div></div>');
 			$('#expItem' + i).click(sidebar.openDetailsPane.bind(e));
+		}
+		$('#adopto-form .adopto-group.experience .expNum').html('(' + cdata.mainData.experience.length + ')');
+		if (cdata.mainData.experience.length > 5) {
+			$('#adopto-form .adopto-group.experience').addClass('collapsed');
 		}
 
 		//projects
@@ -145,6 +167,10 @@
 			$('#adopto-form .adopto-group.projects').append('<div class="project-item item withDetails" id="projItem' + i + '"><div class="project-desc desc"><span class="projectTitle main-desc">' + p.projectTitle + '</span><br/><span class="side-desc">' + p.duration + '</span><div class="arrow"></div></div></div>');
 			$('#projItem' + i).click(sidebar.openDetailsPane.bind(p));
 		}
+		$('#adopto-form .adopto-group.projects .projNum').html('(' + cdata.mainData.projects.length + ')');
+		if (cdata.mainData.projects.length > 5) {
+			$('#adopto-form .adopto-group.projects').addClass('collapsed');
+		}
 
 		//languages
 		$('#adopto-form .adopto-group.languages .item').remove();
@@ -153,6 +179,10 @@
 			var l = cdata.mainData.languages[i];
 			$('#adopto-form .adopto-group.languages .langsList').append('<li class="item">' + l + '</li>');
 		}
+		$('#adopto-form .adopto-group.languages .langNum').html('(' + cdata.mainData.languages.length + ')');
+		if (cdata.mainData.education.length > 5) {
+			$('#adopto-form .adopto-group.languages').addClass('collapsed');
+		}
 
 		//skills
 		$('#adopto-form .adopto-group.skills .item').remove();
@@ -160,6 +190,11 @@
 			var s = cdata.mainData.skills[i];
 			$('#adopto-form .adopto-group.skills .skillsList').append('<li class="item">' + s + '</li>')
 		}
+		$('#adopto-form .adopto-group.skills .skillsNum').html('(' + cdata.mainData.skills.length + ')');
+		if (cdata.mainData.skills.length > 10) {
+			$('#adopto-form .adopto-group.skills').addClass('collapsed');
+		}
+
 
 		$('#adopto-form .adopto-group a').click(function (e) {
 			e.preventDefault();
@@ -204,7 +239,8 @@
 	sidebar.getAdoptoData = function () {
 		$('.adopto-loading').hide();
 		$('.adopto-tab-content').removeClass('blur');
-		return;
+		$('.mainContent').removeClass('blur');
+		//return;
 		$.ajax({
 			url: rootUrl + '/GetCandidateData',
 			contentType: "application/json; charset=utf-8",
@@ -656,22 +692,22 @@
 
 							$('.adopto-tab-content .tab.tabForm').append(data.format(lang));
 
-							$('.main-info .edit-icon').click(function () {
-								$('.main-info .curr-info').hide();
-								$('.main-info .curr-info-edit').show();
+							$('.mainContent .edit-icon').click(function () {
+								$('.mainContent .curr-info').hide();
+								$('.mainContent .curr-info-edit').show();
 							});
 
-							$('.main-info .done-icon').click(function () {
+							$('.mainContent .done-icon').click(function () {
 								//console.log('click');
-								$('.main-info .curr-info').show();
-								$('.main-info .curr-info-edit').hide();
-								candidateDataModel.mainData.fullName = $('#adopto-form .main-info .curr-info-edit input.name').val();
-								candidateDataModel.mainData.title = $('#adopto-form .main-info .curr-info-edit input.jobTitle').val();
-								candidateDataModel.mainData.location = $('#adopto-form .main-info .curr-info-edit input.location').val();
+								$('.mainContent .curr-info').show();
+								$('.mainContent .curr-info-edit').hide();
+								candidateDataModel.mainData.fullName = $('#adopto-form .mainContent .curr-info-edit input.name').val();
+								candidateDataModel.mainData.title = $('#adopto-form .mainContent .curr-info-edit input.jobTitle').val();
+								candidateDataModel.mainData.location = $('#adopto-form .mainContent .curr-info-edit input.location').val();
 
-								$('#adopto-form .main-info p.name').html(candidateDataModel.mainData.fullName);
-								$('#adopto-form .main-info h5.jobTitle').html(candidateDataModel.mainData.title);
-								$('#adopto-form .main-info p.location span').html(candidateDataModel.mainData.location);
+								$('#adopto-form .mainContent p.name').html(candidateDataModel.mainData.fullName);
+								$('#adopto-form .mainContent h5.jobTitle').html(candidateDataModel.mainData.title);
+								$('#adopto-form .mainContent p.location span').html(candidateDataModel.mainData.location);
 							});
 
 							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {

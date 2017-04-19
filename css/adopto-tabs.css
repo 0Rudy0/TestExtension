@@ -4,7 +4,8 @@
 	width: 40px;
 	border-left: 1px solid #eaeaea;
 	/*background-color: rgba(0, 172, 172, 0.8);*/
-	
+	position: relative;
+	z-index: 3;
 	background-color: #242a30;
 }
 
@@ -46,10 +47,11 @@
 	float: left;
 	width: calc(100% - 40px);
 	/*width: 200%;*/
-	margin-top: 10px;
-	overflow: visible;
-	height: calc(100% - 150px);
-	padding: 10px;
+	margin-top: 0px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: calc(100% - 140px);
+	/*padding: 10px;*/
 	/*overflow-x: hidden;*/
 	/*overflow-y: auto;*/
 	/*padding-top: 50px;*/
@@ -57,7 +59,8 @@
 	position: relative;
 }
 
-	.adopto-tab-content.blur {
+	.adopto-tab-content.blur,
+	.mainContent.blur {
 		/*filter: blur(3px);*/
 		opacity: 0;
 	}
