@@ -661,7 +661,9 @@
 							//preventing scroll propagation
 							$('#tabContent').bind('mousewheel', function (e) {
 								if ($('.tab-header[data-tab="tabForm"').hasClass('active')) {
-									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('#adopto-form').outerHeight() - $(this).outerHeight() + 30) ||
+									console.log($(this).scrollTop());
+									console.log($('.tabForm.tab').outerHeight() - $(this).outerHeight());
+									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('#adopto-form').outerHeight() - $(this).outerHeight() + 130) ||
 										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)){
 										e.preventDefault();
 									}
