@@ -1,6 +1,7 @@
-﻿- slanje cijelog objekta u adopto app
-- neka ljepsa animacija otvaranja sidebara?
-- save note/send email kroz adopto app
-- boje
-- description in project & experience
-- adopto ikona pored profila
+﻿- adopto ikona pored slike profila
+- source gumb na dno, mali padding, manja visina
+- on hover gumbi na summernote na githubu
+- ion icons (za tab header slike)
+- linkedin - collapse ne radi uvijek
+- linkedin - lokacija
+

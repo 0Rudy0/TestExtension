@@ -403,8 +403,8 @@
 	}
 
 	.adopto-group .item.withDetails:hover {
-		background-color: aliceblue;
-		padding-left: 2px;
+		/*background-color: aliceblue;*/
+		/*padding-left: 2px;*/
 	}
 
 	.adopto-group .item.withDetails .desc .arrow {
