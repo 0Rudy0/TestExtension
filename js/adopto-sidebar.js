@@ -662,22 +662,25 @@
 							$('#tabContent').bind('mousewheel', function (e) {
 								if ($('.tab-header[data-tab="tabForm"').hasClass('active')) {
 									console.log($(this).scrollTop());
-									console.log($('.tabForm.tab').outerHeight() - $(this).outerHeight());
-									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('#adopto-form').outerHeight() - $(this).outerHeight() + 130) ||
+									console.log($('#adopto-form').outerHeight() - $(this).outerHeight());
+									if ((e.originalEvent.deltaY > 0 &&
+										$(this).scrollTop() >= $('#adopto-form').outerHeight() - $(this).outerHeight() + 40) ||
 										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)){
 										e.preventDefault();
 									}
 								}
 								else if ($('.tab-header[data-tab="tabActivities"').hasClass('active')) {
-									//console.log('scrolling activities');
-									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('.tabActivities.tab .activities-group').outerHeight() - $(this).outerHeight() + 20) ||
+									if ((e.originalEvent.deltaY > 0 &&
+										$(this).scrollTop() === $('.tabActivities.tab .activities-group').outerHeight() - $(this).outerHeight() + 10) ||
 										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)) {
 										e.preventDefault();
 									}
 								}
 								else if ($('.tab-header[data-tab="tabCommunication"').hasClass('active')) {
-									//console.log('scrolling communication');
-									if ((e.originalEvent.deltaY > 0 && $(this).scrollTop() === $('.tabCommunication.tab .communications').outerHeight() - $(this).outerHeight() + 10) ||
+									//console.log($(this).scrollTop());
+									//console.log($('.tabCommunication.tab .communications').outerHeight() - $(this).outerHeight() + 10);
+									if ((e.originalEvent.deltaY > 0 &&
+										$(this).scrollTop() === $('.tabCommunication.tab .communications').outerHeight() - $(this).outerHeight() + 20) ||
 										(e.originalEvent.deltaY < 0 && $(this).scrollTop() === 0)) {
 										e.preventDefault();
 									}
@@ -703,18 +706,18 @@
 								//console.log('click');
 								$('.mainContent .curr-info').show();
 								$('.mainContent .curr-info-edit').hide();
-								candidateDataModel.mainData.fullName = $('#adopto-form .mainContent .curr-info-edit input.name').val();
-								candidateDataModel.mainData.title = $('#adopto-form .mainContent .curr-info-edit input.jobTitle').val();
-								candidateDataModel.mainData.location = $('#adopto-form .mainContent .curr-info-edit input.location').val();
+								candidateDataModel.mainData.fullName = $('.adopto-sidebar .mainContent .curr-info-edit input.name').val();
+								candidateDataModel.mainData.title = $('.adopto-sidebar .mainContent .curr-info-edit input.jobTitle').val();
+								candidateDataModel.mainData.location = $('.adopto-sidebar .mainContent .curr-info-edit input.location').val();
 
-								$('#adopto-form .mainContent p.name').html(candidateDataModel.mainData.fullName);
-								$('#adopto-form .mainContent h5.jobTitle').html(candidateDataModel.mainData.title);
-								$('#adopto-form .mainContent p.location span').html(candidateDataModel.mainData.location);
+								$('.adopto-sidebar .mainContent p.name').html(candidateDataModel.mainData.fullName);
+								$('.adopto-sidebar .mainContent h5.jobTitle').html(candidateDataModel.mainData.title);
+								$('.adopto-sidebar .mainContent p.location span').html(candidateDataModel.mainData.location);
 							});
 
-							$('#adopto-form .curr-info-edit').on('keypress', 'input', function (e) {
+							$('.adopto-sidebar .curr-info-edit').on('keypress', 'input', function (e) {
 								if (e.which == 13) {
-									$('.main-info .done-icon').click();
+									$('.mainContent .done-icon').click();
 									return false;
 								}
 							});

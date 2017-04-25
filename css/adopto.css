@@ -383,8 +383,9 @@ body.adopto-sidebar-show .adopto-sidebar {
 
 .curr-info p.location {
 	margin-top: 0px !important;
+	margin-bottom: 0 !important;
 	position: absolute;
-	/*bottom: 10px;*/
+	bottom: 0px;
 }
 
 .curr-info i {
@@ -394,6 +395,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 
 .curr-info .name {
 	padding-right: 17px;
+	margin-bottom: 5px;
 	font-size: 10pt;
 	/*font-weight: bold;*/
 	text-overflow: clip;
@@ -450,6 +452,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 			position: absolute;
 			width: calc(100% - 54px);
 			bottom: 0;
+			margin-bottom: 0;
 		}
 
 		.curr-info-edit .location i {
