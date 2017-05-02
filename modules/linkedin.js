@@ -16,6 +16,12 @@
 			return false;
 		},
 
+		insertAdoptoIcon: function (content) {
+			$('[itemprop="name"]').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
+		},
+
 		siteLanguage: "en",
 
 		monthAsNumber:

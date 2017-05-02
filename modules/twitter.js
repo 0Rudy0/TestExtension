@@ -15,6 +15,12 @@
 			return false;
 		},
 
+		insertAdoptoIcon: function (content) {
+			$('[itemprop="name"]').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
+		},
+
 		isProfileMoreInfoActive: function () {
 			return false;
 		},

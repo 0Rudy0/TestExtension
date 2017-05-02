@@ -1,5 +1,7 @@
 (function ($, sidebar, rootUrl) {
 
+	sidebar.fetchedData = false,
+
 	sidebar.visible = function () {
 		if ($('body').hasClass('adopto-sidebar-show')) {
 			return true;
@@ -14,9 +16,21 @@
 			//$('.adopto-sidebar').show();
 			$('body').addClass('adopto-sidebar-show');
 			$('.adopto-sidebar #name').focus();
-			$('.adopto-sidebar').css('right', 400);
+			$('.adopto-sidebar').css('right', 0);
 
 		}, 1);
+	}
+
+	sidebar.insertAdoptoIcon = function () {
+		var img = new Image();
+		img.src = chrome.extension.getURL('icon/icon_24.png');
+		img.className += ' adoptoIconClick';
+		img.style.cursor = 'pointer';
+		img.addEventListener('click', function (e) {
+			sidebar.toggle();
+			e.preventDefault();
+		});
+		Adopto.contentScript.insertAdoptoIcon(img);
 	}
 
 	sidebar.hide = function () {
@@ -35,9 +49,12 @@
 				sidebar.show();
 
 				//privremeno dok se otvara sidebar onload, inace nisu sve stvari izrenderirane
-				setTimeout(function () {
-					sidebar.getCandidateData();
-				}, 500);
+				if (!sidebar.fetchedData) {
+					setTimeout(function () {
+						sidebar.getCandidateData();
+						sidebar.fetchedData = true;
+					}, 500);
+				}
 			}
 		}
 	}
@@ -57,6 +74,7 @@
 			$('.mainContent').addClass('blur');
 
 			setTimeout(function () {
+				cs.inser
 				cs.getData(sidebar.setFormData);
 			}, 20);
 

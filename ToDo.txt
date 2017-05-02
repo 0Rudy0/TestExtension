@@ -4,4 +4,7 @@
 - ion icons (za tab header slike)
 - linkedin - collapse ne radi uvijek
 - linkedin - lokacija
+- collapse ne radi nakon hide/show - valjda neki event handler
+- collapse summary ako je prevelik
+- dribble social networks
 

@@ -49,6 +49,7 @@ var Adopto = {
 		Adopto.iconStatus();
 		$(window).focus(Adopto.iconStatus);
 		Adopto.sidebar.toggle();
+		Adopto.sidebar.insertAdoptoIcon();
 	});
 
 	
