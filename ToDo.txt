@@ -1,10 +1,8 @@
-﻿- adopto ikona pored slike profila
-- source gumb na dno, mali padding, manja visina
-- on hover gumbi na summernote na githubu
+﻿- on hover gumbi na summernote na githubu
 - ion icons (za tab header slike)
 - linkedin - collapse ne radi uvijek
 - linkedin - lokacija
 - collapse ne radi nakon hide/show - valjda neki event handler
-- collapse summary ako je prevelik
 - dribble social networks
+- summernote na twitteru
 

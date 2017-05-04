@@ -16,9 +16,10 @@
 		},
 
 		insertAdoptoIcon: function (content) {
-			$('[itemprop="name"]').append(content);
+			$('.ProfileHeaderCard-nameLink').append(content);
 			$('img.adoptoIconClick').css('position', 'relative');
 			$('img.adoptoIconClick').css('top', '3px');
+			$('img.adoptoIconClick').css('left', '5px');
 		},
 
 		isProfileMoreInfoActive: function () {

@@ -471,31 +471,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 	width: 100%;
 }
 
-.adopto-source {
-	padding: 15px;
-	/*width: 289px;*/
-	width: 100%;
-	background-color: #00acac;
-	border: 1px solid #007878;
-	border-radius: 2px;
-	/*border: none;*/
-	color: #ffffff !important;
-	/*font-family: 'Lato', sans-serif !important;*/
-	font-size: 16px !important;
-	font-weight: bold;
-	cursor: pointer;
-	/*transform-origin: bottom;
-		transition: transform 0.2s ease-in-out;*/
-}
-	/*  TODO: Future support;
-	.adopto-source:hover {
-		transform: rotateX(30deg);
-	}
-*/
 
-	.adopto-source:hover {
-		background-color: #009292;
-	}
 
 /* Modal dialog */
 .adopto-modal {
@@ -637,3 +613,47 @@ img.adoptoIconClick:hover {
 img.adoptoIconClick:active {
 	transform:scale(0.9);
 }
+
+.adopto-sidebar .adopto-perspective {
+	/*margin-bottom: 20px;*/
+	/*display: none;*/
+	clear: left;
+	position: absolute;
+	bottom: 10px;
+	height: 50px;
+	padding: 10px;
+	width: calc(100% - 40px)
+	/*position: absolute;*/
+	/*bottom: 10px;*/
+	/*position: absolute;
+	width: 100%;
+	bottom: 10px;*/
+}
+
+.adopto-source {
+	padding: 5px 15px;
+	/*width: 289px;*/
+	width: calc(100% - 0px);
+	background-color: #00acac;
+	border: 1px solid #007878;
+	border-radius: 2px;
+	/*border: none;*/
+	color: #ffffff !important;
+	/*font-family: 'Lato', sans-serif !important;*/
+	font-size: 16px !important;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: none;
+	min-height: 2.46153846em;
+	/*transform-origin: bottom;
+		transition: transform 0.2s ease-in-out;*/
+}
+	/*  TODO: Future support;
+	.adopto-source:hover {
+		transform: rotateX(30deg);
+	}
+*/
+
+	.adopto-source:hover {
+		background-color: #009292;
+	}

@@ -357,6 +357,10 @@
 
 /*#region General*/
 
+.adopto-form .mainHolder {
+	height: calc(100% - 200px);
+}
+
 .adopto-group .item {
 	transition-duration: 0.3s;
 }
@@ -572,13 +576,4 @@
 
 /*#endregion*/
 
-.adopto-sidebar .adopto-perspective {
-	margin-bottom: 20px;
-	display: none;
-	clear: left;
-	/*position: absolute;*/
-	/*bottom: 10px;*/
-	/*position: absolute;
-	width: 100%;
-	bottom: 10px;*/
-}
+

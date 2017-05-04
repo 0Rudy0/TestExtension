@@ -1,5 +1,8 @@
 (function ($, host) {
 
+	//https://github.com/GrahamCampbell
+
+
 	if (!host('github.com', 'www.github.com')) return;
 
 	Adopto.contentScript = {
@@ -16,9 +19,10 @@
 		},
 
 		insertAdoptoIcon: function (content) {
-			$('[itemprop="name"]').append(content);
+			$('[itemprop="additionalName"]').append(content);
 			$('img.adoptoIconClick').css('position', 'relative');
 			$('img.adoptoIconClick').css('top', '3px');
+			$('img.adoptoIconClick').css('left', '10px');
 		},
 
 		getData: function (callback) {
@@ -34,7 +38,7 @@
 
 
 			var username = $('span.vcard-username').html();
-			m.mainData.socialNetworks.github = 'https://github.com/' + username;
+			m.mainData.socialNetworks.github = 'https://github.com/' + username.substring(0, username.indexOf('<img'));
 			Adopto.contentScript.getSkills(username, m);
 			//m.mainData.skills = Adopto.contentScript.getSkills(m);
 
@@ -42,6 +46,7 @@
 		},
 
 		getSkills: function (username, m) {
+			console.log(m.mainData.socialNetworks.github + '?tab=repositories');
 			$.ajax({
 				url: m.mainData.socialNetworks.github + '?tab=repositories',
 				async: true,

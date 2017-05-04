@@ -4,97 +4,72 @@
 		<input type="hidden" name="SourceType" id="adopto-source-type">
 		<input type="hidden" name="SourceProfileUrl" id="adopto-profile-url">
 		<input type="hidden" name="SourceProfilePictureUrl" id="adopto-profile-image">
-		<div class="main-info">
-			<!--<div class="adopto-profile-picture">
-				<img class="profile-picture" src="chrome-extension://__MSG_@@extension_id__/images/no-profile-pic.png" />
-			</div>
-			<div class="curr-info">
-				<i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
-				<p class="name"></p>
-				<h5 class="jobTitle"></h5>
-				<p class="location">
-					<i class="fa fa-map-marker" aria-hidden="true"></i>
-					<span></span>
-				</p>
-			</div>
-			<div class="curr-info-edit adopto-input-group">
-				<i class="fa fa-check done-icon" aria-hidden="true"></i>
-				<div class="adopto-input name">
-					<input class="name" placeholder="Candidate name" />
+		
+		<div class="mainHolder">
+			<div class="adopto-group contact">
+				<!--<i class="material-icons edit-icon">mode_edit</i>-->
+				<h3 class="adopto-group-title">Contact info</h3>
+				<div class="adopto-input email">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<p class="value"></p>
 				</div>
-				<div class="adopto-input jobTitle">
-					<input class="jobTitle" placeholder="Current job title" />
+				<div class="adopto-input phone">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					<p class="value"></p>
 				</div>
-				<div class="adopto-input location">
-					<i class="fa fa-map-marker" aria-hidden="true"></i><input class="location" placeholder="location" />
+			</div>
+			<div class="adopto-group social">
+				<h3 class="adopto-group-title">Social networks</h3>
+				<div class="adopto-input linkedin">
+					<i class="fa fa-linkedin-square" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">LinkedIn</a>
 				</div>
-			</div>-->
-		</div>
-		<div class="adopto-group contact">
-			<!--<i class="material-icons edit-icon">mode_edit</i>-->
-			<h3 class="adopto-group-title">Contact info</h3>
-			<div class="adopto-input email">
-				<i class="fa fa-envelope" aria-hidden="true"></i>
-				<p class="value"></p>
+				<div class="adopto-input facebook">
+					<i class="fa fa-facebook-square" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Facebook</a>
+				</div>
+				<div class="adopto-input skype">
+					<i class="fa fa-skype" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Skype</a>
+				</div>
+				<div class="adopto-input github">
+					<i class="fa fa-github" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">GitHub</a>
+				</div>
+				<div class="adopto-input stackOverflow">
+					<i class="fa fa-stack-overflow" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Stackoverflow</a>
+				</div>
+				<div class="adopto-input angelList">
+					<i class="fa fa-angellist" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">AngelList</a>
+				</div>
+				<div class="adopto-input googlePlus">
+					<i class="fa fa-google-plus-square" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Google plus</a>
+				</div>
+				<div class="adopto-input twitter">
+					<i class="fa fa-twitter-square" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Twitter</a>
+				</div>
+				<div class="adopto-input xing">
+					<i class="fa fa-xing-square" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">Xing</a>
+				</div>
+				<div class="adopto-input website">
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<a class="value" href="" target="_blank">website</a>
+				</div>
 			</div>
-			<div class="adopto-input phone">
-				<i class="fa fa-phone" aria-hidden="true"></i>
-				<p class="value"></p>
+			<div class="adopto-group summary">
+				<h3 class="adopto-group-title">Summary</h3>
+				<div class="adopto-input">
+					<p class="value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id.</p>
+				</div>
 			</div>
-		</div>
-		<div class="adopto-group social">
-			<h3 class="adopto-group-title">Social networks</h3>
-			<div class="adopto-input linkedin">
-				<i class="fa fa-linkedin-square" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">LinkedIn</a>
-			</div>
-			<div class="adopto-input facebook">
-				<i class="fa fa-facebook-square" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Facebook</a>
-			</div>
-			<div class="adopto-input skype">
-				<i class="fa fa-skype" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Skype</a>
-			</div>
-			<div class="adopto-input github">
-				<i class="fa fa-github" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">GitHub</a>
-			</div>
-			<div class="adopto-input stackOverflow">
-				<i class="fa fa-stack-overflow" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Stackoverflow</a>
-			</div>
-			<div class="adopto-input angelList">
-				<i class="fa fa-angellist" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">AngelList</a>
-			</div>
-			<div class="adopto-input googlePlus">
-				<i class="fa fa-google-plus-square" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Google plus</a>
-			</div>
-			<div class="adopto-input twitter">
-				<i class="fa fa-twitter-square" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Twitter</a>
-			</div>
-			<div class="adopto-input xing">
-				<i class="fa fa-xing-square" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">Xing</a>
-			</div>
-			<div class="adopto-input website">
-				<i class="fa fa-home" aria-hidden="true"></i>
-				<a class="value" href="" target="_blank">website</a>
-			</div>
-		</div>
-		<div class="adopto-group summary">
-			<h3 class="adopto-group-title">Summary</h3>
-			<div class="adopto-input">
-				<p class="value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque libero sem, tempor ut arcu quis, rhoncus molestie neque. Maecenas id.</p>
-
-			</div>
-		</div>
-		<div class="adopto-group education">
-			<h3 class="adopto-group-title">Education <span class="eduNum">(3)</span></h3>
-			<!--<div class="education-item item withDetails">
+			<div class="adopto-group education">
+				<h3 class="adopto-group-title">Education <span class="eduNum">(3)</span></h3>
+				<!--<div class="education-item item withDetails">
 				<div class="education-desc desc">
 					<span>
 						<span class="main-desc">Bachelor's Degree, Applied Computer Engineering, Software Engineering</span>
@@ -114,10 +89,10 @@
 					<div class="arrow"></div>
 				</div>
 			</div>-->
-		</div>
-		<div class="adopto-group experience">
-			<h3 class="adopto-group-title">Experience <span class="expNum">(3)</span></h3>
-			<!--<div class="experience-item item withDetails">
+			</div>
+			<div class="adopto-group experience">
+				<h3 class="adopto-group-title">Experience <span class="expNum">(3)</span></h3>
+				<!--<div class="experience-item item withDetails">
 				<div class="experience-desc desc">
 					<span>
 						<span class="jobTitle main-desc">Software developer</span>
@@ -137,10 +112,10 @@
 					<div class="arrow"></div>
 				</div>
 			</div>-->
-		</div>
-		<div class="adopto-group projects">
-			<h3 class="adopto-group-title">Projects <span class="projNum">(3)</span></h3>
-			<!--<div class="project-item item withDetails">
+			</div>
+			<div class="adopto-group projects">
+				<h3 class="adopto-group-title">Projects <span class="projNum">(3)</span></h3>
+				<!--<div class="project-item item withDetails">
 				<div class="project-desc desc">
 					<span class="projectTitle main-desc">Beeing mama's boy</span>
 					<br />
@@ -156,18 +131,18 @@
 					<div class="arrow"></div>
 				</div>
 			</div>-->
+			</div>
+			<div class="adopto-group languages">
+				<h3 class="adopto-group-title">Languages <span class="langNum">(3)</span></h3>
+				<ul class="langsList"></ul>
+			</div>
+			<div class="adopto-group skills">
+				<h3 class="adopto-group-title">Skills <span class="skillsNum">(3)</span></h3>
+				<ul class="skillsList"></ul>
+			</div>
 		</div>
-		<div class="adopto-group languages">
-			<h3 class="adopto-group-title">Languages <span class="langNum">(3)</span></h3>
-			<ul class="langsList"></ul>
-		</div>
-		<div class="adopto-group skills">
-			<h3 class="adopto-group-title">Skills <span class="skillsNum">(3)</span></h3>
-			<ul class="skillsList"></ul>
-		</div>
-		<div class="adopto-perspective">
-			<button type="submit" class="adopto-source">Source candidate</button>
-		</div>
+
+		
 		<div style="clear: left"></div>
 	</form>
 </div>
