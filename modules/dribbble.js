@@ -1,5 +1,10 @@
 (function ($, host) {
 
+	//examples:
+	//https://dribbble.com/idilunal
+	//https://dribbble.com/ThePoddi
+	//https://dribbble.com/Madgraphism
+
 	if (!host('dribbble.com', 'www.dribbble.com')) return;
 
 	Adopto.contentScript = {
@@ -19,13 +24,20 @@
 			return false;
 		},
 
+		insertAdoptoIcon: function (content) {
+			$('h2.vcard a.url').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
+			$('img.adoptoIconClick').css('left', '5px');
+		},
+
 		getData: function (callback) {
 			Adopto.contentScript.callback = callback;
 
 			var cd = candidateDataModel;
 			cd.mainData.fullName = $('.profile-info h2.vcard a.url')[0].innerText.trim();
 			cd.mainData.location = $('.profile-info h2.vcard span.location a.locality').html()
-			cd.mainData.summary = $('.profile-info div.bio').html().trim()
+			cd.mainData.summary = $('.profile-info div.bio').length > 0 ? $('.profile-info div.bio').html().trim() : '';
 			cd.mainData.profileImgUrl = $('.profile-info h2.vcard picture>img.photo').attr('src');
 
 			cd.mainData.socialNetworks.dribble = window.location.href;
@@ -176,6 +188,8 @@
 				case 'December':
 					month = 11;
 					break;
+				default:
+					return moment();
 			}
 
 			day = els[1].trim().replace(',', '');

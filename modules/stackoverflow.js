@@ -1,5 +1,9 @@
 (function ($, host) {
 
+	//http://stackoverflow.com/users/2849934/john
+	//http://stackoverflow.com/users/6612932/wasthishelpful
+	//http://stackoverflow.com/users/63550/peter-mortensen
+
 	if (!host('stackoverflow.com', 'www.stackoverflow.com', 'meta.stackoverflow.com')) return;
 
 	Adopto.contentScript = {
@@ -13,6 +17,12 @@
 				return true;
 			}
 			return false;
+		},
+
+		insertAdoptoIcon: function (content) {
+			$('.user-card-name').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
 		},
 
 		getData: function (callback) {

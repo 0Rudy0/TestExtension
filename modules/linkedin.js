@@ -16,6 +16,13 @@
 			return false;
 		},
 
+		insertAdoptoIcon: function (content) {
+			$('h1.pv-top-card-section__name').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
+			$('img.adoptoIconClick').css('left', '6px');
+		},
+
 		siteLanguage: "en",
 
 		monthAsNumber:

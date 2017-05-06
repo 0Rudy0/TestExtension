@@ -267,6 +267,8 @@ blockquote.content::after {
 		padding: 3px 10px;
 		transition-duration: 0.1s;
 		line-height: 18px;
+		min-height: unset;
+		box-shadow: none;
 	}
 
 		.messagingContent .sendBtnHolder button.btn-success:hover {

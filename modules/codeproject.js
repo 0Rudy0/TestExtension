@@ -24,6 +24,13 @@
 			return false;
 		},
 
+		insertAdoptoIcon: function (content) {
+			$('#ctl00_ContentPane h1').append(content);
+			$('img.adoptoIconClick').css('position', 'relative');
+			$('img.adoptoIconClick').css('top', '3px');
+			$('img.adoptoIconClick').css('left', '5px');
+		},
+
 		getData: function (callback) {
 			Adopto.contentScript.callback = callback;
 
