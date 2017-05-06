@@ -129,11 +129,9 @@
 			if ($contacts.attr("data-control-name") === "contact_see_more") {
 				$contacts.click();
 			}
-
-			var $projectsExpand = $(".pv-profile-section.pv-accomplishments-block.projects button", aseFrameContents);
-			if ($projectsExpand.attr("aria-expanded") === "false") {
-				$projectsExpand.click();
-			}
+            
+            var $projectsExpand = $(".pv-profile-section.pv-accomplishments-block.projects .pv-accomplishments-block__expand", aseFrameContents);
+            $projectsExpand.click();
 
 			var $languagesExpand = $(".pv-profile-section.pv-accomplishments-block.languages button", aseFrameContents);
 			if ($languagesExpand.attr("aria-expanded") === "false") {
@@ -156,7 +154,7 @@
 					switch (this.classList[1]) {
 						case "ci-vanity-url":
 							var link = $(".pv-contact-info__contact-item", this).text().trim();
-							cd.mainData.socialNetworks.linkedin = link;
+							cd.mainData.socialNetworks.linkedin = "https://www." + link;
 							break;
 						case "ci-websites":
 							var webSites = "";
@@ -180,7 +178,7 @@
 							break;
 						case "ci-twitter":
 							var twitter = $(".pv-contact-info__action", this)[0];
-							cd.mainData.socialNetworks.twitter = twitter.text.trim();
+                            cd.mainData.socialNetworks.twitter = "https://twitter.com/" + twitter.text.trim();
 							break;
 						case "ci-ims":
 							$(".pv-contact-info__ci-container", this).each(function () {
@@ -256,10 +254,10 @@
 
 					if (title) {
 						cd.mainData.projects.push({
-							title: title,
+                            projectTitle: title,
 							startDate: moment(dateRange[0]),
 							endDate: moment(dateRange[1]),
-							description: description
+							desc: description
 						})
 					}
 				});
