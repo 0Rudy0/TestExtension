@@ -242,6 +242,10 @@ blockquote.content::after {
 	padding: 2px 5px;
 }
 
+.messagingContent ul[role="tablist"] {
+	float: none;
+}
+
 .messagingContent .sendBtnHolder {
 	width: auto;
 	height: 28px;
@@ -294,4 +298,9 @@ blockquote.content::after {
 #emailSubject {
 	background-color: white;
 	height: 34px;
+}
+
+div.note-editable[contenteditable] {
+	width: auto;
+	display: block;
 }

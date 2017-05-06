@@ -46,7 +46,7 @@
 		},
 
 		getSkills: function (username, m) {
-			console.log(m.mainData.socialNetworks.github + '?tab=repositories');
+			//console.log(m.mainData.socialNetworks.github + '?tab=repositories');
 			$.ajax({
 				url: m.mainData.socialNetworks.github + '?tab=repositories',
 				async: true,

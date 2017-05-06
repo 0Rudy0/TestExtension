@@ -25,6 +25,16 @@
 	margin-top: 5px;
 }
 
+.adopto-details-pane .atPlace.empty {
+	color: black;
+}
+
+.adopto-details-pane .atPlace.empty:hover {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+}
+
 .adopto-details-pane .pane .desc-info {
 	/*background-color: blue;*/
 	margin-top: 20px;

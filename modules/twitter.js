@@ -1,4 +1,6 @@
 (function ($, host) {
+
+	//https://twitter.com/VonC_
 	
 	if (!host('twitter.com')) return;
 

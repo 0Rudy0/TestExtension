@@ -46,8 +46,9 @@
                 "css/adopto-communications.css",
                 "css/adopto-details-pane.css",
                 "css/font-awesome.min.css",
+                "css/bootstrap.min.css",
                 "css/summernote.css",
-                "css/bootstrap.min.css"
+                "css/ionicons.min.css"
                 //"css/bootstrap-theme.min.css"
             ],
             "js": [
@@ -79,7 +80,8 @@
         "*.html",
         "*.woff2",
         "*.ttf",
-        "*.woff"
+        "*.woff",
+        "*.eot"
     ],
 
     "background": {

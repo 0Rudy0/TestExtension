@@ -379,6 +379,7 @@ body.adopto-sidebar-show .adopto-sidebar {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: 100;
+	font-style: italic;
 }
 
 .curr-info p.location {
@@ -447,17 +448,17 @@ body.adopto-sidebar-show .adopto-sidebar {
 			color: #67797b;
 		}
 
-		.curr-info-edit .adopto-input.location {
-			/*bottom: 1px;*/
-			position: absolute;
-			width: calc(100% - 54px);
-			bottom: 0;
-			margin-bottom: 0;
-		}
+	.curr-info-edit .adopto-input.location {
+		/*bottom: 1px;*/
+		position: absolute;
+		width: calc(100% - 54px);
+		bottom: 0;
+		margin-bottom: 0;
+	}
 
-		.curr-info-edit .location i {
-			font-size: 9pt;
-		}
+	.curr-info-edit .location i {
+		font-size: 9pt;
+	}
 
 
 /*#endregion*/
@@ -608,10 +609,11 @@ html, body {
 }
 
 img.adoptoIconClick:hover {
-	transform:scale(1.1);
+	transform: scale(1.1);
 }
+
 img.adoptoIconClick:active {
-	transform:scale(0.9);
+	transform: scale(0.9);
 }
 
 .adopto-sidebar .adopto-perspective {
@@ -622,7 +624,7 @@ img.adoptoIconClick:active {
 	bottom: 10px;
 	height: 50px;
 	padding: 10px;
-	width: calc(100% - 40px)
+	width: calc(100% - 40px);
 	/*position: absolute;*/
 	/*bottom: 10px;*/
 	/*position: absolute;

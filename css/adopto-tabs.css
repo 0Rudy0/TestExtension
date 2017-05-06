@@ -2,7 +2,7 @@
 	float: right;
 	height: 100%;
 	width: 40px;
-	border-left: 1px solid #eaeaea;
+	border-left: 0px solid #eaeaea;
 	/*background-color: rgba(0, 172, 172, 0.8);*/
 	position: relative;
 	z-index: 3;
@@ -38,7 +38,7 @@
 
 		.nav-tabs.main .tab-header i {
 			position: relative;
-			top: 2px;
+			top: -3px;
 			font-size: 22px;
 			transition-duration: 0.1s;
 		}

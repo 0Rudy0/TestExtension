@@ -1,8 +1,1 @@
-﻿- on hover gumbi na summernote na githubu
-- ion icons (za tab header slike)
-- linkedin - collapse ne radi uvijek
-- linkedin - lokacija
-- collapse ne radi nakon hide/show - valjda neki event handler
-- dribble social networks
-- summernote na twitteru
-
+﻿- ponekad ne loada podatke na linkedinu

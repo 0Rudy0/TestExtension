@@ -47,7 +47,7 @@
 				cd.mainData.skills.push(skills[i].innerText);
 			}
 
-			var extra = $('.profile-info div.profile-extra ul.profile-details li a');
+			var extra = $('.profile-info div.floating-sidebar-extra ul.profile-details li a');
 			for (var i = 0; i < extra.length; i++) {
 				if ($(extra[i]).attr('class') == null) {
 					continue;
@@ -60,6 +60,27 @@
 				}
 				else if ($(extra[i]).attr('class').indexOf('facebook') > -1) {
 					cd.mainData.socialNetworks.facebook = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('github') > -1) {
+					cd.mainData.socialNetworks.github = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('linkedin') > -1) {
+					cd.mainData.socialNetworks.linkedin = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('skype') > -1) {
+					cd.mainData.socialNetworks.skype = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('stackoverflow') > -1) {
+					cd.mainData.socialNetworks.stackoverflow = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('angellist') > -1) {
+					cd.mainData.socialNetworks.angellist = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('xing') > -1) {
+					cd.mainData.socialNetworks.xing = $(extra[i]).attr('href');
+				}
+				else if ($(extra[i]).attr('class').indexOf('google') > -1) {
+					cd.mainData.socialNetworks.googlePlus = $(extra[i]).attr('href');
 				}
 			}
 

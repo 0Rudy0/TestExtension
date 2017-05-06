@@ -96,9 +96,11 @@
 						$body.scrollTop($body.scrollTop() + stap);
 					} else {
 						clearInterval(scrollInterval);
-						Adopto.contentScript.expandDataOnPage();
+						setTimeout(function () {
+							Adopto.contentScript.expandDataOnPage();
+						}, 50);
 					}
-				}, 10);
+				}, 20);
 			};
 
 			iframe.id = "aseFrame";
@@ -115,6 +117,9 @@
 			var cd = candidateDataModel;
 
 			cd.mainData.fullName = $(".pv-top-card-section__name", aseFrameContents).text();
+			console.log('frame content:');
+			console.log(aseFrameContents);
+			console.log(aseFrameContents.context.body.innerText.length);
 			cd.mainData.title = $(".pv-top-card-section__headline", aseFrameContents).text();
 			cd.mainData.summary = $(".truncate-multiline--truncation-target", aseFrameContents).text().trim();
 
