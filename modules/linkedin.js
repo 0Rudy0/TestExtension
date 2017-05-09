@@ -121,7 +121,8 @@
 			console.log(aseFrameContents);
 			console.log(aseFrameContents.context.body.innerText.length);
 			cd.mainData.title = $(".pv-top-card-section__headline", aseFrameContents).text();
-			cd.mainData.summary = $(".truncate-multiline--truncation-target", aseFrameContents).text().trim();
+            cd.mainData.summary = $(".truncate-multiline--truncation-target", aseFrameContents).text().trim();
+            cd.mainData.location = $(".pv-top-card-section__location").text().trim();
 
 			cd.mainData.profileImgUrl = $(".pv-top-card-section__header img").attr("src");
 
@@ -184,9 +185,12 @@
 							var value = text.substring(0, text.lastIndexOf("(")).trim();
 							cd.mainData.contactInfo.phone = value;
 							break;
-						case "ci-address":
-							var address = $(".pv-contact-info__action", this)[0];
-							cd.mainData.location = address.innerText.trim();
+                        case "ci-address":
+                            var address = $(".pv-contact-info__action", this)[0].innerText.trim();
+                            if (address) {
+                                cd.mainData.location += ", ";
+                                cd.mainData.location += address;
+                            }
 							break;
 						case "ci-twitter":
 							var twitter = $(".pv-contact-info__action", this)[0];
