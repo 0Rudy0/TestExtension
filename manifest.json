@@ -1,97 +1,98 @@
 {
-    "manifest_version": 2,
-    "name": "Adopto Hire Extension testing",
-    "version": "0.9.6",
+  "manifest_version": 2,
+  "name": "Adopto Hire Extension testing",
+  "version": "0.9.6",
 
-    "description": "Source candidates to your Adopto account with a single click.",
-    "icons": {
-        "16": "icon/icon_16.png",
-        "48": "icon/icon_48.png",
-        "128": "icon/icon_128.png"
-    },
+  "description": "Source candidates to your Adopto account with a single click.",
+  "icons": {
+    "16": "icon/icon_16.png",
+    "48": "icon/icon_48.png",
+    "128": "icon/icon_128.png"
+  },
 
-    "author": "Danijel Rudman; Jurica Marić; Adopto LTD",
-    "permissions": [
-        "activeTab",
-        "https://*.adopto.eu/*",
-        "http://adopto-local.eu/*",
-        "https://www.linkedin.com/*",
-        "https://www.github.com/*",
-        "https://www.facebook.com/*",
-        "https://www.angel.com/*",
-        "https://www.dribbble.com/*",
-        "https://www.stackoverflow.com/*",
-        "https://www.codeproject.com/*",
-        "https://www.twitter.com/*",
-        "tabs",
-        "webNavigation"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                //"https://*.facebook.com/*",
-                "https://*.github.com/*", //-done
-                "https://*.angel.co/*", //-done
-                "https://*.dribbble.com/*", //-done
-                "https://*.linkedin.com/*", //-in progress
-                "http://*.stackoverflow.com/*", //-done
-                "https://*.codeproject.com/*",
-                "https://*.twitter.com/*"
-            ],
-            "css": [
-                "css/adopto.css",
-                "css/adopto-tabs.css",
-                "css/adopto-form.css",
-                "css/adopto-activities.css",
-                "css/adopto-communications.css",
-                "css/adopto-details-pane.css",
-                "css/font-awesome.min.css",
-                "css/bootstrap.min.css",
-                "css/summernote.css",
-                "css/ionicons.min.css"
-                //"css/bootstrap-theme.min.css"
-            ],
-            "js": [
-                "js/jquery.min.js",
-                "js/bootstrap.min.js",
-                "js/summernote.min.js",
-                "js/moment.min.js",
-                //"js/google-fonts.js",
-                "js/helpers.js",
-                "js/adopto.js",
-                "js/model.js",
-                "js/adopto-sidebar.js",
+  "author": "Danijel Rudman; Jurica Marić; Adopto LTD",
+  "permissions": [
+    "activeTab",
+    "https://*.adopto.eu/*",
+    "http://adopto-local.eu/*",
+    "https://www.linkedin.com/*",
+    "https://www.github.com/*",
+    "https://www.facebook.com/*",
+    "https://www.angel.com/*",
+    "https://www.dribbble.com/*",
+    "https://www.stackoverflow.com/*",
+    "https://www.codeproject.com/*",
+    "https://www.twitter.com/*",
+    "tabs",
+    "webNavigation"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        //"https://*.facebook.com/*",
+        "https://*.github.com/*", //-done
+        "https://*.angel.co/*", //-done
+        "https://*.dribbble.com/*", //-done
+        "https://*.linkedin.com/*", //-in progress
+        "http://*.stackoverflow.com/*", //-done
+        "https://*.codeproject.com/*",
+        "https://*.twitter.com/*"
+      ],
+      "css": [
+        "css/adopto.css",
+        "css/adopto-tabs.css",
+        "css/adopto-form.css",
+        "css/adopto-activities.css",
+        "css/adopto-communications.css",
+        "css/adopto-details-pane.css",
+        "css/font-awesome.min.css",
+        "css/bootstrap.min.css",
+        "css/summernote.css",
+        "css/ionicons.min.css"
+        //"css/bootstrap-theme.min.css"
+      ],
+      "js": [
+        "js/jquery.min.js",
+        "js/bootstrap.min.js",
+        "js/summernote.min.js",
+        "js/moment.min.js",
+        "js/oidc-client.min.js",
+        //"js/google-fonts.js",
+        "js/helpers.js",
+        "js/adopto.js",
+        "js/model.js",
+        "js/adopto-sidebar.js",
 
-                //"modules/facebook.js",
-                "modules/github.js",
-                "modules/angellist.js",
-                "modules/dribbble.js",
-                "modules/linkedin.js",
-                "modules/stackoverflow.js",
-                "modules/codeproject.js",
-                "modules/twitter.js"
-            ]
-        }
-    ],
-    "web_accessible_resources": [
-        "*.json",
-        "*.svg",
-        "*.png",
-        "*.html",
-        "*.woff2",
-        "*.ttf",
-        "*.woff",
-        "*.eot"
-    ],
+        //"modules/facebook.js",
+        "modules/github.js",
+        "modules/angellist.js",
+        "modules/dribbble.js",
+        "modules/linkedin.js",
+        "modules/stackoverflow.js",
+        "modules/codeproject.js",
+        "modules/twitter.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "*.json",
+    "*.svg",
+    "*.png",
+    "*.html",
+    "*.woff2",
+    "*.ttf",
+    "*.woff",
+    "*.eot"
+  ],
 
-    "background": {
-        "scripts": [            
-            "js/adopto-button.js"
-        ]
-    },
-    "browser_action": {
-        "default_title": "",
-        "default_icon": "icon/icon_19.png"
-    },
-    "homepage_url": "https://adopto.eu/"
+  "background": {
+    "scripts": [
+      "js/adopto-button.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "",
+    "default_icon": "icon/icon_19.png"
+  },
+  "homepage_url": "https://adopto.eu/"
 }
